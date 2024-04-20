@@ -1,0 +1,19 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+body {
+  color: #fff;
+  background-color: #000;
+}
+
+.page {
+  margin: 0;
+  min-width: 320px;
+  box-sizing: border-box;
+  font-family: "changa", Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}

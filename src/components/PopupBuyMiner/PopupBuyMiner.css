@@ -1,0 +1,106 @@
+.popup-buy-miner {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  background-color: #00000052;
+  backdrop-filter: blur(3px);
+}
+
+.popup-buy-miner__container {
+  position: absolute;
+  top: 200px;
+  background: url("../../assets/images/popup_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  max-width: 350px;
+  width: 100%;
+  height: 400px;
+  padding: 40px;
+}
+
+.popup-buy-miner__button-closed {
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  background: url("../../assets/images/popup_btn_close.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  max-width: 50px;
+  width: 100%;
+  height: 50px;
+}
+
+.popup-buy-miner__form-block {
+}
+
+.popup-buy-miner__title {
+  margin-top: 50px;
+  text-align: center;
+  color: #ddbfb3fc;
+  font-size: 28px;
+}
+
+.popup-buy-miner__subtitle {
+  margin-top: 5px;
+  text-align: center;
+  color: #f5b39ba3;
+  font-size: 13px;
+}
+
+.popup-buy-miner__input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.popup-buy-miner__input-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.popup-buy-miner__input {
+  font-family: "changa", Arial, sans-serif;
+  background-color: #312c22;
+  border: 2px solid #605749;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px;
+}
+
+.popup-buy-miner__input:focus {
+  border: 1px solid #845044;
+  outline: none;
+}
+
+.popup-buy-miner__text-sum {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  max-width: 200px;
+  margin: 7px auto 0;
+}
+
+.popup-buy-miner__buy-button {
+  background: url("../../assets/images/btn_color_green.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-transform: uppercase;
+  width: 50%;
+  padding: 10px 0 15px 0;
+  display: block;
+  margin: 25px auto 0;
+}

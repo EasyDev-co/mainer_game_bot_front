@@ -1,0 +1,64 @@
+.header {
+  max-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.header__currencies-block {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.header__currencies-list {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.header__currencies-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  background: url("../../assets/images/status_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 5px 10px 5px 5px;
+}
+
+.header__currencies-list-item {
+  max-width: 130px;
+  width: 100%;
+}
+
+.header__currencies-item-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.header__currencies-item-val {
+  font-size: 13px;
+  max-width: 60px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.header__currencies-item-replenish {
+  background: url("../../assets/images/status_btn_add.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}

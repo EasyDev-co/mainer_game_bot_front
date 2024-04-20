@@ -1,0 +1,186 @@
+.referrals {
+  margin: 0 auto;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    url("../../assets/images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.referrals__container {
+  max-width: 390px;
+  padding: 65px 20px 20px 20px;
+  margin: 0 auto;
+}
+
+.referrals__title-container {
+  background: url("../../assets/images/title_ribbon_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  padding: 10px 10px 30px 10px;
+}
+
+.referrals__title {
+  text-align: center;
+  color: #c9baa9;
+  font-size: 28px;
+  -webkit-background-clip: text;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgb(0 0 0), -2px -2px 4px rgb(0 0 0 / 30%);
+}
+
+.referrals__info-val-text {
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.referrals__info-container {
+  margin-top: 50px;
+}
+
+.referrals__back-icon {
+  width: 30px;
+  height: 40px;
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+
+.referrals__first-info-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.referrals__val-block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 20px 30px 20px;
+}
+
+.referrals__reward-block {
+  background: url("../../assets/images/stage_default.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.referrals__info-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.referrals__info-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.referrals__info-title {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.referrals__quantity-block {
+  background: url("../../assets/images/stage_default.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.referrals__second-info-block {
+  margin-top: 20px;
+}
+
+.referrals__copy-text-block {
+  margin-top: 5px;
+  height: 20px;
+}
+
+.referrals__copy-text {
+  text-align: center;
+  font-size: 18px;
+  color: #916c42;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.referrals__copy-descr-text {
+  font-size: 20px;
+  text-align: center;
+  color: #c9baa9db;
+  margin-top: 5px;
+}
+
+.referrals__copy-input-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.referrals__ref-link-input {
+  font-family: "changa", Arial, sans-serif;
+  font-size: 13px;
+  background-color: #312c22;
+  border: 2px solid #605749;
+  border-radius: 5px;
+  color: #ffffffad;
+  width: 100%;
+  padding: 10px;
+}
+
+.referrals__ref-link-input:focus {
+  outline: none;
+}
+
+.referrals__copy-button {
+  width: 30px;
+  height: 30px;
+}
+
+.referrals__copy-button-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.referrals__history-title {
+  font-size: 18px;
+  color: #916c42;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
+  font-weight: bolder;
+  margin: 40px 0 25px 5px;
+}
+
+.referrals__history-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../../assets/images/setting_DifficultStage_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  height: 200px;
+  padding: 30px;
+}
+
+.referrals__history-info-text {
+  font-size: 13px;
+  color: #ffffff82;
+}

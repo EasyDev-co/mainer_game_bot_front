@@ -17,3 +17,33 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
 }
+
+.blur {
+  height: 100vh;
+  backdrop-filter: blur(3px);
+}
+
+.page-title-container {
+  background: url("./assets/images/title_ribbon_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  padding: 10px 10px 30px 10px;
+}
+
+.page-title {
+  text-align: center;
+  color: #c9baa9;
+  font-size: 28px;
+  -webkit-background-clip: text;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgb(0 0 0), -2px -2px 4px rgb(0 0 0 / 30%);
+}
+
+.page-back-icon {
+  width: 30px;
+  height: 40px;
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}

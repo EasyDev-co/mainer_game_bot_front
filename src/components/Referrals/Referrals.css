@@ -16,15 +16,6 @@
   padding: 65px 20px 20px 20px;
   margin: 0 auto;
 }
-
-.referrals__title-container {
-  background: url("../../assets/images/title_ribbon_brown.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  padding: 10px 10px 30px 10px;
-}
-
 .referrals__title {
   text-align: center;
   color: #c9baa9;
@@ -43,14 +34,6 @@
 
 .referrals__info-container {
   margin-top: 50px;
-}
-
-.referrals__back-icon {
-  width: 30px;
-  height: 40px;
-  position: absolute;
-  top: 15px;
-  left: 30px;
 }
 
 .referrals__first-info-block {

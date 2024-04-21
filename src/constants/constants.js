@@ -11,6 +11,9 @@ import minerGif from "../assets/gif/miner.gif";
 import walletIcon from "../assets/images/btnIconWallet.png";
 import copyIcon from "../assets/images/btnIconCopy.png";
 import backIcon from "../assets/images/page_prev.png";
+import timeIcon from "../assets/images/btnIconTime.png";
+import cartIcon from "../assets/images/btnIconCart.png";
+import changeArrowIcon from "../assets/images/change-arrow.png";
 
 export {
   diamondIcon,
@@ -25,5 +28,8 @@ export {
   walletIcon,
   manMinerIcon,
   copyIcon,
-  backIcon
+  backIcon,
+  timeIcon,
+  cartIcon,
+  changeArrowIcon
 };

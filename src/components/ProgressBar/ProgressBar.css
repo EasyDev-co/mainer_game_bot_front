@@ -1,22 +1,18 @@
-.main__val-container {
+.progress-bar__container {
   max-width: 250px;
   width: 100%;
   margin: 30px auto 0;
 }
 
-.main__val {
-  text-align: center;
-  font-size: 16px;
-}
-
-.progress-bar-container {
+.progress-bar__block {
   position: relative;
   border: 2px solid #000000c7;
   border-radius: 50px;
 }
 
-.custom-label {
+.progress-bar__custom-label {
   color: #000000b5;
+  font-size: 16px;
   position: absolute;
   top: 50%;
   left: 50%;

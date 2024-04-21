@@ -1,0 +1,116 @@
+.presale {
+  margin: 0 auto;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    url("../../assets/images/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.presale__container {
+  max-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.presale__title {
+  font-size: 55px;
+  text-align: center;
+  padding: 100px 10px 0;
+  background: linear-gradient(to right, #00b7fd, #1cff00, #ffc406);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  background-image: url("../../assets/images/text-bg.png");
+  background-repeat: round;
+  background-size: 100% 30%;
+}
+
+.presale__miner-img-container {
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  padding-top: 40px;
+}
+
+.presale__miner-img {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.presale__buttons-container {
+  padding: 0 10px;
+}
+
+.presale__button-mint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/images/btn_color_green.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-size: 23px;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 20px 0 25px 0;
+  margin: 0 auto;
+}
+
+.presale__button-mint-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.presale__second-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.presale__button-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/images/btn_color_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 15px 20px 20px 20px;
+}
+
+.presale__button-info-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.presale__button-ref {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/images/btn_color_purple.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-size: 23px;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 20px 0 25px 0;
+}
+
+.presale__button-ref-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}

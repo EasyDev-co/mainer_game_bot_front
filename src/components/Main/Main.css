@@ -11,28 +11,10 @@
   background-position: center;
 }
 
-.blur {
-  height: 100vh;
-  backdrop-filter: blur(3px);
-}
-
 .main__container {
   max-width: 390px;
   width: 100%;
   margin: 0 auto;
-}
-
-.main__title {
-  font-size: 55px;
-  text-align: center;
-  padding: 100px 10px 0;
-  background: linear-gradient(to right, #00b7fd, #1cff00, #ffc406);
-  -webkit-background-clip: text;
-  color: transparent;
-  text-transform: uppercase;
-  background-image: url("../../assets/images/text-bg.png");
-  background-repeat: round;
-  background-size: 100% 30%;
 }
 
 .main__miner-img-container {
@@ -40,7 +22,7 @@
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
-  padding-top: 40px;
+  padding-top: 180px;
 }
 
 .main__miner-img {
@@ -48,84 +30,58 @@
   padding: 0 10px;
 }
 
-.main__buttons-container {
-  padding: 0 10px;
+.main__buttons-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-.main__button-mint {
+.main__change-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  max-width: 130px;
+  width: 100%;
+  font-size: 18px;
+  background: url("../../assets/images/small-button.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 15px 0 20px 0;
+}
+
+.main__change-button-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.main__collect-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 270px;
+  width: 100%;
+  height: 60px;
+  font-size: 23px;
   background: url("../../assets/images/btn_color_green.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  font-size: 23px;
-  text-transform: uppercase;
-  width: 100%;
-  padding: 20px 0 25px 0;
-  margin: 0 auto;
-}
-
-.main__button-mint-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-}
-
-.main__second-buttons-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin-top: 5px;
-}
-
-.main__button-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../../assets/images/btn_color_brown.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  box-sizing: border-box;
-  padding: 15px 20px 20px 20px;
-}
-
-.main__button-info-icon {
-  width: 35px;
-  height: 35px;
-}
-
-.main__button-ref {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../../assets/images/btn_color_purple.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  box-sizing: border-box;
-  font-size: 23px;
-  text-transform: uppercase;
-  width: 100%;
   padding: 20px 0 25px 0;
 }
 
-.main__button-ref-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-}
-
-/* .main__footer-buttons {
+.main__bottom-buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   padding: 0 10px;
-  margin-top: 100%;
+  margin-top: 200px;
 }
 
 .main__ref-button {
@@ -147,4 +103,3 @@
   background-size: 100% 100%;
   box-sizing: border-box;
 }
- */

@@ -1,8 +1,9 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Main } from "../Main/Main";
+import { Presale } from "../Presale/Presale";
 import { Header } from "../Header/Header";
 import { Market } from "../Market/Market";
+import { Main } from "../Main/Main";
 import { Referrals } from "../Referrals/Referrals";
 
 export const App = () => {
@@ -15,7 +16,7 @@ export const App = () => {
             element={
               <>
                 <Header />
-                <Main />
+                <Presale />
               </>
             }
           />
@@ -32,6 +33,15 @@ export const App = () => {
             element={
               <>
                 <Referrals />
+              </>
+            }
+          />
+          <Route
+            path={"/main"}
+            element={
+              <>
+                <Header />
+                <Main />
               </>
             }
           />

@@ -34,13 +34,13 @@ export const Referrals = () => {
       <div className="referrals__container">
         <Link className="referrals__back-link" to="/">
           <img
-            className="referrals__back-icon"
+            className="page-back-icon referrals__back-icon"
             src={backIcon}
             alt="back arrow"
           />
         </Link>
-        <div className="referrals__title-container">
-          <h1 className="referrals__title">Referrals</h1>
+        <div className="page-title-container referrals__title-container">
+          <h1 className="page-title referrals__title">Referrals</h1>
         </div>
         <div className="referrals__info-container">
           <div className="referrals__first-info-block">

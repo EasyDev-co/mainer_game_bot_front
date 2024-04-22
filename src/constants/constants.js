@@ -14,6 +14,11 @@ import backIcon from "../assets/images/page_prev.png";
 import timeIcon from "../assets/images/btnIconTime.png";
 import cartIcon from "../assets/images/btnIconCart.png";
 import changeArrowIcon from "../assets/images/change-arrow.png";
+import changeWhiteArrowIcon from "../assets/images/btnIconAlign.png";
+import logoNoBgIcon from "../assets/images/logo-no-bg.png";
+import barrelСrystalsIcon from "../assets/images/shop_img_gem_03.png";
+import moneyBagIcon from "../assets/images/shop_img_coin_01.png";
+import whiteDownArrow from "../assets/images/btnIconArrowDown.png";
 
 export {
   diamondIcon,
@@ -31,5 +36,10 @@ export {
   backIcon,
   timeIcon,
   cartIcon,
-  changeArrowIcon
+  changeArrowIcon,
+  logoNoBgIcon,
+  barrelСrystalsIcon,
+  moneyBagIcon,
+  changeWhiteArrowIcon,
+  whiteDownArrow,
 };

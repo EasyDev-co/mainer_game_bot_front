@@ -1,0 +1,69 @@
+.market-items__lot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.market-items__lot-item {
+  background-color: #312c22;
+  border: 1px solid #af97978f;
+  border-radius: 10px;
+  width: 46%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.market-items__lot-title-block {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.market-items__lot-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.market-items__lot-title {
+  font-size: 15px;
+  color: #c9baa9;
+}
+
+.market-items__lot-val-block {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #776d58;
+}
+
+.market-items__crystal-val-text {
+}
+
+.market-items__lot-val-text {
+  font-size: 15px;
+  text-align: center;
+  overflow-wrap: break-word;
+  padding: 3px;
+  margin: 10px 0;
+}
+
+.market-items__lot-bottom-text {
+  font-size: 13px;
+  color: #837964de;
+  overflow-wrap: break-word;
+  margin-top: 5px;
+}
+
+.market-items__lot-button {
+  color: #dfcfbc;
+  font-size: 15px;
+  text-transform: uppercase;
+  background: url("../../assets/images/btn_color_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 5px 10px 10px 10px;
+  margin-top: 10px;
+}

@@ -12,6 +12,7 @@
 }
 
 .referrals__container {
+  position: relative;
   max-width: 390px;
   padding: 65px 20px 20px 20px;
   margin: 0 auto;

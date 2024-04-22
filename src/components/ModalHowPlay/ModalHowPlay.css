@@ -1,0 +1,82 @@
+.modal-how-play {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  background-color: #000000c9;
+  backdrop-filter: blur(3px);
+}
+
+.modal-how-play__container {
+  max-width: 390px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 140px 10px 0 10px;
+}
+
+.modal-how-play__title {
+  font-size: 45px;
+  color: #02b9f5;
+  -webkit-text-stroke: 1px #ffffffc7;
+  margin-bottom: 55px;
+}
+
+.modal-how-play__list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.modal-how-play__item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.modal-how-play__item-img {
+  width: 80px;
+  height: 80px;
+}
+
+.modal-how-play__item-info-block {
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.modal-how-play__item-title {
+  font-size: 25px;
+  color: #00c0ff;
+}
+
+.modal-how-play__item-text {
+  font-size: 16px;
+  color: #a1daedc4;
+  margin-top: 5px;
+}
+
+.modal-how-play__item-arrow {
+  rotate: -90deg;
+  width: 50px;
+  height: 70px;
+  position: absolute;
+  bottom: -60px;
+}
+
+.modal-how-play__back-button {
+  font-size: 28px;
+  color: #34aad1;
+  margin-top: 50px;
+}

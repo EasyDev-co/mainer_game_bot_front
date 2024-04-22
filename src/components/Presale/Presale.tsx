@@ -8,24 +8,27 @@ import {
   manMinerIcon,
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../PopupBuyMiner/PopupBuyMiner";
+import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
 
 export const Presale = () => {
-  //стейт для открытия попапа с gpt запросом
-  const [isMintOpen, setIsMintOpen] = useState(false);
+  //стейт для открытия и закратия попапа mint
+  const [isMintState, setIsMintState] = useState(false);
+  //стейт для открытия и закрытия попапа info
+  const [isInfoState, setIsInfoState] = useState(false);
 
-  //функция открытия попапа mint
-  const handleOpenBuyMint = () => {
-    setIsMintOpen(true);
+  //функция открытия и закрытия попапа mint
+  const handleStateBuyMint = () => {
+    setIsMintState(!isMintState);
   };
 
-  //функция закрытия попапа mint
-  const handleCloseBuyMint = () => {
-    setIsMintOpen(false);
+  //функция открытия и закрытия попапа info
+  const handleStateInfo = () => {
+    setIsInfoState(!isInfoState);
   };
 
   const currentValue = 0;
-  const totalValue = 30000;
+  const totalValue = 35000;
 
   return (
     <section className="presale">
@@ -45,7 +48,7 @@ export const Presale = () => {
           </div>
           <div className="presale__buttons-container">
             <button
-              onClick={handleOpenBuyMint}
+              onClick={handleStateBuyMint}
               className="presale__button-mint"
               type="button"
             >
@@ -57,7 +60,11 @@ export const Presale = () => {
               Mint
             </button>
             <div className="presale__second-buttons-container">
-              <button className="presale__button-info" type="button">
+              <button
+                onClick={handleStateInfo}
+                className="presale__button-info"
+                type="button"
+              >
                 <img
                   className="presale__button-info-icon"
                   src={infoIcon}
@@ -75,7 +82,8 @@ export const Presale = () => {
             </div>
           </div>
         </div>
-        {isMintOpen && <PopupBuyMiner onClose={handleCloseBuyMint} />}
+        {isMintState && <PopupBuyMiner onClose={handleStateBuyMint} />}
+        {isInfoState && <ModalHowPlay onClose={handleStateInfo} />}
       </div>
     </section>
   );

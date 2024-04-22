@@ -16,7 +16,11 @@ export const Main = () => {
           </div>
           <div className="main__buttons-block">
             <button className="main__change-button" type="button">
-                <img className="main__change-button-icon" src={changeArrowIcon} alt="" />
+              <img
+                className="main__change-button-icon"
+                src={changeArrowIcon}
+                alt=""
+              />
               Change
             </button>
             <button className="main__collect-button" type="button">

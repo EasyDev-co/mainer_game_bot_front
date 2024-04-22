@@ -8,7 +8,9 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void }) => {
         <button className="popup-buy-miner__button-closed" onClick={onClose} />
         <div className="popup-buy-miner__form-block">
           <h2 className="popup-buy-miner__title">Buy Miner</h2>
-          <p className="popup-buy-miner__subtitle">Buy Miner subtitle</p>
+          <p className="popup-buy-miner__subtitle">
+            1 miner package = 4000 miners
+          </p>
           <div className="popup-buy-miner__input-container">
             <img
               className="popup-buy-miner__input-icon"

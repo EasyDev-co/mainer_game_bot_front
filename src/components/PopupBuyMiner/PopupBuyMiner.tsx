@@ -1,7 +1,15 @@
 import "./PopupBuyMiner.css";
+import React, { useState } from "react";
 import { hackIcon } from "../../constants/constants";
 
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void }) => {
+  const [inputValue, setInputValue] = useState(0);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value) * 1.5;
+    setInputValue(value);
+  };
+
   return (
     <div className="popup-buy-miner">
       <div className="popup-buy-miner__container">
@@ -19,11 +27,12 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void }) => {
             />
             <input
               className="popup-buy-miner__input"
-              type="text"
+              type="number"
               placeholder="0"
+              onChange={handleInputChange}
             />
           </div>
-          <p className="popup-buy-miner__text-sum">Sum TON: 0</p>
+          <p className="popup-buy-miner__text-sum">Sum TON: {inputValue}</p>
           <button className="popup-buy-miner__buy-button" type="button">
             Buy
           </button>

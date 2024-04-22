@@ -80,8 +80,7 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 0 10px;
-  margin-top: 200px;
+  padding: 200px 10px 30px 10px;
 }
 
 .main__ref-button {

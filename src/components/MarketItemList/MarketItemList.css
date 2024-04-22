@@ -1,0 +1,16 @@
+.market-items__lot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.market-items__lot-item {
+  background-color: #312c22;
+  border: 1px solid #af97978f;
+  border-radius: 10px;
+  width: 46%;
+  box-sizing: border-box;
+  padding: 15px;
+}

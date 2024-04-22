@@ -20,6 +20,33 @@ import barrelСrystalsIcon from "../assets/images/shop_img_gem_03.png";
 import moneyBagIcon from "../assets/images/shop_img_coin_01.png";
 import whiteDownArrow from "../assets/images/btnIconArrowDown.png";
 
+const items = [
+  {
+    quantity: 0,
+    price: 0,
+    unitPrice: "0.00001",
+    seller: "Test0",
+  },
+  {
+    quantity: 1,
+    price: 1,
+    unitPrice: "0.00001",
+    seller: "Test1",
+  },
+  {
+    quantity: 2,
+    price: 2,
+    unitPrice: "0.00001",
+    seller: "Test2",
+  },
+  {
+    quantity: 3,
+    price: 3,
+    unitPrice: "0.00001",
+    seller: "Test3",
+  },
+];
+
 export {
   diamondIcon,
   hackIcon,
@@ -42,4 +69,5 @@ export {
   moneyBagIcon,
   changeWhiteArrowIcon,
   whiteDownArrow,
+  items,
 };

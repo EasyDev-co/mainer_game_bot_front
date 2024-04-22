@@ -7,8 +7,9 @@ import {
   cartIcon,
   changeWhiteArrowIcon,
   whiteDownArrow,
+  items,
 } from "../../constants/constants";
-import { MarketItems } from "../MarketItems/MarketItems";
+import { MarketItemList } from "../MarketItemList/MarketItemList";
 
 export const Market = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -142,7 +143,7 @@ export const Market = () => {
             </button>
           </div>
         </div>
-        <MarketItems />
+        <MarketItemList items={items} />
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ body {
 }
 
 .blur {
-  height: 100vh;
+  height: 100%;
   backdrop-filter: blur(3px);
 }
 

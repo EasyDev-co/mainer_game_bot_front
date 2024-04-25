@@ -1,7 +1,16 @@
 import "./Header.css";
-import { diamondIcon, hackIcon, tonIcon } from "../../constants/constants";
+import {
+  diamondIcon,
+  hackIcon,
+  plusIcon,
+  walletIcon,
+  tonWhiteIcon,
+} from "../../constants/constants";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
+  const location = useLocation();
   return (
     <header className="header">
       <div className="header__currencies-block">
@@ -13,6 +22,13 @@ export const Header = () => {
               alt="miner icon"
             />
             <p className="header__currencies-item-val">0</p>
+            {location.pathname !== "/" && (
+              <img
+                className="header__plus-icon"
+                src={plusIcon}
+                alt="plus icon"
+              />
+            )}
           </li>
           <li className="header__currencies-item header__currencies-list-item">
             <img
@@ -21,20 +37,42 @@ export const Header = () => {
               alt="diamond icon"
             />
             <p className="header__currencies-item-val">0</p>
+            {location.pathname !== "/" && (
+              <Link to="/market">
+                <img
+                  className="header__plus-icon"
+                  src={plusIcon}
+                  alt="plus icon"
+                />
+              </Link>
+            )}
           </li>
           <li className="header__currencies-item header__currencies-list-item">
             <img
-              className="header__currencies-item-icon"
-              src={tonIcon}
+              className="header__currencies-ton-icon header__currencies-item-icon"
+              src={tonWhiteIcon}
               alt="ton icon"
             />
             <p className="header__currencies-item-val">0</p>
+            {location.pathname !== "/" && (
+              <img
+                className="header__plus-icon"
+                src={plusIcon}
+                alt="plus icon"
+              />
+            )}
           </li>
         </ul>
-        <button
+        <Link
           className="header__currencies-item header__currencies-item-replenish"
-          type="button"
-        />
+          to="/profile"
+        >
+          <img
+            className="header__wallet-icon"
+            src={walletIcon}
+            alt="wallet icon"
+          />
+        </Link>
       </div>
     </header>
   );

@@ -1,12 +1,8 @@
 import { useRef, useState } from "react";
 import "./Referrals.css";
-import { Link } from "react-router-dom";
-import {
-  userIcon,
-  walletIcon,
-  copyIcon,
-  backIcon,
-} from "../../constants/constants";
+import { userIcon, walletIcon, copyIcon } from "../../constants/constants";
+import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
+import { TitlePage } from "../TitlePage/TitlePage";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,16 +28,11 @@ export const Referrals = () => {
   return (
     <section className="referrals">
       <div className="referrals__container">
-        <Link className="referrals__back-link" to="/">
-          <img
-            className="page-back-icon referrals__back-icon"
-            src={backIcon}
-            alt="back arrow"
-          />
-        </Link>
-        <div className="page-title-container referrals__title-container">
+        <BackArrowLink link="/" />
+        <TitlePage title="Referrals" />
+{/*         <div className="page-title-container referrals__title-container">
           <h1 className="page-title referrals__title">Referrals</h1>
-        </div>
+        </div> */}
         <div className="referrals__info-container">
           <div className="referrals__first-info-block">
             <div className="referrals__val-block referrals__reward-block">

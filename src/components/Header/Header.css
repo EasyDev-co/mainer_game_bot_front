@@ -52,13 +52,30 @@
   overflow-wrap: break-word;
 }
 
+.header__currencies-ton-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.header__plus-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .header__currencies-item-replenish {
-  background: url("../../assets/images/status_btn_add.png");
+  justify-content: center;
+  background: url("../../assets/images/orange-button.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   box-sizing: border-box;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   padding: 0;
+}
+
+.header__wallet-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 3px;
 }

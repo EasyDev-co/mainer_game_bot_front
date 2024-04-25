@@ -7,7 +7,7 @@ import {
   userPlusIcon,
   manMinerIcon,
 } from "../../constants/constants";
-import { PopupBuyMiner } from "../PopupBuyMiner/PopupBuyMiner";
+import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
 

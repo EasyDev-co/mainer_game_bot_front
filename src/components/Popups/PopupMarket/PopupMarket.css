@@ -1,0 +1,70 @@
+.popup-market {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: #00000052;
+  backdrop-filter: blur(3px);
+}
+
+.popup-market__container {
+  position: absolute;
+  top: 150px;
+  background-color: #312c22;
+  border: 2px solid #605749;
+  border-radius: 5px;
+  color: #fff;
+  box-sizing: border-box;
+  max-width: 350px;
+  width: 90%;
+  padding: 40px;
+}
+
+.popup-market__button-closed {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  background: url("../../../assets/images/popup_btn_close.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  max-width: 50px;
+  width: 100%;
+  height: 50px;
+}
+
+.popup-market__form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-market__title {
+  color: #ddbfb3fc;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.popup-market__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-market__buy-button {
+  color: #dfcfbc;
+  font-size: 15px;
+  text-transform: uppercase;
+  background: url("../../../assets/images/btn_color_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  width: 50%;
+  padding: 10px 10px 15px 10px;
+  margin-top: 30px;
+}

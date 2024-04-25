@@ -1,0 +1,48 @@
+.popup-market__wallet-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.popup-market__title-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.popup-market__item-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.popup-market__item-title {
+  font-size: 15px;
+  color: #c9baa9;
+}
+
+.popup-market__item-text {
+  font-size: 14px;
+  color: #ffffffb3;
+}
+
+.popup-market__item-span {
+  color: #fff;
+}
+
+.popup-market__item-input {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #312c22;
+  border: 2px solid #605749;
+  border-radius: 5px;
+  padding: 5px;
+  display: block;
+}
+
+.popup-market__item-input-text {
+  font-family: "changa", Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+}

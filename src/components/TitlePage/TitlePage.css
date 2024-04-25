@@ -1,0 +1,16 @@
+.title-page {
+    background: url("../../assets/images/title_ribbon_brown.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    padding: 10px 10px 30px 10px;
+  }
+  
+  .title-page__title {
+    text-align: center;
+    color: #c9baa9;
+    font-size: 28px;
+    -webkit-background-clip: text;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgb(0 0 0), -2px -2px 4px rgb(0 0 0 / 30%);
+  }

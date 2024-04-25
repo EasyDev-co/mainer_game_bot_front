@@ -1,0 +1,37 @@
+.market-history {
+  margin: 0 auto;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    url("../../assets/images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.market-history__container {
+  position: relative;
+  max-width: 390px;
+  padding: 65px 20px 180px 20px;
+  margin: 0 auto;
+}
+
+.market-history__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #312c22;
+  border: 2px solid #605749;
+  border-radius: 5px;
+  color: #fff;
+  height: 300px;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.market-history__background-text {
+  font-size: 13px;
+  color: #ffffff82;
+}

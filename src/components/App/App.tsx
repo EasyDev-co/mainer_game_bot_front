@@ -5,6 +5,9 @@ import { Header } from "../Header/Header";
 import { Market } from "../Market/Market";
 import { Main } from "../Main/Main";
 import { Referrals } from "../Referrals/Referrals";
+import { Profile } from "../Profile/Profile";
+import { MarketSell } from "../MarketSell/MarketSell";
+import { MarketHistory } from "../MarketHistory/MarketHistory";
 
 export const App = () => {
   return (
@@ -17,6 +20,15 @@ export const App = () => {
               <>
                 <Header />
                 <Presale />
+              </>
+            }
+          />
+          <Route
+            path={"/main"}
+            element={
+              <>
+                <Header />
+                <Main />
               </>
             }
           />
@@ -37,11 +49,26 @@ export const App = () => {
             }
           />
           <Route
-            path={"/main"}
+            path={"/profile"}
             element={
               <>
-                <Header />
-                <Main />
+                <Profile />
+              </>
+            }
+          />
+          <Route
+            path={"/market-sell"}
+            element={
+              <>
+                <MarketSell />
+              </>
+            }
+          />
+          <Route
+            path={"/market-story"}
+            element={
+              <>
+                <MarketHistory />
               </>
             }
           />

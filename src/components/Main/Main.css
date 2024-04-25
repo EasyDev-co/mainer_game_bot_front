@@ -1,11 +1,7 @@
 .main {
+  position: relative;
   margin: 0 auto;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0.3) 100%
-    ),
-    url("../../assets/images/bg2.jpg");
+  background: url("../../assets/images/bg2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,37 +13,22 @@
   margin: 0 auto;
 }
 
-.main__miner-img-container {
-  width: fit-content;
-  margin: 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  padding-top: 180px;
-}
-
-.main__miner-img {
-  width: 100%;
-  padding: 0 10px;
-}
-
 .main__buttons-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column-reverse;
-  gap: 15px;
-  margin-top: 20px;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 500px;
 }
 
-.main__change-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main__buy-button {
   gap: 5px;
-  max-width: 130px;
+  max-width: 280px;
   width: 100%;
   font-size: 18px;
-  background: url("../../assets/images/small-button.png");
+  text-transform: uppercase;
+  background: url("../../assets/images/btn_color_green.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -55,50 +36,84 @@
   padding: 15px 0 20px 0;
 }
 
-.main__change-button-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.main__collect-button {
+.main__second-buttons-block {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  max-width: 270px;
+}
+
+.main__claim-button {
+  max-width: 200px;
   width: 100%;
-  height: 60px;
   font-size: 23px;
-  background: url("../../assets/images/btn_color_green.png");
+  text-transform: uppercase;
+  background: url("../../assets/images/btn_color_blue.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  padding: 20px 0 25px 0;
+  padding: 15px 0 15px 0;
+}
+
+.main__info-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/images/btn_color_brown.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 15px 20px 20px 20px;
+}
+
+.main__button-info-icon {
+  width: 35px;
+  height: 35px;
 }
 
 .main__bottom-buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 200px 10px 30px 10px;
+  padding: 100px 10px 30px 10px;
 }
 
 .main__ref-button {
-  width: 50px;
-  height: 50px;
-  background: url("../../assets/images/btn_add_friend.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: url("../../assets/images/circle-button.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
 }
 
+.main__ref-button-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 7px;
+}
+
 .main__market-button {
-  width: 50px;
-  height: 50px;
-  background: url("../../assets/images/menu_btn_icon_shop.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: url("../../assets/images/circle-button.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
+}
+
+.main__market-button-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 7px;
 }

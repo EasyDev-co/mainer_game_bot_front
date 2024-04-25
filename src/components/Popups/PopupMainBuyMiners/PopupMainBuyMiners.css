@@ -1,0 +1,140 @@
+.popup-main-buy-miners__title {
+  margin-top: 50px;
+  text-align: center;
+  color: #ddbfb3fc;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.popup-main-buy-miners__info-container {
+  margin: 0 15px;
+}
+
+.popup-main-buy-miners__info-val-block {
+  background-color: #2b261c;
+  display: flex;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.popup-main-buy-miners__icon-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 50px;
+  background-color: #756a54;
+  border-radius: 5px;
+}
+
+.popup-main-buy-miners__icon {
+  height: 40px;
+  width: 40px;
+}
+
+.popup-main-buy-miners__val-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #756a54;
+  width: 70%;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.popup-main-buy-miners__val-text {
+  font-size: 18px;
+  width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.popup-main-buy-miners__val-text-max {
+  color: #ffffffad;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.popup-main-buy-miners__arrow-icon {
+  width: 25px;
+  height: 35px;
+  rotate: -90deg;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.popup-main-buy-miners__clider-percent {
+  text-align: center;
+}
+
+.popup-main-buy-miners__buy-button {
+  background: url("../../../assets/images/btn_color_green.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-transform: uppercase;
+  width: 50%;
+  padding: 5px 0 10px 0;
+  display: block;
+  margin: 25px auto 5px;
+}
+
+.popup-main-buy-miners__slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 80%;
+  height: 18px;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  background: initial;
+  display: block;
+  margin: 20px auto 5px;
+}
+
+.popup-main-buy-miners__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f2622d;
+  border: 0px solid #f2622d;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  margin-top: -7px;
+  box-shadow: calc(-100vmax - 18px) 0 0 100vmax #f2622d;
+  clip-path: polygon(
+    100% 0,
+    2px 0,
+    0 7px,
+    -100vmax 7px,
+    -100vmax 11px,
+    0 11px,
+    2px 100%,
+    100% 100%
+  );
+}
+
+.popup-main-buy-miners__slider::-moz-range-thumb {
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #f2622d;
+  border: 0px solid #f2622d;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  margin-top: -7px;
+}
+
+.popup-main-buy-miners__slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 4px;
+  border: 0px solid #fff;
+  box-shadow: 0px 0px 0px #353535;
+  background: #d7d7d7;
+}

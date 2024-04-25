@@ -2,13 +2,22 @@ import "./MarketItem.css";
 import { diamondIcon, tonIcon } from "../../constants/constants";
 
 interface Item {
-  quantity: number;
+  crystals: number;
   price: number;
   unitPrice: string;
   seller: string;
 }
 
-export const MarketItem = ({ item }: { item: Item }) => {
+export const MarketItem = ({
+  item,
+  handleCardSelect,
+}: {
+  item: Item;
+  handleCardSelect: (card: Item) => void;
+}) => {
+  const handleClick = () => {
+    handleCardSelect(item);
+  };
   return (
     <>
       <div className="market-items__crystal-block">
@@ -24,7 +33,7 @@ export const MarketItem = ({ item }: { item: Item }) => {
         </div>
         <div className="market-items__lot-val-block market-items__crystal-val-block">
           <p className="market-items__lot-val-text market-items__crystal-val-text">
-            {item.quantity}
+            {item.crystals}
           </p>
         </div>
       </div>
@@ -49,7 +58,11 @@ export const MarketItem = ({ item }: { item: Item }) => {
         {item.unitPrice} TON/crystal
       </p>
       <p className="market-items__lot-bottom-text">Seller {item.seller}</p>
-      <button className="market-items__lot-button" type="button">
+      <button
+        onClick={handleClick}
+        className="market-items__lot-button"
+        type="button"
+      >
         Buy
       </button>
     </>

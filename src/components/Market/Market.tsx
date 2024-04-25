@@ -2,7 +2,6 @@ import "./Market.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  backIcon,
   timeIcon,
   cartIcon,
   changeWhiteArrowIcon,
@@ -10,34 +9,49 @@ import {
   items,
 } from "../../constants/constants";
 import { MarketItemList } from "../MarketItemList/MarketItemList";
+import { PopupMarket } from "../Popups/PopupMarket/PopupMarket";
+import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
+import { TitlePage } from "../TitlePage/TitlePage";
+
+interface Item {
+  crystals: number;
+  price: number;
+  unitPrice: string;
+  seller: string;
+}
 
 export const Market = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("Price");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedFilterItem, setSelectedFilterItem] = useState("Price");
+  //стейт для открытия и закрытия попапа market
+  const [isMarketPopupState, setIsMarketPopupState] = useState(false);
+  const [selectedCardItem, setselectedCardItem] = useState<Item | null>(null);
 
   const handleItemClick = (item: any) => {
-    setSelectedItem(item);
-    setIsOpen(false);
+    setSelectedFilterItem(item);
+    setIsFilterOpen(false);
+  };
+
+  //функция открытия и закрытия попапа market
+  const handleMarketPopupState = () => {
+    setIsMarketPopupState(!isMarketPopupState);
+  };
+
+  const handleCardSelect = (card: Item) => {
+    setselectedCardItem(card);
+    handleMarketPopupState();
   };
 
   return (
     <section className="market">
       <div className="market__container">
-        <Link className="market__back-link" to="/main">
-          <img
-            className="page-back-icon market__back-icon"
-            src={backIcon}
-            alt="back arrow"
-          />
-        </Link>
+        <BackArrowLink link="/main" />
         <div className="market__title-block">
-          <div className="page-title-container market__title-container">
-            <h1 className="page-title market__title">Market</h1>
-          </div>
+          <TitlePage additionalStyles="market__title-container" title="Market" />
           <div className="market__title-block-links">
             <Link
               className="market__title-block-link market__sell-link"
-              to="/sell"
+              to="/market-sell"
             >
               <img
                 className="market__title-block-link-icon market__sell-icon"
@@ -47,7 +61,7 @@ export const Market = () => {
             </Link>
             <Link
               className="market__title-block-link market__story-link"
-              to="/story"
+              to="/market-story"
             >
               <img
                 className="market__title-block-link-icon market__story-icon"
@@ -107,12 +121,12 @@ export const Market = () => {
           <div className="market__filters-block market__filters-second-block">
             <div
               className="market__filters-menu-container"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
             >
               <button className="market__filters-menu-button">
-                {selectedItem}
+                {selectedFilterItem}
               </button>
-              {isOpen && (
+              {isFilterOpen && (
                 <div className="market__filters-menu-block">
                   <p
                     className="market__filters-menu-text"
@@ -143,8 +157,14 @@ export const Market = () => {
             </button>
           </div>
         </div>
-        <MarketItemList items={items} />
+        <MarketItemList items={items} handleCardSelect={handleCardSelect} />
       </div>
+      {isMarketPopupState && selectedCardItem && (
+        <PopupMarket
+          handleMarketPopupState={handleMarketPopupState}
+          selectedCardItem={selectedCardItem}
+        />
+      )}
     </section>
   );
 };

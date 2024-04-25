@@ -1,0 +1,71 @@
+.claim__title {
+  text-align: center;
+  color: #ddbfb3fc;
+  font-size: 28px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.claim__info-block {
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.claim__info-title-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.claim__info-title-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.claim__info-title-descr {
+  font-size: 14px;
+  color: #c9baa9;
+}
+
+.claim__descr {
+  font-size: 13px;
+  color: #ffffff8a;
+  text-align: center;
+}
+
+.claim__text-span {
+  color: #fff;
+}
+
+.claim__val-block {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "changa", Arial, sans-serif;
+  text-align: center;
+  background-color: #2b261c;
+  border: 2px solid #514d49;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.claim__val-text {
+  font-size: 14px;
+}
+
+.claim__button {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  font-size: 23px;
+  text-transform: uppercase;
+  background: url("../../../assets/images/btn_color_blue.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 5px 0 5px 0;
+  margin-top: 30px;
+}

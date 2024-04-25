@@ -1,38 +1,78 @@
 import "./Main.css";
-import { manMinerIcon, changeArrowIcon } from "../../constants/constants";
+import { useState } from "react";
+import { infoIcon, userPlusIcon, cartIcon } from "../../constants/constants";
 import { Link } from "react-router-dom";
+import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
+import { PopupClaim } from "../Popups/PopupClaim/PopupClaim";
+import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 
 export const Main = () => {
+  //стейт для открытия и закрытия попапа info
+  const [isInfoState, setIsInfoState] = useState(false);
+  //стейт для открытия и закрытия попапа claim
+  const [isClaimPopup, setIsClaimPopup] = useState(false);
+  //стейт для открытия и закрытия попапа buy miners
+  const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
+
+  //функция открытия и закрытия попапа info
+  const handleStateInfo = () => {
+    setIsInfoState(!isInfoState);
+  };
+
+  const handleClaimPopup = () => {
+    setIsClaimPopup(!isClaimPopup);
+  };
+
+  const handleMainBuyMinersPopup = () => {
+    setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
+  };
+
   return (
     <main className="main">
-      <div className="blur">
-        <div className="main__container">
-          <div className="main__miner-img-container">
-            <img
-              className="main__miner-img"
-              src={manMinerIcon}
-              alt="miner img"
-            />
-          </div>
-          <div className="main__buttons-block">
-            <button className="main__change-button" type="button">
+      <div className="main__container">
+        <div className="main__buttons-block">
+          <button
+            onClick={handleMainBuyMinersPopup}
+            className="main__buy-button"
+            type="button"
+          >
+            Buy miners
+          </button>
+          <div className="main__second-buttons-block">
+            <button
+              onClick={handleStateInfo}
+              className="main__info-button"
+              type="button"
+            >
               <img
-                className="main__change-button-icon"
-                src={changeArrowIcon}
-                alt=""
+                className="main__button-info-icon"
+                src={infoIcon}
+                alt="info icon"
               />
-              Change
             </button>
-            <button className="main__collect-button" type="button">
-              Collect
+            <button
+              onClick={handleClaimPopup}
+              className="main__claim-button"
+              type="button"
+            >
+              Claim
             </button>
-          </div>
-          <div className="main__bottom-buttons">
-            <Link className="main__ref-button" to="/referrals" />
-            <Link className="main__market-button" to="/market" />
           </div>
         </div>
+        <div className="main__bottom-buttons">
+          <Link className="main__ref-button" to="/referrals">
+            <img className="main__ref-button-icon" src={userPlusIcon} alt="user plus icon" />
+          </Link>
+          <Link className="main__market-button" to="/market">
+            <img className="main__market-button-icon" src={cartIcon} alt="cart icon" />
+          </Link>
+        </div>
       </div>
+      {isInfoState && <ModalHowPlay onClose={handleStateInfo} />}
+      {isClaimPopup && <PopupClaim onClose={handleClaimPopup} />}
+      {isMainBuyMinersPopup && (
+        <PopupMainBuyMiners onClose={handleMainBuyMinersPopup} />
+      )}
     </main>
   );
 };

@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import "./Referrals.css";
 import { userIcon, walletIcon, copyIcon } from "../../constants/constants";
+import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
+import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -30,9 +32,6 @@ export const Referrals = () => {
       <div className="referrals__container">
         <BackArrowLink link="/" />
         <TitlePage title="Referrals" />
-{/*         <div className="page-title-container referrals__title-container">
-          <h1 className="page-title referrals__title">Referrals</h1>
-        </div> */}
         <div className="referrals__info-container">
           <div className="referrals__first-info-block">
             <div className="referrals__val-block referrals__reward-block">
@@ -91,9 +90,13 @@ export const Referrals = () => {
         <div className="referrals__history-container">
           <h2 className="referrals__history-title">Referral history</h2>
           <div className="referrals__history-block">
-            <p className="referrals__history-info-text">
-              No transaction history
-            </p>
+            {history.length > 0 ? (
+              <UserHistoryItemList history={history} />
+            ) : (
+              <p className="referrals__history-info-text">
+                No transaction history
+              </p>
+            )}
           </div>
         </div>
       </div>

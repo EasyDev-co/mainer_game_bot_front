@@ -6,8 +6,8 @@ import {
   cartIcon,
   changeWhiteArrowIcon,
   whiteDownArrow,
-  items,
 } from "../../constants/constants";
+import { items } from "../../constants/data";
 import { MarketItemList } from "../MarketItemList/MarketItemList";
 import { PopupMarket } from "../Popups/PopupMarket/PopupMarket";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -47,7 +47,10 @@ export const Market = () => {
       <div className="market__container">
         <BackArrowLink link="/main" />
         <div className="market__title-block">
-          <TitlePage additionalStyles="market__title-container" title="Market" />
+          <TitlePage
+            additionalStyles="market__title-container"
+            title="Market"
+          />
           <div className="market__title-block-links">
             <Link
               className="market__title-block-link market__sell-link"

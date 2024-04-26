@@ -22,37 +22,6 @@ import moneyBagIcon from "../assets/images/shop_img_coin_01.png";
 import whiteDownArrow from "../assets/images/btnIconArrowDown.png";
 import quitIcon from "../assets/images/btn_icon_quit.png";
 
-const items = [
-  {
-    id: 1,
-    crystals: 0,
-    price: 0,
-    unitPrice: "0.00001",
-    seller: "Test0",
-  },
-  {
-    id: 2,
-    crystals: 1,
-    price: 1,
-    unitPrice: "0.00001",
-    seller: "Test1",
-  },
-  {
-    id: 3,
-    crystals: 2,
-    price: 2,
-    unitPrice: "0.00001",
-    seller: "Test2",
-  },
-  {
-    id: 4,
-    crystals: 3,
-    price: 3,
-    unitPrice: "0.00001",
-    seller: "Test3",
-  },
-];
-
 export {
   diamondIcon,
   hackIcon,
@@ -75,7 +44,6 @@ export {
   moneyBagIcon,
   changeWhiteArrowIcon,
   whiteDownArrow,
-  items,
   quitIcon,
   tonWhiteIcon,
 };

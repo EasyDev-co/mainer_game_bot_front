@@ -2,6 +2,7 @@ import "./MarketItem.css";
 import { diamondIcon, tonIcon } from "../../constants/constants";
 
 interface Item {
+  id: number;
   crystals: number;
   price: number;
   unitPrice: string;

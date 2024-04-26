@@ -2,6 +2,7 @@ import "./MarketItemList.css";
 import { MarketItem } from "../MarketItem/MarketItem";
 
 interface Item {
+  id: number;
   crystals: number;
   price: number;
   unitPrice: string;
@@ -17,12 +18,9 @@ export const MarketItemList = ({
 }) => {
   return (
     <ul className="market-items__lot-list">
-      {items.map((item, index: number) => (
-        <li key={index} className="market-items__lot-item">
-          <MarketItem
-            item={item}
-            handleCardSelect={handleCardSelect}
-          />
+      {items.map((item) => (
+        <li key={item.id} className="market-items__lot-item">
+          <MarketItem item={item} handleCardSelect={handleCardSelect} />
         </li>
       ))}
     </ul>

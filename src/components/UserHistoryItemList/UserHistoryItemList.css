@@ -1,0 +1,17 @@
+.user-history-item-list__list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: scroll;
+}
+
+.user-history-item-list__history-block {
+  display: flex;
+  align-items: center;
+  background-color: #2b261c;
+  border-radius: 5px;
+  gap: 10px;
+  padding: 5px;
+}

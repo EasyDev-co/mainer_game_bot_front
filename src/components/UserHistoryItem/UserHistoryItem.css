@@ -1,0 +1,65 @@
+.user-history-item__history-block {
+  display: flex;
+  align-items: center;
+  background-color: #2b261c;
+  border-radius: 5px;
+  gap: 10px;
+  padding: 5px;
+}
+
+.user-history-item__icon-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #756a54;
+  border-radius: 5px;
+  width: 50px;
+  height: 40px;
+}
+
+.user-history-item__icon {
+  height: 30px;
+  width: 30px;
+}
+
+.user-history-item__item-text-blocks {
+  width: 80%;
+}
+
+.user-history-item__item-text-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-history-item__text {
+  font-size: 13px;
+  color: #c9baa9bf;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.user-history-item__text-span {
+  color: #fff;
+  font-size: 13px;
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-history-item__text-val {
+  font-size: 13px;
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-history-item__text-ton {
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

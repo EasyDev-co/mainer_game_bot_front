@@ -48,7 +48,7 @@ export const Market = () => {
         <BackArrowLink link="/main" />
         <div className="market__title-block">
           <TitlePage
-            additionalStyles="market__title-container"
+            additionalStyles=" market__title-container"
             title="Market"
           />
           <div className="market__title-block-links">

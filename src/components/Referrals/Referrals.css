@@ -17,11 +17,11 @@
   padding: 65px 20px 20px 20px;
   margin: 0 auto;
 }
+
 .referrals__title {
   text-align: center;
   color: #c9baa9;
   font-size: 28px;
-  -webkit-background-clip: text;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgb(0 0 0), -2px -2px 4px rgb(0 0 0 / 30%);
 }
@@ -98,7 +98,6 @@
   text-align: center;
   font-size: 18px;
   color: #916c42;
-  -webkit-background-clip: text;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
   font-weight: bolder;
   margin-bottom: 10px;
@@ -160,7 +159,6 @@
 .referrals__history-title {
   font-size: 18px;
   color: #916c42;
-  -webkit-background-clip: text;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
   font-weight: bolder;
   margin: 40px 0 25px 5px;

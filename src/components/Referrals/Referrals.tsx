@@ -9,6 +9,7 @@ import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList"
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
+  const [linkWallet, setLinkWallet] = useState(false);
 
   const copyToClipboard = () => {
     if (inputRef.current) {
@@ -59,26 +60,36 @@ export const Referrals = () => {
           </div>
           <div className="referrals__second-info-block">
             <p className="referrals__copy-text">Copy your referral link</p>
-            <div className="referrals__copy-input-block">
-              <input
-                className="referrals__ref-link-input"
-                type="text"
-                defaultValue="your-referral-link"
-                ref={inputRef}
-                readOnly
-              />
-              <button
-                className="referrals__copy-button"
-                type="button"
-                onClick={copyToClipboard}
-              >
-                <img
-                  className="referrals__copy-button-icon"
-                  src={copyIcon}
-                  alt="copy icon"
+            {linkWallet ? (
+              <div className="referrals__copy-input-block">
+                <input
+                  className="referrals__ref-link-input"
+                  type="text"
+                  defaultValue="your-referral-link"
+                  ref={inputRef}
+                  readOnly
                 />
+                <button
+                  className="referrals__copy-button"
+                  type="button"
+                  onClick={copyToClipboard}
+                >
+                  <img
+                    className="referrals__copy-button-icon"
+                    src={copyIcon}
+                    alt="copy icon"
+                  />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setLinkWallet(true)}
+                className="referrals__link-wallet-button"
+                type="button"
+              >
+                Link Wallet
               </button>
-            </div>
+            )}
             <div className="referrals__copy-text-block">
               {copied && <p className="referrals__copy-text">Copied!</p>}
             </div>

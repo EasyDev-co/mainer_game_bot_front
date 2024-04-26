@@ -143,6 +143,20 @@
   height: 30px;
 }
 
+.referrals__link-wallet-button {
+  background: url("../../assets/images/btn_color_green.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-transform: uppercase;
+  width: 70%;
+  padding: 5px 0 10px 0;
+  display: block;
+  margin: 15px auto 0;
+}
+
 .referrals__history-title {
   font-size: 18px;
   color: #916c42;

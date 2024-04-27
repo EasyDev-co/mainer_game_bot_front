@@ -1,0 +1,10 @@
+.market__info-list-item-title {
+  color: #c9baa9;
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.market__info-list-item-val {
+  font-size: 17px;
+  overflow-wrap: break-word;
+}

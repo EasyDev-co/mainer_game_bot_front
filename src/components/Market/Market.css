@@ -69,24 +69,13 @@
   margin-top: 20px;
 }
 
-.market__first-info-block {
+.market__first-info-list {
   overflow: hidden;
 }
 
-.market__second-info-block {
+.market__second-info-list {
   text-align: end;
   overflow: hidden;
-}
-
-.market__info-block-title {
-  color: #c9baa9;
-  font-size: 15px;
-  margin: 8px 0;
-}
-
-.market__info-block-val {
-  font-size: 17px;
-  overflow-wrap: break-word;
 }
 
 .market__filters-container {

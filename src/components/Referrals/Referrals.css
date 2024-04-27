@@ -31,6 +31,12 @@
   margin-top: 50px;
 }
 
+.referrals__first-info-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .referrals__second-info-block {
   margin-top: 20px;
 }

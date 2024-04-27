@@ -12,6 +12,7 @@ import { MarketItemList } from "../Market/MarketItemList/MarketItemList";
 import { PopupMarket } from "../Popups/PopupMarket/PopupMarket";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
+import { MarketTextInfoListItem } from "./MarketTextInfoListItem/MarketTextInfoListItem";
 
 interface Item {
   crystals: number;
@@ -76,36 +77,16 @@ export const Market = () => {
           </div>
         </div>
         <div className="market__info-container">
-          <div className="market__first-info-block">
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">Total crystals</h3>
-              <p className="market__info-block-val">0</p>
-            </div>
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">Placed crystals</h3>
-              <p className="market__info-block-val">0</p>
-            </div>
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">Total miners</h3>
-              <p className="market__info-block-val">0</p>
-            </div>
-          </div>
-          <div className="market__second-info-block">
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">Minimum price</h3>
-              <p className="market__info-block-val">0 TON</p>
-            </div>
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">
-                &gt;5 TON Minimum price
-              </h3>
-              <p className="market__info-block-val">0 TON</p>
-            </div>
-            <div className="market__text-info-block">
-              <h3 className="market__info-block-title">Daily volume</h3>
-              <p className="market__info-block-val">0 TON</p>
-            </div>
-          </div>
+          <ul className="market__first-info-list">
+            <MarketTextInfoListItem title="Total crystals" val="0" />
+            <MarketTextInfoListItem title="Placed crystals" val="0" />
+            <MarketTextInfoListItem title="Total miners" val="0" />
+          </ul>
+          <ul className="market__second-info-list">
+            <MarketTextInfoListItem title="Minimum price" val="0 TON" />
+            <MarketTextInfoListItem title=">5 TON Minimum price" val="0 TON" />
+            <MarketTextInfoListItem title="Daily volume" val="0 TON" />
+          </ul>
         </div>
         <div className="market__filters-container">
           <div className="market__filters-block market__filters-first-block">

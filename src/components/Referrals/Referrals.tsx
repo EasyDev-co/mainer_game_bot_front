@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import "./Referrals.css";
-import { copyIcon } from "../../constants/constants";
-import { referralsInfoBlockItems } from "../../constants/data";
+import { copyIcon, userIcon, walletIcon } from "../../constants/constants";
 import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
-import { ReferralsInfoBlockList } from "./ReferralsInfoBlockList/ReferralsInfoBlockList";
+import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,9 +35,18 @@ export const Referrals = () => {
         <BackArrowLink link="/" />
         <TitlePage title="Referrals" />
         <div className="referrals__info-container">
-          <ReferralsInfoBlockList
-            referralsInfoBlockItem={referralsInfoBlockItems}
-          />
+          <ul className="referrals__first-info-block">
+            <ReferralsInfoBlockListItem
+              icon={walletIcon}
+              title="Reward"
+              info="0 miners"
+            />
+            <ReferralsInfoBlockListItem
+              icon={userIcon}
+              title="Referrals"
+              info="0 people"
+            />
+          </ul>
           <div className="referrals__second-info-block">
             <p className="referrals__copy-text">Copy your referral link</p>
             {linkWallet ? (

@@ -1,5 +1,5 @@
 import "./MarketItem.css";
-import { diamondIcon, tonIcon } from "../../constants/constants";
+import { diamondIcon, tonIcon } from "../../../constants/constants";
 
 interface Item {
   id: number;

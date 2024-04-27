@@ -1,8 +1,8 @@
 import "./MarketHistory.css";
-import { historyTwo } from "../../constants/data";
-import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
-import { TitlePage } from "../TitlePage/TitlePage";
-import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
+import { historyTwo } from "../../../constants/data";
+import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
+import { TitlePage } from "../../TitlePage/TitlePage";
+import { UserHistoryItemList } from "../../UserHistoryItemList/UserHistoryItemList";
 
 export const MarketHistory = () => {
   return (

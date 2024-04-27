@@ -1,7 +1,7 @@
 import "./MarketSell.css";
-import { tonIcon, diamondIcon } from "../../constants/constants";
-import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
-import { TitlePage } from "../TitlePage/TitlePage";
+import { tonIcon, diamondIcon } from "../../../constants/constants";
+import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
+import { TitlePage } from "../../TitlePage/TitlePage";
 
 export const MarketSell = () => {
   return (

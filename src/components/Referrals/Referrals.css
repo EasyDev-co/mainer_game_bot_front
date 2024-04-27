@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
 
 .referrals__container {
@@ -26,63 +27,8 @@
   text-shadow: 2px 2px 4px rgb(0 0 0), -2px -2px 4px rgb(0 0 0 / 30%);
 }
 
-.referrals__info-val-text {
-  text-align: center;
-  font-size: 16px;
-  width: 100%;
-  overflow-wrap: break-word;
-}
-
 .referrals__info-container {
   margin-top: 50px;
-}
-
-.referrals__first-info-block {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.referrals__val-block {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 5px;
-  max-width: 200px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px 20px 30px 20px;
-}
-
-.referrals__reward-block {
-  background: url("../../assets/images/stage_default.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-}
-
-.referrals__info-title-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.referrals__info-icon {
-  width: 30px;
-  height: 30px;
-}
-
-.referrals__info-title {
-  font-size: 15px;
-  font-weight: normal;
-}
-
-.referrals__quantity-block {
-  background: url("../../assets/images/stage_default.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
 }
 
 .referrals__second-info-block {

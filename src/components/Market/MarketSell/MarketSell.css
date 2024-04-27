@@ -5,10 +5,11 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.3) 100%
     ),
-    url("../../assets/images/background.png");
+    url("../../../assets/images/background.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
 
 .market-sell__container {
@@ -90,7 +91,7 @@
   color: #dfcfbc;
   font-size: 15px;
   text-transform: uppercase;
-  background: url("../../assets/images/btn_color_brown.png");
+  background: url("../../../assets/images/btn_color_brown.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;

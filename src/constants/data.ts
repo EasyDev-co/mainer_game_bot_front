@@ -1,3 +1,5 @@
+import { userIcon, walletIcon } from "../constants/constants";
+
 const items = [
   {
     id: 1,
@@ -155,4 +157,19 @@ const historyTwo: any[] = [
   },
 ];
 
-export { historyTwo, history, items };
+const referralsInfoBlockItems = [
+  {
+    id: 1,
+    icon: walletIcon,
+    title: "Reward",
+    info: "0 miners",
+  },
+  {
+    id: 2,
+    icon: userIcon,
+    title: "Referrals",
+    info: "0 people",
+  },
+];
+
+export { historyTwo, history, items, referralsInfoBlockItems };

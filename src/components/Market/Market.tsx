@@ -8,7 +8,7 @@ import {
   whiteDownArrow,
 } from "../../constants/constants";
 import { items } from "../../constants/data";
-import { MarketItemList } from "../MarketItemList/MarketItemList";
+import { MarketItemList } from "../Market/MarketItemList/MarketItemList";
 import { PopupMarket } from "../Popups/PopupMarket/PopupMarket";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
@@ -26,6 +26,7 @@ export const Market = () => {
   //стейт для открытия и закрытия попапа market
   const [isMarketPopupState, setIsMarketPopupState] = useState(false);
   const [selectedCardItem, setselectedCardItem] = useState<Item | null>(null);
+  const [selectedFilterItemList, setSelectedFilterItemList] = useState("All");
 
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
@@ -109,15 +110,36 @@ export const Market = () => {
         <div className="market__filters-container">
           <div className="market__filters-block market__filters-first-block">
             <button
-              className="market__filters-block-item market__filters-block-item-check"
+              className={`market__filters-block-item ${
+                selectedFilterItemList === "All"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
               type="button"
+              onClick={() => setSelectedFilterItemList("All")}
             >
               All
             </button>
-            <button className="market__filters-block-item" type="button">
+            <button
+              className={`market__filters-block-item ${
+                selectedFilterItemList === "My"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
+              type="button"
+              onClick={() => setSelectedFilterItemList("My")}
+            >
               My
             </button>
-            <button className="market__filters-block-item" type="button">
+            <button
+              className={`market__filters-block-item ${
+                selectedFilterItemList === ">5 TON"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
+              type="button"
+              onClick={() => setSelectedFilterItemList(">5 TON")}
+            >
               &gt;5 TON
             </button>
           </div>
@@ -160,7 +182,9 @@ export const Market = () => {
             </button>
           </div>
         </div>
-        <MarketItemList items={items} handleCardSelect={handleCardSelect} />
+        {selectedFilterItemList === "All" && (
+          <MarketItemList items={items} handleCardSelect={handleCardSelect} />
+        )}
       </div>
       {isMarketPopupState && selectedCardItem && (
         <PopupMarket

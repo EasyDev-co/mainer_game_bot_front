@@ -5,10 +5,11 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.3) 100%
     ),
-    url("../../assets/images/background.png");
+    url("../../../assets/images/background.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
 
 .market-history__container {

@@ -1,0 +1,23 @@
+.referrals__info-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.referrals__info-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.referrals__info-title {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.referrals__info-val-text {
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  overflow-wrap: break-word;
+}

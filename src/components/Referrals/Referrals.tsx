@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import "./Referrals.css";
-import { userIcon, walletIcon, copyIcon } from "../../constants/constants";
+import { copyIcon } from "../../constants/constants";
+import { referralsInfoBlockItems } from "../../constants/data";
 import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
+import { ReferralsInfoBlockList } from "./ReferralsInfoBlockList/ReferralsInfoBlockList";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,30 +36,9 @@ export const Referrals = () => {
         <BackArrowLink link="/" />
         <TitlePage title="Referrals" />
         <div className="referrals__info-container">
-          <div className="referrals__first-info-block">
-            <div className="referrals__val-block referrals__reward-block">
-              <div className="referrals__info-title-block">
-                <img
-                  className="referrals__info-icon"
-                  src={walletIcon}
-                  alt="wallet icon"
-                />
-                <h2 className="referrals__info-title">Reward</h2>
-              </div>
-              <p className="referrals__info-val-text">0 miners</p>
-            </div>
-            <div className="referrals__val-block referrals__quantity-block">
-              <div className="referrals__info-title-block">
-                <img
-                  className="referrals__info-icon"
-                  src={userIcon}
-                  alt="user icon"
-                />
-                <h2 className="referrals__info-title">Referrals</h2>
-              </div>
-              <p className="referrals__info-val-text">0 people</p>
-            </div>
-          </div>
+          <ReferralsInfoBlockList
+            referralsInfoBlockItem={referralsInfoBlockItems}
+          />
           <div className="referrals__second-info-block">
             <p className="referrals__copy-text">Copy your referral link</p>
             {linkWallet ? (

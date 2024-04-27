@@ -6,8 +6,8 @@ import { Market } from "../Market/Market";
 import { Main } from "../Main/Main";
 import { Referrals } from "../Referrals/Referrals";
 import { Profile } from "../Profile/Profile";
-import { MarketSell } from "../MarketSell/MarketSell";
-import { MarketHistory } from "../MarketHistory/MarketHistory";
+import { MarketSell } from "../Market/MarketSell/MarketSell";
+import { MarketHistory } from "../Market/MarketHistory/MarketHistory";
 
 export const App = () => {
   return (

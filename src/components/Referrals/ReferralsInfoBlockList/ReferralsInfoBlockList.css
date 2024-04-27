@@ -1,0 +1,20 @@
+.referrals__first-info-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.referrals__val-block {
+  background: url("../../../assets/images/stage_default.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 20px 30px 20px;
+}

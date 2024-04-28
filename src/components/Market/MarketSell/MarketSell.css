@@ -35,45 +35,6 @@
   margin-bottom: 5px;
 }
 
-.market-sell__input-container {
-  margin-bottom: 20px;
-}
-
-.market-sell__title-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.market-sell__title-icon {
-  width: 30px;
-  height: 30px;
-}
-
-.market-sell__subtitle {
-  font-size: 16px;
-  color: #c9baa9;
-}
-
-.market-sell__input {
-  width: 100%;
-  box-sizing: border-box;
-  font-family: "changa", Arial, sans-serif;
-  text-align: center;
-  background-color: #312c22;
-  border: 2px solid #605749;
-  border-radius: 5px;
-  color: #fff;
-  padding: 5px;
-  margin-bottom: 5px;
-}
-
-.market-sell__input:focus {
-  border: 1px solid #845044;
-  outline: none;
-}
-
 .market-sell__text {
   font-size: 14px;
   color: #ffffffbd;

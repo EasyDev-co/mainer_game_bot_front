@@ -81,23 +81,6 @@
   padding: 10px 10px 10px 15px;
 }
 
-.profile__currencies-list-item {
-  max-width: 160px;
-  width: 100%;
-}
-
-.profile__currencies-item-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.profile__currencies-item-val {
-  font-size: 13px;
-  width: 100%;
-  overflow-wrap: break-word;
-  margin-left: 10px;
-}
-
 .profile__buttons-block {
   width: 100%;
   display: flex;

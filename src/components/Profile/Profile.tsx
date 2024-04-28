@@ -10,6 +10,7 @@ import {
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
+import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
@@ -45,30 +46,9 @@ export const Profile = () => {
         </div>
         <div className="profile__info-block">
           <ul className="profile__currencies-list">
-            <li className="profile__currencies-item profile__currencies-list-item">
-              <img
-                className="profile__currencies-item-icon"
-                src={hackIcon}
-                alt="miner icon"
-              />
-              <p className="profile__currencies-item-val">0</p>
-            </li>
-            <li className="profile__currencies-item profile__currencies-list-item">
-              <img
-                className="profile__currencies-item-icon"
-                src={diamondIcon}
-                alt="diamond icon"
-              />
-              <p className="profile__currencies-item-val">0</p>
-            </li>
-            <li className="profile__currencies-item profile__currencies-list-item">
-              <img
-                className="profile__currencies-item-icon"
-                src={tonWhiteIcon}
-                alt="ton icon"
-              />
-              <p className="profile__currencies-item-val">0</p>
-            </li>
+            <ProfileItemWallet icon={hackIcon} val="0" />
+            <ProfileItemWallet icon={diamondIcon} val="0" />
+            <ProfileItemWallet icon={tonWhiteIcon} val="0" />
           </ul>
           <div className="profile__buttons-block">
             <button

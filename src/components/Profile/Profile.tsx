@@ -20,7 +20,7 @@ export const Profile = () => {
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);
   // стейт с инфой которую ввели в инпут в попапе
-  const [inputValuePopup, setInputValuePopup] = useState("");
+  const [inputValuePopup, setInputValuePopup] = useState<number>(0);
 
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = () => {
@@ -32,9 +32,8 @@ export const Profile = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
   };
 
-  const handleInvoice = (sum: string) => {
-    invoice
-      .generInvoice(sum)
+  const handleInvoice = (sum: number) => {
+    invoice.generInvoice(sum)
       .then((data) => {
         console.log(data);
       })

@@ -1,19 +1,22 @@
-export const BASE_URL = "https://d859-213-88-25-127.ngrok-free.app";
-function checkResponse(res) {
+import { BASE_URL } from "../constants/links";
+
+function checkResponse(res: Response) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Произошла ошибка: ${res.status}`);
 }
 
-export const generInvoice = async (sum) => {
-  return await fetch(`${BASE_URL}/api/v1/market/deposit/create/1234/`, {
+const telegramID = 1234;
+
+export const generInvoice = async (sum: number) => {
+  return await fetch(`${BASE_URL}/api/v1/market/deposit/create/${telegramID}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-        amount: sum,
+      amount: sum,
     }),
   }).then((res) => checkResponse(res));
 };

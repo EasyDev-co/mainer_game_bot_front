@@ -4,19 +4,26 @@ import { Popup } from "../Popup/Popup";
 
 export const PopupTon = ({
   onClose,
+  onClick,
   title,
   buttonText,
   firstTon,
   secondTon,
   text,
+  value,
+  onChange,
 }: {
   onClose: () => void;
+  onClick?: (e: any) => void;
   title: string;
   buttonText: string;
   firstTon: string;
   secondTon: string;
   text: JSX.Element | string;
+  value?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }) => {
+
   return (
     <Popup onClose={onClose}>
       <form className="popup-ton__form-block">
@@ -35,10 +42,13 @@ export const PopupTon = ({
           type="number"
           placeholder="0.1"
           min="0.1"
+          value={value}
+          onChange={onChange}
+          required
         />
         <div className="popup-ton__button-block">
           <p className="popup-ton__button-text">{text} </p>
-          <button className="popup-ton__button" type="button">
+          <button onClick={onClick} className="popup-ton__button" type="submit">
             {buttonText}
           </button>
         </div>

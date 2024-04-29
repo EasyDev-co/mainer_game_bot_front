@@ -5,7 +5,7 @@ export const ProfileItemWallet = ({
   val,
 }: {
   icon: string;
-  val: number | string;
+  val: string;
 }) => {
   return (
     <li className="profile__currencies-item profile__currencies-list-item">

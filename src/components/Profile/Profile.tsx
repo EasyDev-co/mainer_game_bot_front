@@ -11,6 +11,7 @@ import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
+import * as invoice from "../../utils/invoice";
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
@@ -18,6 +19,8 @@ export const Profile = () => {
   //стейт для открытия и закрытия попапа ton withdrawal
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);
+  // стейт с инфой которую ввели в инпут в попапе
+  const [inputValuePopup, setInputValuePopup] = useState("");
 
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = () => {
@@ -27,6 +30,22 @@ export const Profile = () => {
   //функция открытия и закрытия попапа ton Withdrawal
   const handleTonWithdrawalPopupState = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
+  };
+
+  const handleInvoice = (sum: string) => {
+    invoice
+      .generInvoice(sum)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    handleInvoice(inputValuePopup);
   };
 
   return (
@@ -71,6 +90,7 @@ export const Profile = () => {
       {isTonDepositPopupState && (
         <PopupTon
           onClose={handleTonDepositPopupState}
+          onClick={handleSubmit}
           title="Deposit TON"
           buttonText="Deposit"
           text={
@@ -81,6 +101,8 @@ export const Profile = () => {
           }
           firstTon={tonIcon}
           secondTon={tonWhiteIcon}
+          value={inputValuePopup}
+          onChange={(e: any) => setInputValuePopup(e.target.value)}
         />
       )}
       {isTonWithdrawalPopupState && (

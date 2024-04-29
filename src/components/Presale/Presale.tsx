@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Presale.css";
 import {
-  infoIcon,
-  whiteDiamondIcon,
-  userPlusIcon,
+  darkInfoIcon,
+  darkDiamondIcon,
+  darkAddRef,
   manMinerIcon,
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
@@ -27,64 +27,67 @@ export const Presale = () => {
     setIsInfoState(!isInfoState);
   };
 
-  const currentValue = 0;
+  const currentValue = 10000;
   const totalValue = 35000;
 
   return (
     <section className="presale">
-      <div className="blur">
-        <div className="presale__container">
-          <h1 className="presale__title">Limited Minting</h1>
-          <ProgressBarComponent
-            currentValue={currentValue}
-            totalValue={totalValue}
+      <div className="presale__container">
+        <h1 className="presale__title">
+          <span className="presale__title-span">Limited</span>
+          <br />
+          <span className="presale__title-span">Minting</span>
+        </h1>
+        <div className="presale__miner-img-container">
+          <img
+            className="presale__miner-img"
+            src={manMinerIcon}
+            alt="miner img"
           />
-          <div className="presale__miner-img-container">
+        </div>
+        <ProgressBarComponent
+          currentValue={currentValue}
+          totalValue={totalValue}
+        />
+        <div className="presale__buttons-container">
+          <button
+            onClick={handleStateBuyMint}
+            className="presale__button-mint"
+            type="button"
+          >
             <img
-              className="presale__miner-img"
-              src={manMinerIcon}
-              alt="miner img"
+              className="presale__button-mint-icon"
+              src={darkDiamondIcon}
+              alt="mint icon"
             />
-          </div>
-          <div className="presale__buttons-container">
+            <p className="presale__button-mint-text">Mint</p>
+          </button>
+          <div className="presale__second-buttons-container">
             <button
-              onClick={handleStateBuyMint}
-              className="presale__button-mint"
+              onClick={handleStateInfo}
+              className="presale__button-info"
               type="button"
             >
               <img
-                className="presale__button-mint-icon"
-                src={whiteDiamondIcon}
-                alt="mint icon"
+                className="presale__button-info-icon"
+                src={darkInfoIcon}
+                alt="info icon"
               />
-              Mint
+              <p className="presale__button-info-text">Info</p>
             </button>
-            <div className="presale__second-buttons-container">
-              <button
-                onClick={handleStateInfo}
-                className="presale__button-info"
-                type="button"
-              >
-                <img
-                  className="presale__button-info-icon"
-                  src={infoIcon}
-                  alt="info icon"
-                />
-              </button>
-              <Link className="presale__button-ref" to="/referrals">
-                <img
-                  className="presale__button-ref-icon"
-                  src={userPlusIcon}
-                  alt="referral icon"
-                />
-                Ref
-              </Link>
-            </div>
+            <Link className="presale__button-ref" to="/referrals">
+              <img
+                className="presale__button-ref-icon"
+                src={darkAddRef}
+                alt="referral icon"
+              />
+              <p className="presale__button-ref-text">Ref</p>
+            </Link>
           </div>
         </div>
-        {isMintState && <PopupBuyMiner onClose={handleStateBuyMint} />}
-        {isInfoState && <ModalHowPlay onClose={handleStateInfo} />}
       </div>
+      {isMintState && <PopupBuyMiner onClose={handleStateBuyMint} />}
+      {isInfoState && <ModalHowPlay onClose={handleStateInfo} />}
     </section>
   );
 };

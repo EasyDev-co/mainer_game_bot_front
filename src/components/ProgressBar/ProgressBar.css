@@ -1,21 +1,34 @@
 .progress-bar__container {
-  max-width: 250px;
-  width: 100%;
-  margin: 30px auto 0;
+  position: relative;
+  width: 90%;
+  height: 68px;
+  margin: 31px auto 0;
 }
 
 .progress-bar__block {
   position: relative;
-  border: 2px solid #000000c7;
-  border-radius: 50px;
+  width: 94.5%;
+  margin: 8px auto 0;
+  margin-top: 8px;
+}
+
+.progress-bar__bg {
+  background-image: url("../../assets/images/progress-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 36px;
+  width: 100%;
+  position: absolute;
 }
 
 .progress-bar__custom-label {
-  color: #000000b5;
-  font-size: 16px;
+  font-family: "Jost";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
   position: absolute;
-  top: 50%;
+  top: -30px;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
 }

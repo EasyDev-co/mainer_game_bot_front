@@ -1,1 +1,1 @@
-export const BASE_URL = "https://d859-213-88-25-127.ngrok-free.app";
+export const BASE_URL = "https://mainer-game.ddns.net";

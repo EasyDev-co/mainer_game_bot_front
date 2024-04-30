@@ -7,13 +7,12 @@ function checkResponse(res: Response) {
   return Promise.reject(`Произошла ошибка: ${res.status}`);
 }
 
-const telegramID = 1234;
-
 export const generInvoice = async (sum: number) => {
-  return await fetch(`${BASE_URL}/api/v1/market/deposit/create/${telegramID}/`, {
+  return await fetch(`${BASE_URL}api/v1/market/deposit/create/1234/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "User-ID": "1234",
     },
     body: JSON.stringify({
       amount: sum,

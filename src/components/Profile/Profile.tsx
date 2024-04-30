@@ -1,5 +1,5 @@
 import "./Profile.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   diamondIcon,
   hackIcon,
@@ -12,6 +12,7 @@ import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import * as invoice from "../../utils/invoice";
+import { BASE_URL } from "../../constants/links";
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
@@ -21,7 +22,6 @@ export const Profile = () => {
     useState(false);
   // стейт с инфой которую ввели в инпут в попапе
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
-
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = () => {
     setIsTonDepositPopupState(!isTonDepositPopupState);
@@ -46,6 +46,21 @@ export const Profile = () => {
     e.preventDefault();
     handleInvoice(inputValuePopup);
   };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": "1234"
+        }
+      }).then((res) => res.json())
+        .then((data) => console.log(data));
+    };
+
+    checkUser();
+  }, []);
 
   return (
     <section className="profile">

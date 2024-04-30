@@ -5,8 +5,7 @@ import {
   darkInfoIcon,
   darkDiamondIcon,
   darkAddRef,
-  manMinerIcon,
-  id,
+  manMinerIcon
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";

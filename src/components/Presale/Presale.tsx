@@ -6,6 +6,7 @@ import {
   darkDiamondIcon,
   darkAddRef,
   manMinerIcon,
+  id,
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
@@ -34,7 +35,7 @@ export const Presale = () => {
     <section className="presale">
       <div className="presale__container">
         <h1 className="presale__title">
-          <span className="presale__title-span">Limited</span>
+          <span className="presale__title-span">Limited {id}</span>
           <br />
           <span className="presale__title-span">Minting</span>
         </h1>

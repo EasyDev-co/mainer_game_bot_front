@@ -28,7 +28,8 @@ import whiteDownArrow from "../assets/images/btnIconArrowDown.png";
 import quitIcon from "../assets/images/btn_icon_quit.png";
 
 export const tg = window.Telegram.webApp;
-export const id = tg.initDataUnsafe?.user?.id;
+console.log(tg);
+export const id = tg?.initDataUnsafe?.user?.id;
 
 export {
   diamondIcon,

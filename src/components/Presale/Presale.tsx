@@ -22,8 +22,9 @@ export const Presale = () => {
     setIsMintState(!isMintState);
   };
   //@ts-ignore
-  const tg = window.Telegram.webApp;
-  const tgId = tg.initDataUnsafe?.user?.id;
+  const tg = window.Telegram.WebApp;
+  console.log(tg);
+  const tgId = tg?.initDataUnsafe?.user?.id;
 
   //функция открытия и закрытия попапа info
   const handleStateInfo = () => {
@@ -37,7 +38,7 @@ export const Presale = () => {
     <section className="presale">
       <div className="presale__container">
         <h1 className="presale__title">
-          <span className="presale__title-span">Limited {tgId}</span>
+          <span className="presale__title-span">Limited {tgId ? tgId : "Нету"}</span>
           <br />
           <span className="presale__title-span">Minting</span>
         </h1>

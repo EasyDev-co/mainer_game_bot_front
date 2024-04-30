@@ -56,7 +56,8 @@ export const Profile = () => {
           "User-ID": "1234"
         }
       }).then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
     };
 
     checkUser();

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
 import { copyIcon, userIcon, walletIcon } from "../../constants/constants";
 import { history } from "../../constants/data";
@@ -6,11 +6,14 @@ import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
 import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
+import { BASE_URL } from "../../constants/links";
+import { TUser } from "../../types/user";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
   const [linkWallet, setLinkWallet] = useState(false);
+  const [user, setUser] = useState<TUser>();
 
   const copyToClipboard = () => {
     if (inputRef.current) {
@@ -28,6 +31,22 @@ export const Referrals = () => {
         });
     }
   };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": "1234"
+        }
+      }).then((res) => res.json())
+        .then((data) => setUser(data))
+        .catch((err) => console.log(err));
+    };
+
+    checkUser();
+  }, []);
 
   return (
     <section className="referrals">
@@ -54,7 +73,7 @@ export const Referrals = () => {
                 <input
                   className="referrals__ref-link-input"
                   type="text"
-                  defaultValue="your-referral-link"
+                  value={user?.referrer_url}
                   ref={inputRef}
                   readOnly
                 />

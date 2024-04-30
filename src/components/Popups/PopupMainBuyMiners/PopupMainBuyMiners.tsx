@@ -2,14 +2,37 @@ import React, { useState } from "react";
 import "./PopupMainBuyMiners.css";
 import { diamondIcon, hackIcon, backIcon } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
+import { BASE_URL } from "../../../constants/links";
 
-export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void }) => {
+export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
   const [miners, setMiners] = useState(20);
   const [crystals, setCrystals] = useState(20);
   const [sliderPercentage, setSliderPercentage] = useState((miners / 100) * 100);
+  const [info, setInfo] = useState<{
+    message?: string;
+    error?: string;
+  }>();
+
+  const buyMiner = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await fetch(`${BASE_URL}/api/v1/market/purchase_mainer/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": "1234",
+      },
+      body: JSON.stringify({
+        mainers_count: miners,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => { setInfo(data); console.log(data.message || data.error); })
+      .catch((err) => console.log(err));
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
+    console.log(value);
     setMiners(value);
     setCrystals(value);
     setSliderPercentage((value / 100) * 100);
@@ -61,7 +84,12 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void }) => {
             <p className="popup-main-buy-miners__val-text popup-main-buy-miners__clider-percent">{sliderPercentage.toFixed(0)}%</p>
           </div>
         </div>
-        <button className="popup-main-buy-miners__buy-button" type="button">
+        <p className="" style={{ color: info?.message ? "green" : "red", fontSize: "14px" }}>{info?.message || info?.error}</p>
+        <button
+          onClick={buyMiner}
+          className="popup-main-buy-miners__buy-button"
+          type="button"
+        >
           Buy
         </button>
       </form>

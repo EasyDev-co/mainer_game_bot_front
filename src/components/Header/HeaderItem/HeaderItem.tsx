@@ -6,7 +6,7 @@ export const HeaderItem = ({
   plusCode,
 }: {
   icon: string;
-  val: string;
+  val: number | string | undefined;
   plusCode: any;
 }) => {
   return (

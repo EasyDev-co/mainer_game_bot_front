@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 import {
   diamondIcon,
@@ -11,15 +11,34 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
+import { BASE_URL } from "../../constants/links";
+import { TUser } from "../../types/user";
 
 export const Header = () => {
   const location = useLocation();
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
+  const [user, setUser] = useState<TUser>();
 
   const handleMainBuyMinersPopup = () => {
     setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
   };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": "1234"
+        }
+      }).then((res) => res.json())
+        .then((data) => { setUser(data); console.log(data); })
+        .catch((err) => console.log(err));
+    };
+
+    checkUser();
+  }, []);
 
   return (
     <>
@@ -28,7 +47,7 @@ export const Header = () => {
           <ul className="header__currencies-list">
             <HeaderItem
               icon={hackIcon}
-              val="0"
+              val={user?.miners_count}
               plusCode={
                 location.pathname !== "/" && (
                   <img
@@ -42,7 +61,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={diamondIcon}
-              val="0"
+              val={user?.minerals_balance}
               plusCode={
                 location.pathname !== "/" && (
                   <Link to="/market">
@@ -57,7 +76,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={tonWhiteIcon}
-              val="0"
+              val={user?.ton_balance}
               plusCode={
                 location.pathname !== "/" && (
                   <img

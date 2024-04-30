@@ -8,7 +8,7 @@ function checkResponse(res: Response) {
 }
 
 export const generInvoice = async (sum: number) => {
-  return await fetch(`${BASE_URL}api/v1/market/deposit/create/1234/`, {
+  return await fetch(`${BASE_URL}/api/v1/market/deposit/create/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

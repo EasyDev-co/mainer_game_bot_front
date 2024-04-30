@@ -1,3 +1,4 @@
+import { id } from "../constants/constants";
 import { BASE_URL } from "../constants/links";
 
 function checkResponse(res: Response) {
@@ -12,7 +13,7 @@ export const generInvoice = async (sum: number) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "User-ID": "1234",
+      "User-ID": id,
     },
     body: JSON.stringify({
       amount: sum,

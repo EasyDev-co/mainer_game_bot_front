@@ -6,6 +6,7 @@ import {
   plusIcon,
   walletDarkIcon,
   tonWhiteIcon,
+  id,
 } from "../../constants/constants";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -26,11 +27,11 @@ export const Header = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "User-ID": "1234"
+          "User-ID": id,
         }
       }).then((res) => res.json())
         .then((data) => { setUser(data); console.log(data); })

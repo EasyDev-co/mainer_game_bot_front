@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
-import { copyIcon, userIcon, walletIcon } from "../../constants/constants";
+import { copyIcon, id, userIcon, walletIcon } from "../../constants/constants";
 import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
@@ -34,11 +34,11 @@ export const Referrals = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "User-ID": "1234"
+          "User-ID": id
         }
       }).then((res) => res.json())
         .then((data) => setUser(data))

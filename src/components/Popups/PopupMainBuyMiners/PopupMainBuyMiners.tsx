@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PopupMainBuyMiners.css";
-import { diamondIcon, hackIcon, backIcon } from "../../../constants/constants";
+import { diamondIcon, hackIcon, backIcon, id } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
 
@@ -19,7 +19,7 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "User-ID": "1234",
+        "User-ID": id,
       },
       body: JSON.stringify({
         mainers_count: miners,

@@ -27,6 +27,9 @@ import moneyBagIcon from "../assets/images/shop_img_coin_01.png";
 import whiteDownArrow from "../assets/images/btnIconArrowDown.png";
 import quitIcon from "../assets/images/btn_icon_quit.png";
 
+export const tg = window.Telegram.webApp;
+export const id = tg.initDataUnsafe?.user?.id;
+
 export {
   diamondIcon,
   hackIcon,

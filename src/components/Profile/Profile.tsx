@@ -6,6 +6,7 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
+  id,
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -49,11 +50,11 @@ export const Profile = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/1234/`, {
+      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "User-ID": "1234"
+          "User-ID": id
         }
       }).then((res) => res.json())
         .then((data) => console.log(data))

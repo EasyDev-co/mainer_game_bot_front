@@ -8,8 +8,6 @@ import { Referrals } from "../Referrals/Referrals";
 import { Profile } from "../Profile/Profile";
 import { MarketSell } from "../Market/MarketSell/MarketSell";
 import { MarketHistory } from "../Market/MarketHistory/MarketHistory";
-import { BASE_URL } from "../../constants/links";
-import { useEffect } from "react";
 
 export const App = () => {
   return (

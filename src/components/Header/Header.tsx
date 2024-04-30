@@ -4,7 +4,7 @@ import {
   diamondIcon,
   hackIcon,
   plusIcon,
-  walletIcon,
+  walletDarkIcon,
   tonWhiteIcon,
 } from "../../constants/constants";
 import { useLocation } from "react-router-dom";
@@ -69,13 +69,10 @@ export const Header = () => {
               }
             />
           </ul>
-          <Link
-            className="header__currencies-item-replenish"
-            to="/profile"
-          >
+          <Link className="header__currencies-item-replenish" to="/profile">
             <img
               className="header__wallet-icon"
-              src={walletIcon}
+              src={walletDarkIcon}
               alt="wallet icon"
             />
           </Link>

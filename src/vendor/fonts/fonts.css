@@ -6,3 +6,30 @@
   src: url("./Changa-Bold.woff2") format("woff2"),
     url("./Changa-Bold.woff") format("woff");
 }
+
+@font-face {
+  font-family: "InknutAntiqua";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./InknutAntiqua-ExtraBold.woff2") format("woff2"),
+    url("./InknutAntiqua-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./Jost-ExtraBold.woff2") format("woff2"),
+    url("./Jost-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./Jost-SemiBold.woff2") format("woff2"),
+    url("./Jost-SemiBold.woff") format("woff");
+}

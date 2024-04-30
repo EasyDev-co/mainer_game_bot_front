@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
+  gap: 8px;
   background: url("../../../assets/images/status_bg.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  padding: 5px 10px 5px 5px;
+  padding: 5px 10px 5px 10px;
 }
 
 .header__currencies-list-item {

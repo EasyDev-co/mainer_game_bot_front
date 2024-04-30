@@ -1,6 +1,6 @@
 import "./ModalHowPlay.css";
 import {
-  logoNoBgIcon,
+  logoNoBgZoomIcon,
   backIcon,
   barrelСrystalsIcon,
   moneyBagIcon,
@@ -15,7 +15,7 @@ export const ModalHowPlay = ({ onClose }: { onClose: () => void }) => {
           <li className="modal-how-play__item">
             <img
               className="modal-how-play__item-img"
-              src={logoNoBgIcon}
+              src={logoNoBgZoomIcon}
               alt="miner"
             />
             <div className="modal-how-play__item-info-block">

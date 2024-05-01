@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Presale.css";
 import {
@@ -10,12 +10,15 @@ import {
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
+import { checkUser } from "../../utils/getUser";
 
 export const Presale = () => {
   //стейт для открытия и закратия попапа mint
   const [isMintState, setIsMintState] = useState(false);
   //стейт для открытия и закрытия попапа info
   const [isInfoState, setIsInfoState] = useState(false);
+
+  const [miners, setMiners] = useState(0);
 
   //функция открытия и закрытия попапа mint
   const handleStateBuyMint = () => {
@@ -27,7 +30,10 @@ export const Presale = () => {
     setIsInfoState(!isInfoState);
   };
 
-  const currentValue = 10000;
+  useEffect(() => {
+    checkUser().then((data) => setMiners(data.miners_count));
+  });
+
   const totalValue = 35000;
 
   return (
@@ -46,7 +52,7 @@ export const Presale = () => {
           />
         </div>
         <ProgressBarComponent
-          currentValue={currentValue}
+          currentValue={miners}
           totalValue={totalValue}
         />
         <div className="presale__buttons-container">

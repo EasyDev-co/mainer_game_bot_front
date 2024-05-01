@@ -22,7 +22,7 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => { tg.showAlert(data.message || data.error); console.log(data.message || data.error); })
+      .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })
       .catch((err) => console.log(err));
   };
 

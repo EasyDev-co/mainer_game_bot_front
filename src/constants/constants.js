@@ -1,16 +1,15 @@
 import diamondIcon from "../assets/images/crystal1.svg";
-import darkDiamondIcon from "../assets/images/gem1.png";
+import darkDiamondIcon from "../assets/images/gem1.svg";
 import whiteDiamondIcon from "../assets/images/btnIconGem.png";
 import hackIcon from "../assets/images/hack1.svg";
 import tonIcon from "../assets/images/ton.png";
 import tonWhiteIcon from "../assets/images/ton2.svg";
 import plusIcon from "../assets/images/btnIconPlus.png";
 import infoIcon from "../assets/images/btnIconMarkInfo2.png";
-import darkInfoIcon from "../assets/images/info1.png";
+import darkInfoIcon from "../assets/images/info1.svg";
 import userIcon from "../assets/images/btnIconUser.png";
 import userPlusIcon from "../assets/images/btnIconAddFriend.png";
-import darkAddRef from "../assets/images/ref1.png";
-import manMinerIcon from "../assets/images/logo-no-bg.png";
+import darkAddRef from "../assets/images/ref1.svg";
 import minerGif from "../assets/gif/miner.gif";
 import walletIcon from "../assets/images/btnIconWallet.png";
 import walletDarkIcon from "../assets/images/wallet1.png";
@@ -42,7 +41,6 @@ export {
   userIcon,
   userPlusIcon,
   walletIcon,
-  manMinerIcon,
   copyIcon,
   backIcon,
   timeIcon,

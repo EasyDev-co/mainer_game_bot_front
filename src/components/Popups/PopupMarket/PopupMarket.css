@@ -12,7 +12,7 @@
 
 .popup-market__container {
   position: absolute;
-  top: 150px;
+  top: 100px;
   background-color: #312c22;
   border: 2px solid #605749;
   border-radius: 5px;
@@ -20,7 +20,7 @@
   box-sizing: border-box;
   max-width: 350px;
   width: 90%;
-  padding: 40px;
+  padding: 20px 40px;
 }
 
 .popup-market__button-closed {

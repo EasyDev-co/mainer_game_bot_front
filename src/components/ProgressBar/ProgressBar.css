@@ -1,22 +1,21 @@
 .progress-bar__container {
   position: relative;
-  width: 90%;
-  height: 68px;
+  width: 86%;
+  height: 50px;
   margin: 31px auto 0;
 }
 
 .progress-bar__block {
   position: relative;
   width: 94.5%;
-  margin: 8px auto 0;
-  margin-top: 8px;
+  margin: 5px auto 0;
 }
 
 .progress-bar__bg {
   background-image: url("../../assets/images/progress-bg.png");
   background-repeat: no-repeat;
-  background-size: 100%;
-  height: 36px;
+  background-size: 100% 100%;
+  height: 25px;
   width: 100%;
   position: absolute;
 }
@@ -24,7 +23,7 @@
 .progress-bar__custom-label {
   font-family: "Jost";
   font-weight: 600;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 20px;
   color: #fff;
   position: absolute;

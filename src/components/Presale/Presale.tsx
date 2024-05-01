@@ -5,7 +5,7 @@ import {
   darkInfoIcon,
   darkDiamondIcon,
   darkAddRef,
-  manMinerIcon
+  logoNoBgZoomIcon
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
@@ -41,7 +41,7 @@ export const Presale = () => {
         <div className="presale__miner-img-container">
           <img
             className="presale__miner-img"
-            src={manMinerIcon}
+            src={logoNoBgZoomIcon}
             alt="miner img"
           />
         </div>

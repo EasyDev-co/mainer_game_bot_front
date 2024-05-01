@@ -16,7 +16,7 @@ export const ProgressBarComponent = ({
             completed={(currentValue / totalValue) * 100}
             customLabel=" "
             bgColor="linear-gradient(rgb(173, 216, 230), rgb(9 40 167))"
-            height="21px"
+            height="15px"
             borderRadius="2px"
             baseBgColor="rgb(216 213 213)"
           />

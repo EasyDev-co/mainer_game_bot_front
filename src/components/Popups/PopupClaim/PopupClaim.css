@@ -1,7 +1,7 @@
 .claim__title {
   text-align: center;
   color: #ddbfb3fc;
-  font-size: 28px;
+  font-size: 26px;
   margin-top: 50px;
   margin-bottom: 15px;
 }
@@ -24,7 +24,7 @@
 }
 
 .claim__info-title-descr {
-  font-size: 14px;
+  font-size: 13px;
   color: #c9baa9;
 }
 
@@ -59,7 +59,7 @@
   display: block;
   margin: 0 auto;
   width: 50%;
-  font-size: 23px;
+  font-size: 20px;
   text-transform: uppercase;
   background: url("../../../assets/images/btn_color_blue.png");
   background-repeat: no-repeat;

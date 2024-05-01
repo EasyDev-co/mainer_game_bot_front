@@ -25,7 +25,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 80px 0 300px;
+  padding-top: 80px;
 }
 
 .profile__wallet-block {
@@ -40,7 +40,7 @@
 }
 
 .profile__wallet-text {
-  font-size: 16px;
+  font-size: 14px;
   width: 80%;
   overflow-wrap: break-word;
 }
@@ -95,7 +95,7 @@
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   width: 100%;
   padding: 10px 10px 15px 10px;

@@ -23,15 +23,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 50px;
+  width: 50px;
+  height: 40px;
   background-color: #756a54;
   border-radius: 5px;
 }
 
 .popup-main-buy-miners__icon {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 
 .popup-main-buy-miners__val-block {
@@ -40,13 +40,13 @@
   align-items: center;
   justify-content: center;
   background-color: #756a54;
-  width: 70%;
+  width: 75%;
   border-radius: 5px;
   padding: 3px;
 }
 
 .popup-main-buy-miners__val-text {
-  font-size: 18px;
+  font-size: 14px;
   width: 100%;
   overflow-wrap: break-word;
   text-align: center;
@@ -59,8 +59,8 @@
 }
 
 .popup-main-buy-miners__arrow-icon {
-  width: 25px;
-  height: 35px;
+  width: 15px;
+  height: 25px;
   rotate: -90deg;
   display: block;
   margin: 0 auto 5px;
@@ -76,7 +76,7 @@
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   width: 50%;
   padding: 5px 0 10px 0;

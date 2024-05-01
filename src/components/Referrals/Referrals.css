@@ -15,7 +15,7 @@
 .referrals__container {
   position: relative;
   max-width: 390px;
-  padding: 65px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   margin: 0 auto;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .referrals__info-container {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .referrals__first-info-block {
@@ -38,7 +38,7 @@
 }
 
 .referrals__second-info-block {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .referrals__copy-text-block {
@@ -48,7 +48,7 @@
 
 .referrals__copy-text {
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   color: #916c42;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
   font-weight: bolder;
@@ -56,7 +56,7 @@
 }
 
 .referrals__copy-descr-text {
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
   color: #c9baa9db;
   margin-top: 5px;
@@ -77,7 +77,7 @@
   border-radius: 5px;
   color: #ffffffad;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
 }
 
 .referrals__ref-link-input:focus {
@@ -100,10 +100,10 @@
   background-position: center;
   background-size: 100% 100%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   width: 70%;
-  padding: 5px 0 10px 0;
+  padding: 5px 10px 10px 10px;
   display: block;
   margin: 15px auto 0;
 }
@@ -113,7 +113,7 @@
   color: #916c42;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 86%), -2px -2px 4px rgb(0 0 0);
   font-weight: bolder;
-  margin: 40px 0 25px 5px;
+  margin: 35px 0 25px 5px;
 }
 
 .referrals__history-block {

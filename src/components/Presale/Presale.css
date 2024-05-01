@@ -15,13 +15,13 @@
 
 .presale__title {
   text-align: center;
-  padding: 90px 20px 0;
+  padding: 80px 20px 0;
 }
 
 .presale__title-span {
   font-family: "InknutAntiqua";
   font-weight: 800;
-  font-size: 42px;
+  font-size: 33px;
   text-align: center;
   text-transform: uppercase;
   background: linear-gradient(180deg, #ffffff 48.03%, #21a0ca 100%);
@@ -31,10 +31,11 @@
 }
 
 .presale__miner-img {
-  max-width: 250px;
+  max-width: 200px;
   width: 100%;
-  height: 250px;
+  height: 200px;
   display: block;
+  padding: 15px;
   margin: 0 auto;
 }
 
@@ -53,14 +54,14 @@
   background-size: 100% 100%;
   box-sizing: border-box;
   width: 100%;
-  padding: 22px 0 28px 0;
+  padding: 14px 0 18px 0;
   margin: 0 auto;
 }
 
 .presale__button-mint-text {
   font-family: "Jost";
   font-weight: 800;
-  font-size: 28px;
+  font-size: 23px;
   line-height: 32px;
   text-transform: uppercase;
   background: linear-gradient(180deg, #10334e 0%, #071724 100%);
@@ -70,8 +71,8 @@
 }
 
 .presale__button-mint-icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .presale__second-buttons-container {
@@ -79,7 +80,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 20px;
+  margin-top: 13px;
 }
 
 .presale__button-info {
@@ -93,7 +94,7 @@
   background-size: 100% 100%;
   box-sizing: border-box;
   width: 50%;
-  padding: 20px 0 20px 0;
+  padding: 16px 0 16px 0;
 }
 
 .presale__button-info-text {
@@ -126,7 +127,7 @@
   font-size: 23px;
   text-transform: uppercase;
   width: 50%;
-  padding: 20px 0 20px 0;
+  padding: 16px 0 16px 0;
 }
 
 .presale__button-ref-text {

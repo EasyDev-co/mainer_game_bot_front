@@ -10,7 +10,6 @@ import darkInfoIcon from "../assets/images/info1.svg";
 import userIcon from "../assets/images/btnIconUser.png";
 import userPlusIcon from "../assets/images/btnIconAddFriend.png";
 import darkAddRef from "../assets/images/ref1.svg";
-import manMinerIcon from "../assets/images/logo-no-bg.png";
 import minerGif from "../assets/gif/miner.gif";
 import walletIcon from "../assets/images/btnIconWallet.png";
 import walletDarkIcon from "../assets/images/wallet1.png";
@@ -42,7 +41,6 @@ export {
   userIcon,
   userPlusIcon,
   walletIcon,
-  manMinerIcon,
   copyIcon,
   backIcon,
   timeIcon,

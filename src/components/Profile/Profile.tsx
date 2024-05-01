@@ -6,14 +6,13 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
-  id,
+  tg,
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import * as invoice from "../../utils/invoice";
-import { BASE_URL } from "../../constants/links";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 
@@ -40,9 +39,11 @@ export const Profile = () => {
   const handleInvoice = (sum: number) => {
     invoice.generInvoice(sum)
       .then((data) => {
+        tg.openLink(data?.invoice_url);
         console.log(data);
       })
       .catch((err) => {
+        tg.showAlert(err);
         console.log(err);
       });
   };

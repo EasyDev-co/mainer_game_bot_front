@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PopupMainBuyMiners.css";
-import { diamondIcon, hackIcon, backIcon, id } from "../../../constants/constants";
+import { diamondIcon, hackIcon, backIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
 
@@ -8,10 +8,6 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
   const [miners, setMiners] = useState(20);
   const [crystals, setCrystals] = useState(20);
   const [sliderPercentage, setSliderPercentage] = useState((miners / 100) * 100);
-  const [info, setInfo] = useState<{
-    message?: string;
-    error?: string;
-  }>();
 
   const buyMiner = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +22,7 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => { setInfo(data); console.log(data.message || data.error); })
+      .then((data) => { tg.showAlert(data.message || data.error); console.log(data.message || data.error); })
       .catch((err) => console.log(err));
   };
 
@@ -84,7 +80,6 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
             <p className="popup-main-buy-miners__val-text popup-main-buy-miners__clider-percent">{sliderPercentage.toFixed(0)}%</p>
           </div>
         </div>
-        <p className="" style={{ color: info?.message ? "green" : "red", fontSize: "14px" }}>{info?.message || info?.error}</p>
         <button
           onClick={buyMiner}
           className="popup-main-buy-miners__buy-button"

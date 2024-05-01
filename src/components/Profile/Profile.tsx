@@ -14,6 +14,8 @@ import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import * as invoice from "../../utils/invoice";
 import { BASE_URL } from "../../constants/links";
+import { checkUser } from "../../utils/getUser";
+import { TUser } from "../../types/user";
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
@@ -27,6 +29,8 @@ export const Profile = () => {
   const handleTonDepositPopupState = () => {
     setIsTonDepositPopupState(!isTonDepositPopupState);
   };
+
+  const [user, setUser] = useState<TUser>();
 
   //функция открытия и закрытия попапа ton Withdrawal
   const handleTonWithdrawalPopupState = () => {
@@ -49,19 +53,9 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "User-ID": id
-        }
-      }).then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
-    };
-
-    checkUser();
+    checkUser().then((data) => {
+      setUser(data);
+    });
   }, []);
 
   return (
@@ -81,9 +75,9 @@ export const Profile = () => {
         </div>
         <div className="profile__info-block">
           <ul className="profile__currencies-list">
-            <ProfileItemWallet icon={hackIcon} val="0" />
-            <ProfileItemWallet icon={diamondIcon} val="0" />
-            <ProfileItemWallet icon={tonWhiteIcon} val="0" />
+            <ProfileItemWallet icon={hackIcon} val={user?.miners_count} />
+            <ProfileItemWallet icon={diamondIcon} val={user?.minerals_balance} />
+            <ProfileItemWallet icon={tonWhiteIcon} val={user?.ton_balance} />
           </ul>
           <div className="profile__buttons-block">
             <button

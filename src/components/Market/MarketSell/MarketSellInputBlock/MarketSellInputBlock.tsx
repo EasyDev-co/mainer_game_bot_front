@@ -11,7 +11,7 @@ export const MarketSellInputBlock = ({
   icon: string;
   title: string;
   firstText?: string;
-  firstTextVal?: string;
+  firstTextVal?: string | number | undefined;
   valInput: string;
   secondText: string;
 }) => {

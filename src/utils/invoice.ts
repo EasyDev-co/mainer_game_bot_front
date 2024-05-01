@@ -1,7 +1,7 @@
 import { id } from "../constants/constants";
 import { BASE_URL } from "../constants/links";
 
-function checkResponse(res: Response) {
+export function checkResponse(res: Response) {
   if (res.ok) {
     return res.json();
   }

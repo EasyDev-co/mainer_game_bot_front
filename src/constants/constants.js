@@ -29,7 +29,7 @@ import quitIcon from "../assets/images/btn_icon_quit.png";
 
 export const tg = window.Telegram.WebApp;
 console.log(tg);
-export const id = tg.initDataUnsafe?.user?.id;
+export const id = tg.initDataUnsafe?.user?.id || "1234";
 
 export {
   diamondIcon,

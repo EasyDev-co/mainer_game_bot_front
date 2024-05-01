@@ -3,8 +3,17 @@ import { tonIcon, diamondIcon } from "../../../constants/constants";
 import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../../TitlePage/TitlePage";
 import { MarketSellInputBlock } from "./MarketSellInputBlock/MarketSellInputBlock";
+import { useEffect, useState } from "react";
+import { TUser } from "../../../types/user";
+import { checkUser } from "../../../utils/getUser";
 
 export const MarketSell = () => {
+  const [user, setUser] = useState<TUser>();
+
+  useEffect(() => {
+    checkUser().then(data => setUser(data));
+  }, []);
+
   return (
     <section className="market-sell">
       <div className="market-sell__container">
@@ -15,7 +24,7 @@ export const MarketSell = () => {
             icon={diamondIcon}
             title="Crystal"
             firstText="You have crystals: "
-            firstTextVal="0"
+            firstTextVal={user?.minerals_balance}
             valInput="0"
             secondText="Minimum sale amount: 100 crystals"
           />

@@ -28,7 +28,7 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
-    await fetch('http://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
+    await fetch('https://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

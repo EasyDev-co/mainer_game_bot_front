@@ -39,7 +39,7 @@ export const Profile = () => {
   const handleInvoice = (sum: number) => {
     invoice.generInvoice(sum)
       .then((data) => {
-        tg.openLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+        tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
         console.log(data);
       })
       .catch((err) => {

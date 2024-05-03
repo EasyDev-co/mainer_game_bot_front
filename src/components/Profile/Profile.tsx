@@ -26,7 +26,8 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = () => {
-    setIsTonDepositPopupState(!isTonDepositPopupState);
+    tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+    // setIsTonDepositPopupState(!isTonDepositPopupState);
   };
 
   const [user, setUser] = useState<TUser>();
@@ -39,7 +40,7 @@ export const Profile = () => {
   const handleInvoice = (sum: number) => {
     invoice.generInvoice(sum)
       .then((data) => {
-        tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+        // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
         console.log(data);
       })
       .catch((err) => {

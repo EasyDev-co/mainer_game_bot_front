@@ -28,7 +28,7 @@ export const Profile = () => {
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = () => {
     tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
-    // setIsTonDepositPopupState(!isTonDepositPopupState);
+    setIsTonDepositPopupState(!isTonDepositPopupState);
   };
 
   const [user, setUser] = useState<TUser>();

@@ -7,6 +7,7 @@ import {
   quitIcon,
   tonWhiteIcon,
   tg,
+  id,
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -26,9 +27,17 @@ export const Profile = () => {
   // стейт с инфой которую ввели в инпут в попапе
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
-  const handleTonDepositPopupState = () => {
-    tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
-    setIsTonDepositPopupState(!isTonDepositPopupState);
+  const handleTonDepositPopupState = async () => {
+    await fetch('http://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-ID': id
+      }
+    }).then((res) => res.json())
+      .then((data) => tg.openTelegramLink(data.connect_url))
+      .catch((err) => console.log(err));
+    setIsTonDepositPopupState(false);
   };
 
   const [user, setUser] = useState<TUser>();

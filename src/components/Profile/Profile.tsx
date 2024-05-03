@@ -18,7 +18,8 @@ import { TUser } from "../../types/user";
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
-  const [isTonDepositPopupState, _] = useState(false);
+  // @ts-ignore
+  const [isTonDepositPopupState, setIsTonDepositPopupState] = useState(false);
   //стейт для открытия и закрытия попапа ton withdrawal
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);

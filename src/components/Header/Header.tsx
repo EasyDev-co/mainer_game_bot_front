@@ -14,6 +14,7 @@ import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMin
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { BASE_URL } from "../../constants/links";
 import { TUser } from "../../types/user";
+import { checkUser } from "../../utils/getUser";
 
 export const Header = () => {
   const location = useLocation();
@@ -26,19 +27,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "User-ID": id,
-        }
-      }).then((res) => res.json())
-        .then((data) => { setUser(data); console.log(data); })
-        .catch((err) => console.log(err));
-    };
-
-    checkUser();
+    checkUser().then(data => setUser(data));
   }, []);
 
   return (

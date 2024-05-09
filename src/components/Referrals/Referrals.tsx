@@ -8,6 +8,7 @@ import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList"
 import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
 import { BASE_URL } from "../../constants/links";
 import { TUser } from "../../types/user";
+import { checkUser } from "../../utils/getUser";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,19 +34,7 @@ export const Referrals = () => {
   };
 
   useEffect(() => {
-    const checkUser = async () => {
-      await fetch(`${BASE_URL}/api/v1/users/get/${id}/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "User-ID": id
-        }
-      }).then((res) => res.json())
-        .then((data) => setUser(data))
-        .catch((err) => console.log(err));
-    };
-
-    checkUser();
+    checkUser().then(data => setUser(data));
   }, []);
 
   return (

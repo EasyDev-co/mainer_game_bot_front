@@ -13,6 +13,7 @@ import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMin
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
+import { TonConnectButton } from "@tonconnect/ui-react";
 
 export const Header = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ export const Header = () => {
       <header className="header">
         <div className="header__currencies-block">
           <ul className="header__currencies-list">
+            <TonConnectButton />
             <HeaderItem
               icon={hackIcon}
               val={user?.miners_count}

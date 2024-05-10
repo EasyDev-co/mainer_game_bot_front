@@ -12,7 +12,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <TonConnectUIProvider manifestUrl="https://mainer-game-bot.netlify.app/manifest_add.json">
+      <TonConnectUIProvider
+        actionsConfiguration={{
+          twaReturnUrl: "https://mainer-game-bot.netlify.app",
+        }}
+        manifestUrl="https://mainer-game-bot.netlify.app/manifest_add.json"
+      >
         <App />
       </TonConnectUIProvider>
     </BrowserRouter>

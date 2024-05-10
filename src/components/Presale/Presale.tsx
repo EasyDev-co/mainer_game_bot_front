@@ -11,6 +11,7 @@ import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
 import { checkUser } from "../../utils/getUser";
+import { Address } from "../TestAdress";
 
 export const Presale = () => {
   //стейт для открытия и закратия попапа mint
@@ -43,6 +44,7 @@ export const Presale = () => {
           <span className="presale__title-span">Limited</span>
           <br />
           <span className="presale__title-span">Minting</span>
+          <Address />
         </h1>
         <div className="presale__miner-img-container">
           <img

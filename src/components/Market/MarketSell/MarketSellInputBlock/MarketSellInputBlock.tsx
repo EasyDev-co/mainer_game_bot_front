@@ -20,10 +20,6 @@ export const MarketSellInputBlock = ({
   secondText: string;
 }) => {
 
-  const value = {
-    "Crystal": setCrystal,
-    "TON": setTon
-  };
   return (
     <div className="market-sell__input-container">
       <div className="market-sell__input-info-block">
@@ -44,7 +40,7 @@ export const MarketSellInputBlock = ({
         className="market-sell__input"
         type="number"
         placeholder={valInput}
-        onChange={(e) => title == "Crystal" && setCrystal ? setCrystal(+e.target.value) : setTon && setTon(+e.target.value)}
+        onChange={(e) => title === "Crystal" && setCrystal ? setCrystal(+e.target.value) : setTon && setTon(+e.target.value)}
       />
       <p className="market-sell__text">{secondText}</p>
     </div>

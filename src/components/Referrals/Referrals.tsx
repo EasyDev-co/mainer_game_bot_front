@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
 import { copyIcon, id, userIcon, walletIcon } from "../../constants/constants";
-import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
@@ -19,15 +18,14 @@ export const Referrals = () => {
   const [referrals, setReferrals] = useState<TReferrals>();
 
   const getReferrals = async () => {
-    await fetch(`${BASE_URL}/api/v1/users/referrals/`, {
+    const response = await fetch(`${BASE_URL}/api/v1/users/referrals/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "User-ID": id,
       }
-    }).then((res) => res.json())
-      .then(data => { setReferrals(data); console.log(referrals); })
-      .catch((err) => console.log(err));
+    }).then((res) => res.json());
+    return response;
   };
 
   const copyToClipboard = () => {
@@ -49,7 +47,7 @@ export const Referrals = () => {
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
-    getReferrals();
+    getReferrals().then(data => setReferrals(data));
   }, []);
 
   if (!referrals) return null;

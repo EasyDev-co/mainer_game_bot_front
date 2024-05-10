@@ -5,14 +5,12 @@ import {
   hackIcon,
   plusIcon,
   walletDarkIcon,
-  tonWhiteIcon,
-  id,
+  tonWhiteIcon
 } from "../../constants/constants";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
-import { BASE_URL } from "../../constants/links";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 

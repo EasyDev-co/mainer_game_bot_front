@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
-import { copyIcon, id, userIcon, walletIcon } from "../../constants/constants";
+import { copyIcon, userIcon, walletIcon } from "../../constants/constants";
 import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
 import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
-import { BASE_URL } from "../../constants/links";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 

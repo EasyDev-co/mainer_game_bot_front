@@ -1,13 +1,14 @@
-import { useTonAddress } from '@tonconnect/ui-react';
+import { useTonWallet } from '@tonconnect/ui-react';
 
 export const Address = () => {
-  const userFriendlyAddress = useTonAddress();
-  const rawAddress = useTonAddress(false);
+  const wallet = useTonWallet();
 
-  return (
+  console.log(wallet);
+
+  return wallet && (
     <div>
-      <span>User-friendly address: {userFriendlyAddress}</span>
-      <span>Raw address: {rawAddress}</span>
+      <span>Connected wallet: {wallet?.device.platform}</span>
+      <span>Device: {wallet.device.appName}</span>
     </div>
   );
 };

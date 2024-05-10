@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
-import { copyIcon, userIcon, walletIcon } from "../../constants/constants";
+import { copyIcon, id, userIcon, walletIcon } from "../../constants/constants";
 import { history } from "../../constants/data";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
@@ -8,12 +8,27 @@ import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList"
 import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
+import { BASE_URL } from "../../constants/links";
+import { TReferrals } from "../../types/referrals";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
   const [linkWallet, setLinkWallet] = useState(false);
   const [user, setUser] = useState<TUser>();
+  const [referrals, setReferrals] = useState<TReferrals>();
+
+  const getReferrals = async () => {
+    await fetch(`${BASE_URL}/api/v1/users/referrals/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      }
+    }).then((res) => res.json())
+      .then(data => { setReferrals(data); console.log(referrals); })
+      .catch((err) => console.log(err));
+  };
 
   const copyToClipboard = () => {
     if (inputRef.current) {
@@ -34,7 +49,10 @@ export const Referrals = () => {
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
+    getReferrals();
   }, []);
+
+  if (!referrals) return null;
 
   return (
     <section className="referrals">
@@ -46,12 +64,12 @@ export const Referrals = () => {
             <ReferralsInfoBlockListItem
               icon={walletIcon}
               title="Reward"
-              info="0 miners"
+              info={referrals?.total_bonuses + " Miners"}
             />
             <ReferralsInfoBlockListItem
               icon={userIcon}
               title="Referrals"
-              info="0 people"
+              info={referrals?.referrals_count + " People"}
             />
           </ul>
           <div className="referrals__second-info-block">
@@ -97,8 +115,8 @@ export const Referrals = () => {
         <div className="referrals__history-container">
           <h2 className="referrals__history-title">Referral history</h2>
           <div className="referrals__history-block">
-            {history.length > 0 ? (
-              <UserHistoryItemList history={history} />
+            {referrals?.bonuses?.length > 0 ? (
+              <UserHistoryItemList history={referrals?.bonuses ?? []} referrals={referrals} />
             ) : (
               <p className="referrals__history-info-text">
                 No transaction history

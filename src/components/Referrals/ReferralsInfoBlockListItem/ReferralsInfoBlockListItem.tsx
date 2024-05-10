@@ -6,8 +6,8 @@ export const ReferralsInfoBlockListItem = ({
   info,
 }: {
   icon: string;
-  title: string;
-  info: string;
+  title: string | undefined;
+  info: number | string | undefined;
 }) => {
   return (
     <li className="referrals__val-block">

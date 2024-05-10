@@ -1,18 +1,40 @@
 import "./MarketSell.css";
-import { tonIcon, diamondIcon } from "../../../constants/constants";
+import { tonIcon, diamondIcon, id, tg } from "../../../constants/constants";
 import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../../TitlePage/TitlePage";
 import { MarketSellInputBlock } from "./MarketSellInputBlock/MarketSellInputBlock";
 import { useEffect, useState } from "react";
 import { TUser } from "../../../types/user";
 import { checkUser } from "../../../utils/getUser";
+import { BASE_URL } from "../../../constants/links";
 
 export const MarketSell = () => {
   const [user, setUser] = useState<TUser>();
+  const [crystal, setCrystal] = useState(0);
+  const [ton, setTon] = useState(0);
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
   }, []);
+
+  useEffect(() => {
+    console.log(crystal, ton);
+  }, [crystal, ton]);
+
+  const sellValue = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await fetch(`${BASE_URL}/api/v1/market/deals/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+      body: JSON.stringify({
+        minerals_count: crystal,
+        ton_count: ton,
+      }),
+    }).then(res => res.json()).then(data => tg.showAlert(data.message || data.error)).catch(err => console.log(err));
+  };
 
   return (
     <section className="market-sell">
@@ -25,6 +47,7 @@ export const MarketSell = () => {
             title="Crystal"
             firstText="You have crystals: "
             firstTextVal={user?.minerals_balance}
+            setCrystal={setCrystal}
             valInput="0"
             secondText="Minimum sale amount: 100 crystals"
           />
@@ -32,6 +55,7 @@ export const MarketSell = () => {
             icon={tonIcon}
             title="TON"
             valInput="0"
+            setTon={setTon}
             secondText="Commission 5% per sale"
           />
           <p className="market-sell__text market-sell__min-text">
@@ -43,7 +67,7 @@ export const MarketSell = () => {
               <span className="market-sell__text-span">0 TON/crystal</span>
             </p>
           </div>
-          <button className="market-sell__button" type="submit">
+          <button className="market-sell__button" onClick={(e) => sellValue(e)}>
             Sell
           </button>
         </form>

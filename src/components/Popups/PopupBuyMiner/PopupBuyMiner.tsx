@@ -17,14 +17,14 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
 
   const buyMiner = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch(`${BASE_URL}/api/v1/market/purchase_miners_for_minerals/`, {
+    await fetch(`${BASE_URL}/api/v1/market/purchase_mainer/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "User-ID": id,
       },
       body: JSON.stringify({
-        mainers_count: miners,
+        miners_packs: miners,
       }),
     })
       .then((res) => res.json())

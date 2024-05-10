@@ -13,13 +13,14 @@ import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMin
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonConnectUI } from "@tonconnect/ui-react";
 
 export const Header = () => {
   const location = useLocation();
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
+  const [tonConnectUi] = useTonConnectUI();
 
   const handleMainBuyMinersPopup = () => {
     setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
@@ -35,6 +36,7 @@ export const Header = () => {
         <div className="header__currencies-block">
           <ul className="header__currencies-list">
             <TonConnectButton />
+            <button onClick={() => tonConnectUi.openModal()}>Тест</button>
             <HeaderItem
               icon={hackIcon}
               val={user?.miners_count}

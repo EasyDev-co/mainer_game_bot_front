@@ -36,7 +36,6 @@ export const Header = () => {
         <div className="header__currencies-block">
           <ul className="header__currencies-list">
             <TonConnectButton />
-            <button onClick={() => tonConnectUi.openModal()}>Тест</button>
             <HeaderItem
               icon={hackIcon}
               val={user?.miners_count}

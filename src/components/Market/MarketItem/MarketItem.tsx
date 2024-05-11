@@ -1,5 +1,6 @@
 import "./MarketItem.css";
 import { diamondIcon, tonIcon } from "../../../constants/constants";
+import { TMarketDeal } from "../../../types/market";
 
 interface Item {
   id: number;
@@ -13,8 +14,8 @@ export const MarketItem = ({
   item,
   handleCardSelect,
 }: {
-  item: Item;
-  handleCardSelect: (card: Item) => void;
+  item: TMarketDeal;
+  handleCardSelect: (card: any) => void;
 }) => {
   const handleClick = () => {
     handleCardSelect(item);
@@ -34,7 +35,7 @@ export const MarketItem = ({
         </div>
         <div className="market-items__lot-val-block market-items__crystal-val-block">
           <p className="market-items__lot-val-text market-items__crystal-val-text">
-            {item.crystals}
+            {item.minerals_count}
           </p>
         </div>
       </div>
@@ -51,14 +52,14 @@ export const MarketItem = ({
         </div>
         <div className="market-items__lot-val-block market-items__price-val-block">
           <p className="market-items__lot-val-text market-items__price-val-text">
-            {item.price}
+            {item.price_per_mineral}
           </p>
         </div>
       </div>
       <p className="market-items__lot-bottom-text">
-        {item.unitPrice} TON/crystal
+        {item.price_per_mineral} TON/crystal
       </p>
-      <p className="market-items__lot-bottom-text">Seller {item.seller}</p>
+      <p className="market-items__lot-bottom-text">Seller {item.id}</p>
       <button
         onClick={handleClick}
         className="market-items__lot-button"

@@ -5,7 +5,7 @@ export const MarketTextInfoListItem = ({
   val,
 }: {
   title: string;
-  val: string;
+  val: string | number | undefined;
 }) => {
   return (
     <li className="market__text-info-list-item">

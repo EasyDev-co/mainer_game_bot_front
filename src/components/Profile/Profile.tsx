@@ -12,7 +12,7 @@ import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
-import * as invoice from "../../utils/invoice";
+// import * as invoice from "../../utils/invoice";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
@@ -54,17 +54,17 @@ export const Profile = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
   };
 
-  const handleInvoice = (sum: number) => {
-    invoice.generInvoice(sum)
-      .then((data) => {
-        // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
-        console.log(data);
-      })
-      .catch((err) => {
-        tg.showAlert(err);
-        console.log(err);
-      });
-  };
+  // const handleInvoice = (sum: number) => {
+  //   invoice.generInvoice(sum)
+  //     .then((data) => {
+  //       // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       tg.showAlert(err);
+  //       console.log(err);
+  //     });
+  // };
 
   const handleSubmit = async (e: any) => {
     try {
@@ -82,7 +82,7 @@ export const Profile = () => {
       };
       let result = await tonConnectUI.sendTransaction(transaction);
       console.log(result);
-      handleInvoice(inputValuePopup);
+      // handleInvoice(inputValuePopup);
     } catch (error: any) {
       // Handle tonConnectUI exceptions here
       console.error("Error while sending transaction:", error.message);

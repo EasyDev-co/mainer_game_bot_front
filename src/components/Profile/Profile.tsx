@@ -12,7 +12,7 @@ import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
-import * as invoice from "../../utils/invoice";
+// import * as invoice from "../../utils/invoice";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';

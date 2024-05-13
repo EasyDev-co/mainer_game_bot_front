@@ -6,8 +6,7 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
-  tg,
-  id,
+  tg
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -16,11 +15,16 @@ import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import * as invoice from "../../utils/invoice";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
+import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
+
 
 export const Profile = () => {
   //стейт для открытия и закрытия попапа ton deposit
   // @ts-ignore
   const [isTonDepositPopupState, setIsTonDepositPopupState] = useState(false);
+  const userFriendlyAddress = useTonAddress();
+  const [tonConnectUI] = useTonConnectUI();
+
   //стейт для открытия и закрытия попапа ton withdrawal
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);
@@ -28,16 +32,19 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
-    await fetch('https://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-ID': id
-      }
-    }).then((res) => res.json())
-      .then((data) => tg.openTelegramLink(data.connect_url))
-      .catch((err) => console.log(err));
-    setIsTonDepositPopupState(false);
+    setIsTonDepositPopupState(true);
+
+
+    // await fetch('https://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'User-ID': id
+    //   }
+    // }).then((res) => res.json())
+    //   // .then((data) => tg.openTelegramLink(data.connect_url))
+    //   .catch((err) => console.log(err));
+    // // setIsTonDepositPopupState(false);
   };
 
   const [user, setUser] = useState<TUser>();
@@ -59,9 +66,29 @@ export const Profile = () => {
       });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
+    try {
+      console.log("TON amount", inputValuePopup);
+      console.log("Nanoton amount", (parseFloat(inputValuePopup.toString()) * 10 ** 9).toString());
+      let transaction = {
+        validUntil: Math.floor(Date.now() / 1000) + 60, // 1 min
+        messages: [
+          {
+            address: "UQDTcgmAZPXXwWqxFOljf1GwNucYSWD_lR_cDCR6an740jlC",
+            amount: (parseFloat(inputValuePopup.toString()) * 10 ** 9).toString(),
+            // stateInit: "base64bocblahblahblah==" // just for instance. Replace with your transaction initState or remove
+          }
+        ]
+      };
+      await tonConnectUI.sendTransaction(transaction);
+      handleInvoice(inputValuePopup);
+    } catch (error: any) {
+      // Handle tonConnectUI exceptions here
+      console.error("Error while sending transaction:", error.message);
+      // Optionally, show an error message to the user
+      tg.showAlert("An error occurred while processing the transaction. Please try again later.");
+    }
     e.preventDefault();
-    handleInvoice(inputValuePopup);
   };
 
   useEffect(() => {
@@ -70,13 +97,15 @@ export const Profile = () => {
     });
   }, []);
 
+
+
   return (
     <section className="profile">
       <div className="profile__container">
         <BackArrowLink link="/main" />
         <TitlePage title="Profile" />
         <div className="profile__wallet-block">
-          <p className="profile__wallet-text">KJewqe023Ewdsdas</p>
+          <p className="profile__wallet-text">{userFriendlyAddress}</p>
           <button className="profile__wallet-exit-button" type="button">
             <img
               className="profile__wallet-exit-icon"

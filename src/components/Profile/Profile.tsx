@@ -82,6 +82,7 @@ export const Profile = () => {
       };
       let response = await tonConnectUI.sendTransaction(transaction);
       tg.showAlert(response);
+      console.log(response);
       handleInvoice(inputValuePopup);
     } catch (error: any) {
       // Handle tonConnectUI exceptions here

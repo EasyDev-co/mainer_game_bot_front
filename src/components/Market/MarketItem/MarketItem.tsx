@@ -2,14 +2,6 @@ import "./MarketItem.css";
 import { diamondIcon, tonIcon } from "../../../constants/constants";
 import { TMarketDeal } from "../../../types/market";
 
-interface Item {
-  id: number;
-  crystals: number;
-  price: number;
-  unitPrice: string;
-  seller: string;
-}
-
 export const MarketItem = ({
   item,
   handleCardSelect,

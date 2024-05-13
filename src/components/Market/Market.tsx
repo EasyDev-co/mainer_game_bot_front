@@ -16,7 +16,6 @@ import { MarketTextInfoListItem } from "./MarketTextInfoListItem/MarketTextInfoL
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 import { BASE_URL } from "../../constants/links";
-import { items } from "../../constants/data";
 
 interface Item {
   crystals: number;

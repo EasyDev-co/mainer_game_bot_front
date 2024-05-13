@@ -54,17 +54,17 @@ export const Profile = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
   };
 
-  const handleInvoice = (sum: number) => {
-    invoice.generInvoice(sum)
-      .then((data) => {
-        // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
-        console.log(data);
-      })
-      .catch((err) => {
-        tg.showAlert(err);
-        console.log(err);
-      });
-  };
+  // const handleInvoice = (sum: number) => {
+  //   invoice.generInvoice(sum)
+  //     .then((data) => {
+  //       // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       tg.showAlert(err);
+  //       console.log(err);
+  //     });
+  // };
 
   const handleSubmit = async (e: any) => {
     try {
@@ -83,7 +83,7 @@ export const Profile = () => {
       let response = await tonConnectUI.sendTransaction(transaction);
       tg.showAlert(response);
       console.log(response);
-      handleInvoice(inputValuePopup);
+      // handleInvoice(inputValuePopup);
     } catch (error: any) {
       // Handle tonConnectUI exceptions here
       console.error("Error while sending transaction:", error.message);

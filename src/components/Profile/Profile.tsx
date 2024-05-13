@@ -12,7 +12,7 @@ import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
-// import * as invoice from "../../utils/invoice";
+import * as invoice from "../../utils/invoice";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
@@ -24,7 +24,7 @@ export const Profile = () => {
   const [isTonDepositPopupState, setIsTonDepositPopupState] = useState(false);
   const userFriendlyAddress = useTonAddress();
   const [tonConnectUI] = useTonConnectUI();
-
+  const final_address = 'UQDTcgmAZPXXwWqxFOljf1GwNucYSWD_lR_cDCR6an740jlC';
   //стейт для открытия и закрытия попапа ton withdrawal
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);
@@ -54,17 +54,17 @@ export const Profile = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
   };
 
-  // const handleInvoice = (sum: number) => {
-  //   invoice.generInvoice(sum)
-  //     .then((data) => {
-  //       // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       tg.showAlert(err);
-  //       console.log(err);
-  //     });
-  // };
+  const handleInvoice = (sum: number) => {
+    invoice.generInvoice(sum)
+      .then((data) => {
+        // tg.openTelegramLink('https://t.me/wallet?startattach=tonconnect-ret__back');
+        console.log(data);
+      })
+      .catch((err) => {
+        tg.showAlert(err);
+        console.log(err);
+      });
+  };
 
   const handleSubmit = async (e: any) => {
     try {
@@ -74,16 +74,15 @@ export const Profile = () => {
         validUntil: Math.floor(Date.now() / 1000) + 60, // 1 min
         messages: [
           {
-            address: "UQDTcgmAZPXXwWqxFOljf1GwNucYSWD_lR_cDCR6an740jlC",
+            address: final_address,
             amount: (parseFloat(inputValuePopup.toString()) * 10 ** 9).toString(),
             // stateInit: "base64bocblahblahblah==" // just for instance. Replace with your transaction initState or remove
           }
         ]
       };
-      let response = await tonConnectUI.sendTransaction(transaction);
-      tg.showAlert(response);
-      console.log(response);
-      // handleInvoice(inputValuePopup);
+      let result = await tonConnectUI.sendTransaction(transaction);
+      console.log(result);
+      handleInvoice(inputValuePopup);
     } catch (error: any) {
       // Handle tonConnectUI exceptions here
       console.error("Error while sending transaction:", error.message);
@@ -98,8 +97,6 @@ export const Profile = () => {
       setUser(data);
     });
   }, []);
-
-
 
   return (
     <section className="profile">

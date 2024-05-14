@@ -51,7 +51,7 @@ export const MarketItem = ({
       <p className="market-items__lot-bottom-text">
         {item.price_per_mineral} TON/crystal
       </p>
-      <p className="market-items__lot-bottom-text">Seller {item.id}</p>
+      <p className="market-items__lot-bottom-text">Seller {item.seller.username}</p>
       <button
         onClick={handleClick}
         className="market-items__lot-button"

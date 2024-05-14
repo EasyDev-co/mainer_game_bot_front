@@ -32,9 +32,11 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
+    if (!userFriendlyAddress) {
+      tonConnectUI.openModal();
+      return;
+    }
     setIsTonDepositPopupState(!isTonDepositPopupState);
-
-
     // await fetch('https://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
     //   method: 'GET',
     //   headers: {
@@ -108,8 +110,9 @@ export const Profile = () => {
         <BackArrowLink link="/main" />
         <TitlePage title="Profile" />
         <div className="profile__wallet-block">
-          <p className="profile__wallet-text">{userFriendlyAddress}</p>
-          <button className="profile__wallet-exit-button" type="button">
+          <p className="profile__wallet-text">{userFriendlyAddress ? userFriendlyAddress : "Connect your wallet"}</p>
+          <button className="profile__wallet-exit-button" type="button"
+            onClick={() => userFriendlyAddress ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
             <img
               className="profile__wallet-exit-icon"
               src={quitIcon}

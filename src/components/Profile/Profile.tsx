@@ -32,7 +32,7 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
-    setIsTonDepositPopupState(true);
+    setIsTonDepositPopupState(!isTonDepositPopupState);
 
 
     // await fetch('https://mainer-game.ddns.net/api/v1/deposit/connect_wallet/', {
@@ -81,6 +81,9 @@ export const Profile = () => {
         ]
       };
       let result = await tonConnectUI.sendTransaction(transaction);
+      if (result) {
+        tg.showAlert("Transaction sent successfully", result.boc);
+      }
       console.log(result);
       // handleInvoice(inputValuePopup);
     } catch (error: any) {

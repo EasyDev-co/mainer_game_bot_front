@@ -42,6 +42,8 @@ export const PopupTon = ({
           type="number"
           placeholder="0.1"
           min="0.1"
+          pattern="[0-9]*\.?[0-9]{0,2}"
+          step="0.1"
           value={value}
           onChange={onChange}
           required

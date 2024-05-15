@@ -20,11 +20,11 @@ export const MarketItemList = ({
   console.log(items);
   return (
     <ul className="market-items__lot-list">
-      {items?.results?.map((item) => (
+      {items?.results ? items?.results?.map((item) => (
         <li key={item.id} className="market-items__lot-item">
           <MarketItem item={item} handleCardSelect={handleCardSelect} />
         </li>
-      ))}
+      )) : <h1>Orders not found</h1>}
     </ul>
   );
 };

@@ -6,7 +6,8 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
-  tg
+  tg,
+  id
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -16,6 +17,7 @@ import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
+import { BASE_URL } from "../../constants/links";
 
 
 export const Profile = () => {
@@ -51,6 +53,16 @@ export const Profile = () => {
 
   const [user, setUser] = useState<TUser>();
 
+  const checkValidInput = (value: number) => {
+    if (value.toString().split(/[.,]/)[1].length > 2) {
+      tg.showAlert("Please enter a valid amount");
+      console.log("Please enter a valid amount");
+      console.log(value);
+    }
+    setInputValuePopup(value);
+    console.log(value);
+  };
+
   //функция открытия и закрытия попапа ton Withdrawal
   const handleTonWithdrawalPopupState = () => {
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
@@ -68,7 +80,24 @@ export const Profile = () => {
   //     });
   // };
 
+  const checkTransaction = async (boc: string) => {
+    await fetch(`${BASE_URL}/api/v1/deposit/check_transaction/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+      body: JSON.stringify({
+        amount: inputValuePopup,
+        boc: boc
+      })
+    });
+  };
+
   const handleSubmit = async (e: any) => {
+    console.log(+inputValuePopup.toString().split(".")[1] > 2);
+    console.log(inputValuePopup.toString().split(".")[1].length > 2);
+
     try {
       console.log("TON amount", inputValuePopup);
       console.log("Nanoton amount", (parseFloat(inputValuePopup.toString()) * 10 ** 9).toString());
@@ -85,6 +114,12 @@ export const Profile = () => {
       let result = await tonConnectUI.sendTransaction(transaction);
       if (result?.boc) {
         // tg.showAlert("Transaction sent successfully");
+        checkTransaction(result.boc)
+          .then((data) => {
+            console.log(data);
+          }).catch((err) => {
+            console.log(err);
+          });
         console.log(result);
       }
       console.log(result);
@@ -159,7 +194,7 @@ export const Profile = () => {
           firstTon={tonIcon}
           secondTon={tonWhiteIcon}
           value={inputValuePopup}
-          onChange={(e: any) => setInputValuePopup(e.target.value)}
+          onChange={(e: any) => checkValidInput(e.target.value)}
         />
       )}
       {isTonWithdrawalPopupState && (

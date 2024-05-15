@@ -2,6 +2,7 @@ import "./UserHistoryItemList.css";
 import { UserHistoryItem } from "../UserHistoryItem/UserHistoryItem";
 import { diamondIcon } from "../../constants/constants";
 import { TReferrals } from "../../types/referrals";
+import { TMarketDeal } from "../../types/market";
 
 interface History {
   referrer_name: string;

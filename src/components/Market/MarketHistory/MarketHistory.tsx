@@ -6,12 +6,13 @@ import { UserHistoryItemList } from "../../UserHistoryItemList/UserHistoryItemLi
 import { BASE_URL } from "../../../constants/links";
 import { id } from "../../../constants/constants";
 import { useEffect, useState } from "react";
+import { MarketHistoryList } from "./MarketHistoryList";
 
 export const MarketHistory = () => {
   const [history, setHistory] = useState();
 
   const getHistory = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+    await fetch(`${BASE_URL}/api/v1/market/deals/history/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +35,7 @@ export const MarketHistory = () => {
         <TitlePage title="History" />
         <div className="market-history__block">
           {historyTwo.length > 0 ? (
-            <UserHistoryItemList history={historyTwo} />
+            <MarketHistoryList history={history} />
           ) : (
             <p className="market-history__background-text">
               No transaction records

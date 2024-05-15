@@ -33,6 +33,7 @@ export const Market = () => {
   const [selectedFilterItemList, setSelectedFilterItemList] = useState("All");
   const [user, setUser] = useState<TUser>();
   const [orders, setOrders] = useState();
+  const [myOrders, setMyOrders] = useState();
 
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
@@ -50,6 +51,17 @@ export const Market = () => {
   };
 
   useEffect(() => {
+    const getMyOrders = async () => {
+      await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      }).then((res) => res.json())
+        .then((data) => setMyOrders(data))
+        .catch((err) => console.log(err));
+    };
     const getOrders = async () => {
       await fetch(`${BASE_URL}/api/v1/market/deals/`, {
         method: "GET",
@@ -180,8 +192,11 @@ export const Market = () => {
             </button>
           </div>
         </div>
-        {selectedFilterItemList === "All" && (
-          <MarketItemList items={orders} handleCardSelect={handleCardSelect} />
+        {selectedFilterItemList && (
+          <MarketItemList
+            items={selectedFilterItemList == "All" ? orders : myOrders}
+            handleCardSelect={handleCardSelect}
+          />
         )}
       </div>
       {isMarketPopupState && selectedCardItem && (

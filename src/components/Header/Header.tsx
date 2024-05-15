@@ -79,7 +79,8 @@ export const Header = () => {
               }
             />
           </ul>
-          <a className="header__currencies-item-replenish" style={{ cursor: "pointer" }} onClick={() => address ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
+          <a href="#" className="header__currencies-item-replenish" style={{ cursor: "pointer" }}
+            onClick={() => address ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
             <img
               className="header__wallet-icon"
               src={walletDarkIcon}

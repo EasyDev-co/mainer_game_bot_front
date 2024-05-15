@@ -2,13 +2,6 @@ import "./PopupMarket.css";
 import { tonIcon, diamondIcon, userIcon } from "../../../constants/constants";
 import { PopupMarketItem } from "../PopupMarketItem/PopupMarketItem";
 
-interface Item {
-  crystals: number;
-  price: number;
-  unitPrice: string;
-  seller: string;
-}
-
 export const PopupMarket = ({
   handleMarketPopupState,
   selectedCardItem,

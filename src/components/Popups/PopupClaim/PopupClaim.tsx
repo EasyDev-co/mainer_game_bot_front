@@ -1,11 +1,13 @@
 import "./PopupClaim.css";
-import { diamondIcon, id } from "../../../constants/constants";
+import { diamondIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
+import { useEffect, useState } from "react";
 
 export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
+  const [unClaimedMinerals, setUnClaimedMinerals] = useState(0);
   const claimMinerals = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/claim_minerals/`, {
+    await fetch(`${BASE_URL}/api/v1/users/claim_minerals/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,6 +15,22 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
       },
     });
   };
+
+  useEffect(() => {
+    const getCountMinerals = async () => {
+      await fetch(`${BASE_URL}/api/v1/users/get/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        },
+      }).then((res) => res.json())
+        .then((data) => setUnClaimedMinerals(data.stored_minerals))
+        .catch((err) => tg.showAlert(err.message));
+    };
+    getCountMinerals();
+
+  }, []);
   return (
     <Popup onClose={onClose}>
       <form className="claim__form">
@@ -29,7 +47,7 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
             </p>
           </div>
           <div className="claim__val-block">
-            <p className="claim__val-text">10</p>
+            <p className="claim__val-text">{unClaimedMinerals}</p>
           </div>
           <p className="claim__descr">
             Commission for receiving crystals:{" "}

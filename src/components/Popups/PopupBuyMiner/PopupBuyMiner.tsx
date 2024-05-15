@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { hackIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL, final_address } from "../../../constants/links";
-import { useTonConnectUI } from "@tonconnect/ui-react";
+import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { checkTransaction } from "../../../utils/checkTransaction";
 
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   const [inputValue, setInputValue] = useState(0);
   const [miners, setMiners] = useState(0);
+  const address = useTonAddress();
   const [tonConnectUI] = useTonConnectUI();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +25,10 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   };
 
   const buyMiner = async (e: React.FormEvent) => {
+    if (!address) {
+      tonConnectUI.openModal();
+      return;
+    };
     try {
       e.preventDefault();
       const buy = async () => {
@@ -56,7 +61,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
         buy()
           .then((res) => res.json())
           .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })
-          .catch((err) => console.log(err));
+          .catch((err) => tg.showAlert(err?.message));
       }
     } catch (error: any) {
       // Handle tonConnectUI exceptions here

@@ -14,8 +14,9 @@ export const PopupMarket = ({
   selectedCardItem,
 }: {
   handleMarketPopupState: () => void;
-  selectedCardItem: Item | null;
+  selectedCardItem: any;
 }) => {
+  console.log(selectedCardItem);
   const commission = ((selectedCardItem?.price || 0) * 0.01) / 100;
   const total = (selectedCardItem?.price || 0) - commission;
 

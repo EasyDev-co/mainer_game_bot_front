@@ -46,6 +46,7 @@ export const Market = () => {
   };
 
   const handleCardSelect = (card: any) => {
+    console.log(card);
     setselectedCardItem(card);
     handleMarketPopupState();
   };

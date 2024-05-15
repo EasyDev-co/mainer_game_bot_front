@@ -9,9 +9,7 @@ export const MarketItem = ({
   item: TMarketDeal;
   handleCardSelect: (card: any) => void;
 }) => {
-  const handleClick = () => {
-    handleCardSelect(item);
-  };
+  console.log(item);
   return (
     <>
       <div className="market-items__crystal-block">
@@ -53,7 +51,7 @@ export const MarketItem = ({
       </p>
       <p className="market-items__lot-bottom-text">Seller {item.seller.username}</p>
       <button
-        onClick={handleClick}
+        onClick={() => handleCardSelect(item)}
         className="market-items__lot-button"
         type="button"
       >

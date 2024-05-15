@@ -2,7 +2,6 @@ import "./MarketHistory.css";
 import { historyTwo } from "../../../constants/data";
 import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../../TitlePage/TitlePage";
-import { UserHistoryItemList } from "../../UserHistoryItemList/UserHistoryItemList";
 import { BASE_URL } from "../../../constants/links";
 import { id } from "../../../constants/constants";
 import { useEffect, useState } from "react";

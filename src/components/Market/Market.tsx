@@ -72,6 +72,7 @@ export const Market = () => {
       }).then((res) => res.json())
         .then((data) => setOrders(data));
     };
+    getMyOrders();
     getOrders();
     checkUser().then((user) => setUser(user));
   }, []);
@@ -194,7 +195,7 @@ export const Market = () => {
         </div>
         {selectedFilterItemList && (
           <MarketItemList
-            items={selectedFilterItemList == "All" ? orders : myOrders}
+            items={selectedFilterItemList === "All" ? orders : myOrders}
             handleCardSelect={handleCardSelect}
           />
         )}

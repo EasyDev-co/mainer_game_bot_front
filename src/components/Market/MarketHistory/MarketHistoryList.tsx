@@ -4,12 +4,6 @@ import { MarketHistoryItem } from "./MarketHistoryItem";
 import { TMarketDeal } from "../../../types/market";
 import { TReferrals } from "../../../types/referrals";
 
-interface History {
-  referrer_name: string;
-  amount: number;
-  created_at: string;
-}
-
 export const MarketHistoryList = ({ history, referrals }: { history: TMarketDeal[] | undefined; referrals?: TReferrals | undefined; }) => {
   if (!history) return null;
   return (

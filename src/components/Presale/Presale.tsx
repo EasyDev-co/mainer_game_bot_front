@@ -44,6 +44,7 @@ export const Presale = () => {
           <br />
           <span className="presale__title-span">Minting</span>
         </h1>
+        <h2>Профиль <span style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }}><a href="/profile">click</a></span></h2>
         <div className="presale__miner-img-container">
           <img
             className="presale__miner-img"

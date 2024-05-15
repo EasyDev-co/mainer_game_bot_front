@@ -4,12 +4,16 @@ import { PopupMarketItem } from "../PopupMarketItem/PopupMarketItem";
 
 export const PopupMarket = ({
   handleMarketPopupState,
+  ton,
+  crystal,
   selectedCardItem,
   selectedCardItemSeller,
   selectedCardItemCrystals,
   selectedCardItemPrice,
 }: {
   handleMarketPopupState: () => void;
+  ton: number | string | undefined;
+  crystal: number | string | undefined;
   selectedCardItem: any;
   selectedCardItemSeller: any;
   selectedCardItemCrystals: number;
@@ -31,8 +35,8 @@ export const PopupMarket = ({
               titleIcon={userIcon}
               title="Seller"
               walletText="You have crystals:"
-              walletVal="0"
-              itemValue={selectedCardItem ? selectedCardItemSeller.first_name: ""}
+              walletVal={crystal}
+              itemValue={selectedCardItem ? selectedCardItemSeller.first_name : ""}
             />
             <PopupMarketItem
               titleIcon={diamondIcon}
@@ -44,7 +48,7 @@ export const PopupMarket = ({
               titleIcon={tonIcon}
               title="Price"
               walletText="You have TON:"
-              walletVal="0"
+              walletVal={ton}
               itemValue={selectedCardItem ? selectedCardItemPrice : ""}
             />
             <PopupMarketItem

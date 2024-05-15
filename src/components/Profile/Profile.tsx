@@ -6,8 +6,7 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
-  tg,
-  id
+  tg
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -17,7 +16,8 @@ import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
-import { BASE_URL } from "../../constants/links";
+import { final_address } from "../../constants/links";
+import { checkTransaction } from "../../utils/checkTransaction";
 
 
 export const Profile = () => {
@@ -26,7 +26,6 @@ export const Profile = () => {
   const [isTonDepositPopupState, setIsTonDepositPopupState] = useState(false);
   const userFriendlyAddress = useTonAddress();
   const [tonConnectUI] = useTonConnectUI();
-  const final_address = 'UQDTcgmAZPXXwWqxFOljf1GwNucYSWD_lR_cDCR6an740jlC';
   //стейт для открытия и закрытия попапа ton withdrawal
   const [isTonWithdrawalPopupState, setIsTonWithdrawalPopupState] =
     useState(false);
@@ -80,19 +79,6 @@ export const Profile = () => {
   //     });
   // };
 
-  const checkTransaction = async (boc: string) => {
-    await fetch(`${BASE_URL}/api/v1/deposit/check_transaction/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      },
-      body: JSON.stringify({
-        amount: inputValuePopup,
-        boc: boc
-      })
-    });
-  };
 
   const handleSubmit = async (e: any) => {
     console.log(+inputValuePopup.toString().split(".")[1] > 2);
@@ -114,7 +100,7 @@ export const Profile = () => {
       let result = await tonConnectUI.sendTransaction(transaction);
       if (result?.boc) {
         // tg.showAlert("Transaction sent successfully");
-        checkTransaction(result.boc)
+        checkTransaction(result.boc, inputValuePopup)
           .then((data) => {
             console.log(data);
           }).catch((err) => {

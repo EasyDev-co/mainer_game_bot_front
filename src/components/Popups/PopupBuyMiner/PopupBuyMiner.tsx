@@ -2,13 +2,21 @@ import "./PopupBuyMiner.css";
 import React, { useState } from "react";
 import { hackIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
-import { BASE_URL } from "../../../constants/links";
+import { BASE_URL, final_address } from "../../../constants/links";
+import { useTonConnectUI } from "@tonconnect/ui-react";
+import { checkTransaction } from "../../../utils/checkTransaction";
 
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   const [inputValue, setInputValue] = useState(0);
   const [miners, setMiners] = useState(0);
+  const [tonConnectUI] = useTonConnectUI();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      setInputValue(0);
+      setMiners(0);
+      return;
+    }
     const value = parseFloat(e.target.value) * 1.5;
     setInputValue(value);
     setMiners(+e.target.value);
@@ -16,20 +24,47 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   };
 
   const buyMiner = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      const buy = async () => {
+        return await fetch(`${BASE_URL}/api/v1/market/purchase_mainer/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "User-ID": id,
+          },
+          body: JSON.stringify({
+            miners_packs: miners,
+          }),
+        });
+      };
+
+      let transaction = {
+        validUntil: Math.floor(Date.now() / 1000) + 60, // 1 min
+        messages: [
+          {
+            address: final_address,
+            amount: (parseFloat(inputValue.toString()) * 10 ** 9).toString(),
+            // stateInit: "base64bocblahblahblah==" // just for instance. Replace with your transaction initState or remove
+          }
+        ]
+      };
+
+      let result = await tonConnectUI.sendTransaction(transaction);
+      if (result?.boc) {
+        checkTransaction(result.boc, inputValue);
+        buy()
+          .then((res) => res.json())
+          .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })
+          .catch((err) => console.log(err));
+      }
+    } catch (error: any) {
+      // Handle tonConnectUI exceptions here
+      console.error("Error while sending transaction:", error.message);
+      // Optionally, show an error message to the user
+      tg.showAlert("An error occurred while processing the transaction. Please try again later.");
+    }
     e.preventDefault();
-    await fetch(`${BASE_URL}/api/v1/market/purchase_mainer/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      },
-      body: JSON.stringify({
-        miners_packs: miners,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })
-      .catch((err) => console.log(err));
   };
 
   return (

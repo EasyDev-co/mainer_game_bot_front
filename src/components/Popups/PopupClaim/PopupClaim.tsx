@@ -1,8 +1,18 @@
 import "./PopupClaim.css";
-import { diamondIcon } from "../../../constants/constants";
+import { diamondIcon, id } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
+import { BASE_URL } from "../../../constants/links";
 
-export const PopupClaim = ({ onClose }: { onClose: () => void }) => {
+export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
+  const claimMinerals = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/claim_minerals/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+    });
+  };
   return (
     <Popup onClose={onClose}>
       <form className="claim__form">
@@ -26,7 +36,7 @@ export const PopupClaim = ({ onClose }: { onClose: () => void }) => {
             <span className="claim__text-span">0.01 TON</span>
           </p>
         </div>
-        <button className="claim__button" type="button">
+        <button className="claim__button" type="button" onClick={claimMinerals}>
           Get
         </button>
       </form>

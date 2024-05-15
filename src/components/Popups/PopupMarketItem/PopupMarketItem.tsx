@@ -11,7 +11,7 @@ export const PopupMarketItem = ({
   titleIcon: string;
   title: string;
   walletText?: string;
-  walletVal?: string;
+  walletVal?: string | number | undefined;
   bottomText?: string;
   itemValue: string | number;
 }) => {

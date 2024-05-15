@@ -33,7 +33,7 @@ export const Market = () => {
   const [user, setUser] = useState<TUser>();
   const [orders, setOrders] = useState();
   const [myOrders, setMyOrders] = useState();
-  
+
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
     setIsFilterOpen(false);
@@ -195,13 +195,15 @@ export const Market = () => {
         </div>
         {selectedFilterItemList && (
           <MarketItemList
-            items={selectedFilterItemList === "All" ? orders : myOrders}
+            items={selectedFilterItemList === "All" ? orders : selectedFilterItemList === "My" ? myOrders : orders}
             handleCardSelect={handleCardSelect}
           />
         )}
       </div>
       {isMarketPopupState && selectedCardItem && (
         <PopupMarket
+          crystal={user?.minerals_balance}
+          ton={user?.ton_balance}
           handleMarketPopupState={handleMarketPopupState}
           selectedCardItem={selectedCardItem}
           selectedCardItemSeller={selectedCardItem.seller}

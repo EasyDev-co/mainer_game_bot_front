@@ -13,9 +13,12 @@ import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMin
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
+import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 
 export const Header = () => {
   const location = useLocation();
+  const [tonConnectUI] = useTonConnectUI();
+  const address = useTonAddress();
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
@@ -76,13 +79,20 @@ export const Header = () => {
               }
             />
           </ul>
-          <Link className="header__currencies-item-replenish" to="/profile">
+          <a className="header__currencies-item-replenish" style={{ cursor: "pointer" }} onClick={() => address ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
             <img
               className="header__wallet-icon"
               src={walletDarkIcon}
               alt="wallet icon"
             />
-          </Link>
+          </a>
+          {/* <Link className="header__currencies-item-replenish" to="/profile">
+            <img
+              className="header__wallet-icon"
+              src={walletDarkIcon}
+              alt="wallet icon"
+            />
+          </Link> */}
         </div>
       </header>
       {isMainBuyMinersPopup && (

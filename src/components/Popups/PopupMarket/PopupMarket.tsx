@@ -5,14 +5,18 @@ import { PopupMarketItem } from "../PopupMarketItem/PopupMarketItem";
 export const PopupMarket = ({
   handleMarketPopupState,
   selectedCardItem,
+  selectedCardItemSeller,
+  selectedCardItemCrystals,
+  selectedCardItemPrice,
 }: {
   handleMarketPopupState: () => void;
   selectedCardItem: any;
+  selectedCardItemSeller: any;
+  selectedCardItemCrystals: number;
+  selectedCardItemPrice: number;
 }) => {
-  console.log(selectedCardItem);
-  const commission = ((selectedCardItem?.price || 0) * 0.01) / 100;
-  const total = (selectedCardItem?.price || 0) - commission;
-
+  const commission = ((selectedCardItemPrice || 0) * 0.01) / 100;
+  const total = (selectedCardItemPrice || 0) - commission;
   return (
     <div className="popup-market">
       <div className="popup-market__container">
@@ -28,20 +32,20 @@ export const PopupMarket = ({
               title="Seller"
               walletText="You have crystals:"
               walletVal="0"
-              itemValue={selectedCardItem ? selectedCardItem.seller : ""}
+              itemValue={selectedCardItem ? selectedCardItemSeller.first_name: ""}
             />
             <PopupMarketItem
               titleIcon={diamondIcon}
               title="Crystals"
               bottomText="5% fee for crystal purchase"
-              itemValue={selectedCardItem ? selectedCardItem.crystals : ""}
+              itemValue={selectedCardItem ? selectedCardItemCrystals : ""}
             />
             <PopupMarketItem
               titleIcon={tonIcon}
               title="Price"
               walletText="You have TON:"
               walletVal="0"
-              itemValue={selectedCardItem ? selectedCardItem.price : ""}
+              itemValue={selectedCardItem ? selectedCardItemPrice : ""}
             />
             <PopupMarketItem
               titleIcon={tonIcon}

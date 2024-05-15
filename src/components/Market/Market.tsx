@@ -18,9 +18,8 @@ import { checkUser } from "../../utils/getUser";
 import { BASE_URL } from "../../constants/links";
 
 interface Item {
-  crystals: number;
-  price: number;
-  unitPrice: string;
+  minerals_count: number;
+  ton_count: number;
   seller: string;
 }
 
@@ -34,7 +33,7 @@ export const Market = () => {
   const [user, setUser] = useState<TUser>();
   const [orders, setOrders] = useState();
   const [myOrders, setMyOrders] = useState();
-
+  
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
     setIsFilterOpen(false);
@@ -205,6 +204,9 @@ export const Market = () => {
         <PopupMarket
           handleMarketPopupState={handleMarketPopupState}
           selectedCardItem={selectedCardItem}
+          selectedCardItemSeller={selectedCardItem.seller}
+          selectedCardItemCrystals={selectedCardItem.minerals_count}
+          selectedCardItemPrice={selectedCardItem.ton_count}
         />
       )}
     </section>

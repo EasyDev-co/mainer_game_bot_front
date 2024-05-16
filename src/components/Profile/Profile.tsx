@@ -6,7 +6,8 @@ import {
   tonIcon,
   quitIcon,
   tonWhiteIcon,
-  tg
+  tg,
+  id
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -16,7 +17,7 @@ import { ProfileItemWallet } from "./ProfileItemWallet/ProfileItemWallet";
 import { checkUser } from "../../utils/getUser";
 import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
-import { final_address } from "../../constants/links";
+import { BASE_URL, final_address } from "../../constants/links";
 import { checkTransaction } from "../../utils/checkTransaction";
 
 
@@ -31,6 +32,25 @@ export const Profile = () => {
     useState(false);
   // стейт с инфой которую ввели в инпут в попапе
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
+
+  const handleWithDraw = async (e: any) => {
+    console.log(inputValuePopup);
+    e.preventDefault();
+    await fetch(`${BASE_URL}/api/v1/deposit/create_withdrawal/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+      body: JSON.stringify({
+        amount: inputValuePopup,
+        wallet: userFriendlyAddress
+      }),
+    }).then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      }).catch((err) => tg.showAlert(err?.message));
+  };
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
     if (!userFriendlyAddress) {
@@ -53,8 +73,10 @@ export const Profile = () => {
   const [user, setUser] = useState<TUser>();
 
   const checkValidInput = (value: number) => {
-    if (value.toString().split(/[.,]/)[1].length > 2) {
+    if (value.toString().split(/[.,]/)[1]?.length > 2) {
       tg.showAlert("Please enter a valid amount");
+      setInputValuePopup(0);
+      value = 0;
       console.log("Please enter a valid amount");
       console.log(value);
     }
@@ -186,6 +208,7 @@ export const Profile = () => {
       {isTonWithdrawalPopupState && (
         <PopupTon
           onClose={handleTonWithdrawalPopupState}
+          onClick={handleWithDraw}
           title="Withdrawal TON"
           buttonText="Withdrawal"
           text={
@@ -199,6 +222,8 @@ export const Profile = () => {
           }
           firstTon={tonWhiteIcon}
           secondTon={tonIcon}
+          value={inputValuePopup}
+          onChange={(e: any) => checkValidInput(e.target.value)}
         />
       )}
     </section>

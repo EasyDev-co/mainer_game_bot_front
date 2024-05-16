@@ -31,7 +31,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
     };
     try {
       e.preventDefault();
-      const buy = async () => {
+      const buy = async (boc: string) => {
         return await fetch(`${BASE_URL}/api/v1/market/purchase_mainer/`, {
           method: "POST",
           headers: {
@@ -40,6 +40,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
           },
           body: JSON.stringify({
             miners_packs: miners,
+            boc: boc
           }),
         });
       };
@@ -58,7 +59,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
       let result = await tonConnectUI.sendTransaction(transaction);
       if (result?.boc) {
         checkTransaction(result.boc, inputValue);
-        buy()
+        buy(result.boc)
           .then((res) => res.json())
           .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })
           .catch((err) => tg.showAlert(err?.message));

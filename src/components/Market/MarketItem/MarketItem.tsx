@@ -9,7 +9,7 @@ export const MarketItem = ({
   item: TMarketDeal;
   handleCardSelect: (card: any) => void;
 }) => {
-  console.log(item);
+  /* console.log(item); */
   return (
     <>
       <div className="market-items__crystal-block">
@@ -42,7 +42,7 @@ export const MarketItem = ({
         </div>
         <div className="market-items__lot-val-block market-items__price-val-block">
           <p className="market-items__lot-val-text market-items__price-val-text">
-            {item.price_per_mineral}
+            {item.ton_count}
           </p>
         </div>
       </div>

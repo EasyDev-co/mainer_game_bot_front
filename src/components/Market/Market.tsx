@@ -23,6 +23,11 @@ interface Item {
   seller: string;
 }
 
+interface Params {
+  ordering: string;
+  ton_min: string;
+}
+
 export const Market = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFilterItem, setSelectedFilterItem] = useState("Price");
@@ -51,89 +56,137 @@ export const Market = () => {
     setselectedCardItem(card);
     handleMarketPopupState();
   };
-  let params = {
-    ordering: "price_per_mineral",
+/*   let params = {
+    ordering: "",
     ton_min: ""
-  };
+  }; */
 
-  const getCustomFilter = async () => {
-    return await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
+  const [params, setParams] = useState<Params>({ ordering: "", ton_min: "" });
+
+  console.log(params);
+    const getCustomFilter = async () => {
+      const paramsRecord: Record<string, string> = {
+        ordering: params.ordering,
+        ton_min: params.ton_min
+      };
+    
+      const queryString = new URLSearchParams(paramsRecord).toString();
+  
+      return await fetch(`${BASE_URL}/api/v1/market/deals/?${queryString}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      });
+    };
+  
+    const getOrders = async () => {
+      await fetch(`${BASE_URL}/api/v1/market/deals/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      }).then((res) => res.json())
+        .then((data) => setOrders(data));
+    };
+  
+    const moreThenFive = async () => {
+      const paramsRecord: Record<string, string> = {
+        ordering: params.ordering,
+        ton_min: params.ton_min
+      };
+    
+      const queryString = new URLSearchParams(paramsRecord).toString();
+    
+      await fetch(`${BASE_URL}/api/v1/market/deals/?${queryString}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      }).then((res) => res.json())
+        .then((data) => setOrders(data))
+        .catch((err) => console.log(err));
+    };
+  
+    const getMyOrders = async () => {
+      await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      }).then((res) => res.json())
+        .then((data) => setOrders(data))
+        .catch((err) => console.log(err));
+    };
+  
+    useEffect(() => {
+      if (selectedFilterItem === "Price") {
+        setParams(prevParams => ({
+          ...prevParams,
+          ordering: "ton_count",
+          ton_min: prevParams.ton_min
+        }));
+        console.log(orders);
+        getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+      } else {
+        setParams(prevParams => ({
+          ...prevParams,
+          ordering: "price_per_mineral",
+          ton_min: prevParams.ton_min
+        }));
+        getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
       }
-    });
-  };
-
-  useEffect(() => {
-    if (selectedFilterItem === "Price") {
-      params.ordering = "price_per_mineral";
-      params.ton_min = `${params.ton_min}`;
-      console.log(params);
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    } else {
-      params.ordering = "ton_count";
-      params.ton_min = `${params.ton_min}`;
-      console.log(params);
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    }
-  }, [selectedFilterItem]);
-
-  useEffect(() => {
-    if (selectedFilterItemList === "All") {
-      getOrders();
-    } else if (selectedFilterItemList === "My") {
-      getMyOrders();
-    } else {
-      params.ton_min = "5";
-      moreThenFive();
-    }
-  }, [selectedFilterItemList]);
+    }, [selectedFilterItem]);
+  
+    useEffect(() => {
+      if (selectedFilterItemList === "All") {
+        setParams(prevParams => ({
+          ...prevParams,
+          ton_min: ""
+        }));
+        getOrders();
+      } else if (selectedFilterItemList === "My") {
+        setParams(prevParams => ({
+          ...prevParams,
+          ton_min: ""
+        }));
+        getMyOrders();
+      } else {
+        setParams(prevParams => ({
+          ...prevParams,
+          ton_min: "5"
+        }));
+        moreThenFive();
+      }
+    }, [selectedFilterItemList]);
 
   useEffect(() => {
     if (reverseSort) {
-      params.ordering = `-${params.ordering}`;
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+      setParams(prevParams => ({
+        ...prevParams,
+        ordering: `-${prevParams.ordering}`
+      }));
+      console.log(params.ordering);
+      getCustomFilter().then((res) => res.json()).then((data) => {
+        setOrders(data);
+        console.log(orders);
+      }).catch((err) => console.log(err));
     } else {
-      params.ordering = `${params.ordering}`;
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+      setParams(prevParams => ({
+        ...prevParams,
+        ordering: prevParams.ordering.startsWith("-") ? prevParams.ordering.substring(1) : prevParams.ordering
+      }));
+      console.log(params.ordering);
+      getCustomFilter().then((res) => res.json()).then((data) => {
+        setOrders(data);
+        console.log(orders);
+      }).catch((err) => console.log(err));
     }
   }, [reverseSort]);
-
-
-  const moreThenFive = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      }
-    }).then((res) => res.json())
-      .then((data) => setOrders(data))
-      .catch((err) => console.log(err));
-  };
-  const getMyOrders = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      }
-    }).then((res) => res.json())
-      .then((data) => setOrders(data))
-      .catch((err) => console.log(err));
-  };
-  const getOrders = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      }
-    }).then((res) => res.json())
-      .then((data) => setOrders(data));
-  };
 
   useEffect(() => {
     // getMyOrders();
@@ -194,7 +247,7 @@ export const Market = () => {
                 : ""
                 }`}
               type="button"
-              onClick={() => setSelectedFilterItemList("All")}
+              onClick={() => { setSelectedFilterItemList("All"); /* getOrders();  */}}
             >
               All
             </button>
@@ -204,7 +257,7 @@ export const Market = () => {
                 : ""
                 }`}
               type="button"
-              onClick={() => { setSelectedFilterItemList("My"); getMyOrders(); }}
+              onClick={() => { setSelectedFilterItemList("My"); /* getMyOrders(); */ }}
             >
               My
             </button>
@@ -214,7 +267,7 @@ export const Market = () => {
                 : ""
                 }`}
               type="button"
-              onClick={() => { setSelectedFilterItemList(">5 TON"); moreThenFive(); }}
+              onClick={() => { setSelectedFilterItemList(">5 TON"); /* moreThenFive(); */ }}
             >
               &gt;5 TON
             </button>

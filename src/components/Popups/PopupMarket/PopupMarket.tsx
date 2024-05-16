@@ -1,6 +1,7 @@
 import "./PopupMarket.css";
-import { tonIcon, diamondIcon, userIcon } from "../../../constants/constants";
+import { tonIcon, diamondIcon, userIcon, id, tg } from "../../../constants/constants";
 import { PopupMarketItem } from "../PopupMarketItem/PopupMarketItem";
+import { BASE_URL } from "../../../constants/links";
 
 export const PopupMarket = ({
   handleMarketPopupState,
@@ -20,7 +21,18 @@ export const PopupMarket = ({
   selectedCardItemPrice: number;
 }) => {
   const commission = ((selectedCardItemPrice || 0) * 0.01) / 100;
-  const total = (selectedCardItemPrice || 0) - commission;
+  const total = (selectedCardItemPrice || 0) - commission; console.log(selectedCardItem);
+  const buyMarketItem = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/deals/${selectedCardItem.id}/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id
+      }
+    }).then((res) => res.json())
+      .then((data) => tg.showAlert(data) && console.log(data))
+      .catch((err) => tg.showAlert(err?.message));
+  };
   return (
     <div className="popup-market">
       <div className="popup-market__container">
@@ -62,7 +74,7 @@ export const PopupMarket = ({
               itemValue={total}
             />
           </div>
-          <button className="popup-market__buy-button" type="button">
+          <button className="popup-market__buy-button" type="button" onClick={buyMarketItem}>
             Buy
           </button>
         </form>

@@ -26,6 +26,7 @@ interface Item {
 export const Market = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFilterItem, setSelectedFilterItem] = useState("Price");
+  const [reverseSort, setReverseSort] = useState(false);
   //стейт для открытия и закрытия попапа market
   const [isMarketPopupState, setIsMarketPopupState] = useState(false);
   const [selectedCardItem, setselectedCardItem] = useState<Item | null>(null);
@@ -33,6 +34,7 @@ export const Market = () => {
   const [user, setUser] = useState<TUser>();
   const [orders, setOrders] = useState();
   const [myOrders, setMyOrders] = useState();
+  const [bigOrders, setBigOrders] = useState();
 
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
@@ -49,31 +51,89 @@ export const Market = () => {
     setselectedCardItem(card);
     handleMarketPopupState();
   };
+  const params = {
+    ordering: "1",
+    ton_min: "5"
+  };
+
+  const currentFilter = {
+    ">5 TON": () => {
+      params.ton_min = "5";
+    },
+    "My": () => {
+      getMyOrders();
+    },
+    "All": () => {
+      getOrders();
+    },
+    "Price": () => {
+      params.ordering = "price_per_mineral";
+      getCustomFilter().then((res) => res.json())
+        .then((data) => setOrders(data))
+        .catch((err) => console.log(err));
+    },
+    "Total Price": () => {
+      params.ordering = "total_price";
+      getCustomFilter().then((res) => res.json())
+        .then((data) => setOrders(data))
+        .catch((err) => console.log(err));
+    },
+  };
+
+  const url = `${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`;
+
+  console.log(url);
+
+  const getCustomFilter = async () => {
+    return await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      }
+    });
+  };
 
   useEffect(() => {
-    const getMyOrders = async () => {
-      await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "User-ID": id,
-        }
-      }).then((res) => res.json())
-        .then((data) => setMyOrders(data))
-        .catch((err) => console.log(err));
-    };
-    const getOrders = async () => {
-      await fetch(`${BASE_URL}/api/v1/market/deals/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "User-ID": id,
-        }
-      }).then((res) => res.json())
-        .then((data) => setOrders(data));
-    };
+  }, [selectedFilterItem, selectedFilterItemList, reverseSort]);
+
+  const moreThenFive = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      }
+    }).then((res) => res.json())
+      .then((data) => setBigOrders(data))
+      .catch((err) => console.log(err));
+  };
+  const getMyOrders = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      }
+    }).then((res) => res.json())
+      .then((data) => setMyOrders(data))
+      .catch((err) => console.log(err));
+  };
+  const getOrders = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/deals/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      }
+    }).then((res) => res.json())
+      .then((data) => setOrders(data));
+  };
+
+  useEffect(() => {
     getMyOrders();
     getOrders();
+    moreThenFive();
     checkUser().then((user) => setUser(user));
   }, []);
 
@@ -184,7 +244,7 @@ export const Market = () => {
                 alt="white down arrow icon"
               />
             </div>
-            <button className="market__filters-sort-button" type="button">
+            <button className="market__filters-sort-button" type="button" onClick={() => setReverseSort(!reverseSort)}>
               <img
                 className="market__filters-sort-icon"
                 src={changeWhiteArrowIcon}
@@ -195,7 +255,7 @@ export const Market = () => {
         </div>
         {selectedFilterItemList && (
           <MarketItemList
-            items={selectedFilterItemList === "All" ? orders : selectedFilterItemList === "My" ? myOrders : orders}
+            items={selectedFilterItemList === "All" ? orders : selectedFilterItemList === "My" ? myOrders : bigOrders}
             handleCardSelect={handleCardSelect}
           />
         )}

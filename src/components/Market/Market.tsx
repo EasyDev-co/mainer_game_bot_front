@@ -51,38 +51,10 @@ export const Market = () => {
     setselectedCardItem(card);
     handleMarketPopupState();
   };
-  const params = {
-    ordering: "1",
-    ton_min: "5"
+  let params = {
+    ordering: "price_per_mineral",
+    ton_min: ""
   };
-
-  const currentFilter = {
-    ">5 TON": () => {
-      params.ton_min = "5";
-    },
-    "My": () => {
-      getMyOrders();
-    },
-    "All": () => {
-      getOrders();
-    },
-    "Price": () => {
-      params.ordering = "price_per_mineral";
-      getCustomFilter().then((res) => res.json())
-        .then((data) => setOrders(data))
-        .catch((err) => console.log(err));
-    },
-    "Total Price": () => {
-      params.ordering = "total_price";
-      getCustomFilter().then((res) => res.json())
-        .then((data) => setOrders(data))
-        .catch((err) => console.log(err));
-    },
-  };
-
-  const url = `${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`;
-
-  console.log(url);
 
   const getCustomFilter = async () => {
     return await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
@@ -95,7 +67,40 @@ export const Market = () => {
   };
 
   useEffect(() => {
-  }, [selectedFilterItem, selectedFilterItemList, reverseSort]);
+    if (selectedFilterItem === "Price") {
+      params.ordering = "price_per_mineral";
+      params.ton_min = `${params.ton_min}`;
+      console.log(params);
+      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    } else {
+      params.ordering = "ton_count";
+      params.ton_min = `${params.ton_min}`;
+      console.log(params);
+      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    }
+  }, [selectedFilterItem]);
+
+  useEffect(() => {
+    if (selectedFilterItemList === "All") {
+      getOrders();
+    } else if (selectedFilterItemList === "My") {
+      getMyOrders();
+    } else {
+      params.ton_min = "5";
+      moreThenFive();
+    }
+  }, [selectedFilterItemList]);
+
+  useEffect(() => {
+    if (reverseSort) {
+      params.ordering = `-${params.ordering}`;
+      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    } else {
+      params.ordering = `${params.ordering}`;
+      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    }
+  }, [reverseSort]);
+
 
   const moreThenFive = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
@@ -105,7 +110,7 @@ export const Market = () => {
         "User-ID": id,
       }
     }).then((res) => res.json())
-      .then((data) => setBigOrders(data))
+      .then((data) => setOrders(data))
       .catch((err) => console.log(err));
   };
   const getMyOrders = async () => {
@@ -116,7 +121,7 @@ export const Market = () => {
         "User-ID": id,
       }
     }).then((res) => res.json())
-      .then((data) => setMyOrders(data))
+      .then((data) => setOrders(data))
       .catch((err) => console.log(err));
   };
   const getOrders = async () => {
@@ -131,9 +136,9 @@ export const Market = () => {
   };
 
   useEffect(() => {
-    getMyOrders();
+    // getMyOrders();
     getOrders();
-    moreThenFive();
+    // moreThenFive();
     checkUser().then((user) => setUser(user));
   }, []);
 
@@ -199,7 +204,7 @@ export const Market = () => {
                 : ""
                 }`}
               type="button"
-              onClick={() => setSelectedFilterItemList("My")}
+              onClick={() => { setSelectedFilterItemList("My"); getMyOrders(); }}
             >
               My
             </button>
@@ -209,7 +214,7 @@ export const Market = () => {
                 : ""
                 }`}
               type="button"
-              onClick={() => setSelectedFilterItemList(">5 TON")}
+              onClick={() => { setSelectedFilterItemList(">5 TON"); moreThenFive(); }}
             >
               &gt;5 TON
             </button>
@@ -255,7 +260,7 @@ export const Market = () => {
         </div>
         {selectedFilterItemList && (
           <MarketItemList
-            items={selectedFilterItemList === "All" ? orders : selectedFilterItemList === "My" ? myOrders : bigOrders}
+            items={orders}
             handleCardSelect={handleCardSelect}
           />
         )}

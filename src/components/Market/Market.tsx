@@ -23,6 +23,11 @@ interface Item {
   seller: string;
 }
 
+interface Params {
+  ordering: string;
+  ton_min: string;
+}
+
 export const Market = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFilterItem, setSelectedFilterItem] = useState("Price");
@@ -33,8 +38,8 @@ export const Market = () => {
   const [selectedFilterItemList, setSelectedFilterItemList] = useState("All");
   const [user, setUser] = useState<TUser>();
   const [orders, setOrders] = useState();
-  const [myOrders, setMyOrders] = useState();
-  const [bigOrders, setBigOrders] = useState();
+  /*   const [myOrders, setMyOrders] = useState();
+  const [bigOrders, setBigOrders] = useState(); */
 
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
@@ -51,89 +56,159 @@ export const Market = () => {
     setselectedCardItem(card);
     handleMarketPopupState();
   };
-  let params = {
-    ordering: "price_per_mineral",
+  /*   let params = {
+    ordering: "",
     ton_min: ""
-  };
+  }; */
 
-  const getCustomFilter = async () => {
-    return await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
+  const [params, setParams] = useState<Params>({ ordering: "", ton_min: "" });
+
+  console.log(params);
+  console.log(orders);
+  const getCustomFilter = async (params: Params) => {
+    const paramsRecord: Record<string, string> = {
+      ordering: params.ordering,
+      ton_min: params.ton_min,
+    };
+
+    const queryString = new URLSearchParams(paramsRecord).toString();
+    console.log(queryString);
+    return await fetch(`${BASE_URL}/api/v1/market/deals/?${queryString}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "User-ID": id,
-      }
+      },
     });
   };
 
-  useEffect(() => {
-    if (selectedFilterItem === "Price") {
-      params.ordering = "price_per_mineral";
-      params.ton_min = `${params.ton_min}`;
-      console.log(params);
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    } else {
-      params.ordering = "ton_count";
-      params.ton_min = `${params.ton_min}`;
-      console.log(params);
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    }
-  }, [selectedFilterItem]);
-
-  useEffect(() => {
-    if (selectedFilterItemList === "All") {
-      getOrders();
-    } else if (selectedFilterItemList === "My") {
-      getMyOrders();
-    } else {
-      params.ton_min = "5";
-      moreThenFive();
-    }
-  }, [selectedFilterItemList]);
-
-  useEffect(() => {
-    if (reverseSort) {
-      params.ordering = `-${params.ordering}`;
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    } else {
-      params.ordering = `${params.ordering}`;
-      getCustomFilter().then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
-    }
-  }, [reverseSort]);
-
-
-  const moreThenFive = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/?${new URLSearchParams(params).toString()}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      }
-    }).then((res) => res.json())
-      .then((data) => setOrders(data))
-      .catch((err) => console.log(err));
-  };
-  const getMyOrders = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "User-ID": id,
-      }
-    }).then((res) => res.json())
-      .then((data) => setOrders(data))
-      .catch((err) => console.log(err));
-  };
   const getOrders = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "User-ID": id,
-      }
-    }).then((res) => res.json())
+      },
+    })
+      .then((res) => res.json())
       .then((data) => setOrders(data));
   };
+
+  const moreThenFive = async () => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      ton_min: "5",
+    }));
+
+    const paramsRecord: Record<string, string> = {
+      ordering: params.ordering,
+      ton_min: "5",
+    };
+
+    const queryString = new URLSearchParams(paramsRecord).toString();
+    console.log(paramsRecord);
+    await fetch(`${BASE_URL}/api/v1/market/deals/?${queryString}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setOrders(data))
+      .catch((err) => console.log(err));
+  };
+
+  const getMyOrders = async () => {
+    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setOrders(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    const fetchData = async (params: Params) => {
+      try {
+        const res = await getCustomFilter(params);
+        const data = await res.json();
+        setOrders(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (selectedFilterItem === "Price") {
+      const updatedParams = { ordering: "ton_count", ton_min: params.ton_min };
+      setParams(updatedParams);
+      fetchData(updatedParams);
+    } else {
+      const updatedParams = {
+        ordering: "price_per_mineral",
+        ton_min: params.ton_min,
+      };
+      setParams(updatedParams);
+      fetchData(updatedParams);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFilterItem]);
+
+  useEffect(() => {
+    if (selectedFilterItemList === "All") {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ton_min: "",
+      }));
+      getOrders();
+    } else if (selectedFilterItemList === "My") {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ton_min: "",
+      }));
+      getMyOrders();
+    } else {
+      /* setParams(prevParams => ({
+          ...prevParams,
+          ton_min: "5"
+        })); */
+      moreThenFive();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFilterItemList]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getCustomFilter(params);
+        const data = await res.json();
+        setOrders(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (reverseSort) {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ordering: `-${prevParams.ordering}`,
+      }));
+    } else {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ordering: prevParams.ordering.startsWith("-")
+          ? prevParams.ordering.substring(1)
+          : prevParams.ordering,
+      }));
+    }
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reverseSort]);
 
   useEffect(() => {
     // getMyOrders();
@@ -176,9 +251,15 @@ export const Market = () => {
         </div>
         <div className="market__info-container">
           <ul className="market__first-info-list">
-            <MarketTextInfoListItem title="Total crystals" val={user?.minerals_balance} />
+            <MarketTextInfoListItem
+              title="Total crystals"
+              val={user?.minerals_balance}
+            />
             <MarketTextInfoListItem title="Placed crystals" val="0" />
-            <MarketTextInfoListItem title="Total miners" val={user?.miners_count} />
+            <MarketTextInfoListItem
+              title="Total miners"
+              val={user?.miners_count}
+            />
           </ul>
           <ul className="market__second-info-list">
             <MarketTextInfoListItem title="Minimum price" val="0 TON" />
@@ -189,32 +270,41 @@ export const Market = () => {
         <div className="market__filters-container">
           <div className="market__filters-block market__filters-first-block">
             <button
-              className={`market__filters-block-item ${selectedFilterItemList === "All"
-                ? "market__filters-block-item-check"
-                : ""
-                }`}
+              className={`market__filters-block-item ${
+                selectedFilterItemList === "All"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
               type="button"
-              onClick={() => setSelectedFilterItemList("All")}
+              onClick={() => {
+                setSelectedFilterItemList("All"); /* getOrders();  */
+              }}
             >
               All
             </button>
             <button
-              className={`market__filters-block-item ${selectedFilterItemList === "My"
-                ? "market__filters-block-item-check"
-                : ""
-                }`}
+              className={`market__filters-block-item ${
+                selectedFilterItemList === "My"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
               type="button"
-              onClick={() => { setSelectedFilterItemList("My"); getMyOrders(); }}
+              onClick={() => {
+                setSelectedFilterItemList("My"); /* getMyOrders(); */
+              }}
             >
               My
             </button>
             <button
-              className={`market__filters-block-item ${selectedFilterItemList === ">5 TON"
-                ? "market__filters-block-item-check"
-                : ""
-                }`}
+              className={`market__filters-block-item ${
+                selectedFilterItemList === ">5 TON"
+                  ? "market__filters-block-item-check"
+                  : ""
+              }`}
               type="button"
-              onClick={() => { setSelectedFilterItemList(">5 TON"); moreThenFive(); }}
+              onClick={() => {
+                setSelectedFilterItemList(">5 TON"); /* moreThenFive(); */
+              }}
             >
               &gt;5 TON
             </button>
@@ -249,7 +339,11 @@ export const Market = () => {
                 alt="white down arrow icon"
               />
             </div>
-            <button className="market__filters-sort-button" type="button" onClick={() => setReverseSort(!reverseSort)}>
+            <button
+              className="market__filters-sort-button"
+              type="button"
+              onClick={() => setReverseSort(!reverseSort)}
+            >
               <img
                 className="market__filters-sort-icon"
                 src={changeWhiteArrowIcon}
@@ -259,10 +353,7 @@ export const Market = () => {
           </div>
         </div>
         {selectedFilterItemList && (
-          <MarketItemList
-            items={orders}
-            handleCardSelect={handleCardSelect}
-          />
+          <MarketItemList items={orders} handleCardSelect={handleCardSelect} />
         )}
       </div>
       {isMarketPopupState && selectedCardItem && (

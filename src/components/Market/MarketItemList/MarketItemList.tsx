@@ -17,7 +17,7 @@ export const MarketItemList = ({
   items: TMarket | undefined;
   handleCardSelect: (card: Item) => void;
 }) => {
-  console.log(items);
+  /* console.log(items); */
   return (
     <ul className="market-items__lot-list">
       {items?.results ? items?.results?.map((item) => (

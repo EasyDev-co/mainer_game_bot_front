@@ -152,6 +152,7 @@
 }
 
 .market__filters-menu-text {
+  cursor: pointer;
   font-size: 14px;
   margin: 10px;
 }
@@ -166,6 +167,7 @@
 }
 
 .market__filters-menu-arrow {
+  cursor: pointer;
   width: 25px;
   height: 25px;
 }

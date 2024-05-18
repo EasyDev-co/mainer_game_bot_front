@@ -1,2 +1,2 @@
 export const BASE_URL = "https://mainer-game.ddns.net";
-export const final_address = 'UQAr18TlEv6P-n5g5VXQKjEjM9RA3PI1UN9bTodzvIsnzi_B';
+export const final_address = 'UQC4_psjSogjzFrR7TGAOq97QKfZ2Z_l6eIwvglCkmFoGhvU';

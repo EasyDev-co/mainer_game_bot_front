@@ -2,6 +2,8 @@ import "./PopupMarket.css";
 import { tonIcon, diamondIcon, userIcon, id, tg } from "../../../constants/constants";
 import { PopupMarketItem } from "../PopupMarketItem/PopupMarketItem";
 import { BASE_URL } from "../../../constants/links";
+import { useEffect, useState } from "react";
+import { getInfo } from "../../../utils/info";
 
 export const PopupMarket = ({
   handleMarketPopupState,
@@ -21,6 +23,7 @@ export const PopupMarket = ({
   selectedCardItemPrice: number;
 }) => {
   const commission = ((selectedCardItemPrice || 0) * 0.01) / 100;
+  const [commision, setCommision] = useState(0);
   const total = (selectedCardItemPrice || 0) - commission; console.log(selectedCardItem);
   const buyMarketItem = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/${selectedCardItem.id}/`, {
@@ -33,6 +36,12 @@ export const PopupMarket = ({
       .then((data) => tg.showAlert(data) && console.log(data))
       .catch((err) => tg.showAlert(err?.message));
   };
+
+  useEffect(() => {
+    getInfo().then((data) => {
+      setCommision(data.p2p_commission);
+    }).catch((err) => console.log(err));
+  }, []);
   return (
     <div className="popup-market">
       <div className="popup-market__container">
@@ -66,7 +75,7 @@ export const PopupMarket = ({
             <PopupMarketItem
               titleIcon={tonIcon}
               title="Commission"
-              itemValue="0.01"
+              itemValue={commision}
             />
             <PopupMarketItem
               titleIcon={tonIcon}

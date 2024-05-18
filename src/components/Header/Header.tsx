@@ -7,7 +7,6 @@ import {
   walletDarkIcon,
   tonWhiteIcon
 } from "../../constants/constants";
-import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
@@ -17,7 +16,6 @@ import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { getInfo } from "../../utils/info";
 
 export const Header = () => {
-  const location = useLocation();
   const [tonConnectUI] = useTonConnectUI();
   const address = useTonAddress();
   //стейт для открытия и закрытия попапа buy miners

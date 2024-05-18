@@ -37,10 +37,23 @@ export const Presale = () => {
   useEffect(() => {
     checkUser().then((data) => setMiners(data.miners_count));
     getInfo().then((data) => setStatistics(data));
-    tg.showConfirm("Are you sure?", () => {
-      tg.showAlert("Ok");
-    }, () => {
-      tg.showAlert("Cancel");
+    tg.showConfirm({
+      title: 'Подтверждение',
+      message: 'Вы уверены, что хотите удалить элемент?',
+      buttons: [
+        {
+          label: 'Отмена',
+          onClick: () => {
+            tg.showAlert('Отмена');
+          },
+        },
+        {
+          label: 'Удалить',
+          onClick: () => {
+            tg.showAlert('Удалить');
+          },
+        },
+      ],
     });
   }, []);
 

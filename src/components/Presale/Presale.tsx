@@ -5,7 +5,8 @@ import {
   darkInfoIcon,
   darkDiamondIcon,
   darkAddRef,
-  logoNoBgZoomIcon
+  logoNoBgZoomIcon,
+  tg
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
@@ -36,6 +37,11 @@ export const Presale = () => {
   useEffect(() => {
     checkUser().then((data) => setMiners(data.miners_count));
     getInfo().then((data) => setStatistics(data));
+    tg.showConfirm("Are you sure?", () => {
+      tg.showAlert("Ok");
+    }, () => {
+      tg.showAlert("Cancel");
+    });
   }, []);
 
   if (!statistics) return null;
@@ -48,7 +54,6 @@ export const Presale = () => {
           <br />
           <span className="presale__title-span">Minting</span>
         </h1>
-        <h2>Профиль <span style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }}><a href="/profile">click</a></span></h2>
         <div className="presale__miner-img-container">
           <img
             className="presale__miner-img"

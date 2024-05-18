@@ -33,6 +33,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
     };
     if (miners <= 0 && address) {
       tg.showAlert("Please enter a valid amount");
+      return;
     };
     try {
       e.preventDefault();

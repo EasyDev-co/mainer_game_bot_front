@@ -106,7 +106,10 @@ export const Referrals = () => {
               {copied && <p className="referrals__copy-text">Copied!</p>}
             </div>
             <p className="referrals__copy-descr-text">
-              Only on presale period: Get 100% miners from each referral!
+              Only on presale period: <span style={{ color: "red" }}>Get 100% miners from each referral!</span>
+            </p>
+            <p className="referrals__copy-descr-text">
+              After presale get 5% for each miners exchange
             </p>
           </div>
         </div>

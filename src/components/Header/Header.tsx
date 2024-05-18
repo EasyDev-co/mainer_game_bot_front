@@ -38,7 +38,7 @@ export const Header = () => {
           <ul className="header__currencies-list">
             <HeaderItem
               icon={hackIcon}
-              val={user?.miners_count}
+              val={user?.miners_count || "-"}
               plusCode={
                 location.pathname !== "/" && (
                   <img
@@ -52,7 +52,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={diamondIcon}
-              val={user?.minerals_balance}
+              val={user?.minerals_balance || "-"}
               plusCode={
                 location.pathname !== "/" && (
                   <Link to="/market">
@@ -67,7 +67,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={tonWhiteIcon}
-              val={user?.ton_balance}
+              val={user?.ton_balance || "-"}
               plusCode={
                 location.pathname !== "/" && (
                   <img
@@ -79,14 +79,14 @@ export const Header = () => {
               }
             />
           </ul>
-          <a href="/" className="header__currencies-item-replenish" style={{ cursor: "pointer" }}
+          <button className="header__currencies-item-replenish" style={{ cursor: "pointer" }}
             onClick={() => address ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
             <img
               className="header__wallet-icon"
               src={walletDarkIcon}
               alt="wallet icon"
             />
-          </a>
+          </button>
           {/* <Link className="header__currencies-item-replenish" to="/profile">
             <img
               className="header__wallet-icon"

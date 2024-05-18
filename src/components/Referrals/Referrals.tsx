@@ -62,12 +62,12 @@ export const Referrals = () => {
             <ReferralsInfoBlockListItem
               icon={walletIcon}
               title="Reward"
-              info={referrals?.total_bonuses + " Miners"}
+              info={referrals?.total_bonuses + " Miners" || "No data"}
             />
             <ReferralsInfoBlockListItem
               icon={userIcon}
               title="Referrals"
-              info={referrals?.referrals_count + " People"}
+              info={referrals?.referrals_count + " People" || "No data"}
             />
           </ul>
           <div className="referrals__second-info-block">
@@ -77,7 +77,7 @@ export const Referrals = () => {
                 <input
                   className="referrals__ref-link-input"
                   type="text"
-                  value={user?.referrer_url}
+                  value={user?.referrer_url || "Type /start to bot for display referral link"}
                   ref={inputRef}
                   readOnly
                 />

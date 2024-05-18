@@ -29,6 +29,9 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
       tonConnectUI.openModal();
       return;
     };
+    if (miners <= 0 && address) {
+      tg.showAlert("Please enter a valid amount");
+    };
     try {
       e.preventDefault();
       const buy = async (boc: string) => {

@@ -11,13 +11,16 @@ import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
 import { checkUser } from "../../utils/getUser";
+import { getInfo } from "../../utils/info";
+import { TStatistics } from "../../types/statistics";
 
 export const Presale = () => {
   //стейт для открытия и закратия попапа mint
   const [isMintState, setIsMintState] = useState(false);
   //стейт для открытия и закрытия попапа info
   const [isInfoState, setIsInfoState] = useState(false);
-
+  const [statistics, setStatistics] = useState<TStatistics>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [miners, setMiners] = useState(0);
 
   //функция открытия и закрытия попапа mint
@@ -32,9 +35,10 @@ export const Presale = () => {
 
   useEffect(() => {
     checkUser().then((data) => setMiners(data.miners_count));
-  });
+    getInfo().then((data) => setStatistics(data));
+  }, []);
 
-  const totalValue = 35000;
+  if (!statistics) return null;
 
   return (
     <section className="presale">
@@ -53,8 +57,8 @@ export const Presale = () => {
           />
         </div>
         <ProgressBarComponent
-          currentValue={miners}
-          totalValue={totalValue}
+          currentValue={statistics.purchased_miners_packs}
+          totalValue={statistics.presale_miners_count}
         />
         <div className="presale__buttons-container">
           <button

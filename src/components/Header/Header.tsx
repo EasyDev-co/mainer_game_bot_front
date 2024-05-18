@@ -22,6 +22,7 @@ export const Header = () => {
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
+  console.log(user);
 
   const handleMainBuyMinersPopup = () => {
     setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
@@ -38,7 +39,7 @@ export const Header = () => {
           <ul className="header__currencies-list">
             <HeaderItem
               icon={hackIcon}
-              val={user?.miners_count || "-"}
+              val={user?.miners_count || 0}
               plusCode={
                 location.pathname !== "/" && (
                   <img
@@ -52,7 +53,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={diamondIcon}
-              val={user?.minerals_balance || "-"}
+              val={user?.minerals_balance || 0}
               plusCode={
                 location.pathname !== "/" && (
                   <Link to="/market">
@@ -67,7 +68,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={tonWhiteIcon}
-              val={user?.ton_balance || "-"}
+              val={user?.ton_balance || 0}
               plusCode={
                 location.pathname !== "/" && (
                   <img

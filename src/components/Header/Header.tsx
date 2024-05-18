@@ -7,7 +7,7 @@ import {
   walletDarkIcon,
   tonWhiteIcon
 } from "../../constants/constants";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
@@ -23,7 +23,6 @@ export const Header = () => {
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
-  const navigate = useNavigate();
   const [isPresale, setIsPresale] = useState<boolean>();
   console.log(isPresale);
 

@@ -1,16 +1,18 @@
 import "./PopupBuyMiner.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hackIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL, final_address } from "../../../constants/links";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { checkTransaction } from "../../../utils/checkTransaction";
+import { getInfo } from "../../../utils/info";
 
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   const [inputValue, setInputValue] = useState(0);
   const [miners, setMiners] = useState(0);
   const address = useTonAddress();
   const [tonConnectUI] = useTonConnectUI();
+  const [pricePerPack, setPricePack] = useState(0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
@@ -18,7 +20,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
       setMiners(0);
       return;
     }
-    const value = parseFloat(e.target.value) * 1.5;
+    const value = parseFloat(e.target.value) * pricePerPack;
     setInputValue(value);
     setMiners(+e.target.value);
     console.log(miners);
@@ -76,6 +78,12 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    getInfo().then((data) => {
+      setPricePack(data.miner_price);
+    }).catch((err) => console.log(err));
+  });
+
   return (
     <Popup onClose={onClose}>
       <form className="popup-buy-miner__form-block">
@@ -96,7 +104,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
             onChange={handleInputChange}
           />
         </div>
-        <p className="popup-buy-miner__text-sum">Sum TON: {inputValue}</p>
+        <p className="popup-buy-miner__text-sum">Sum TON: {inputValue.toFixed(2)}</p>
         <button
           onClick={buyMiner} className="popup-buy-miner__buy-button" type="button">
           Buy

@@ -7,13 +7,14 @@ import {
   walletDarkIcon,
   tonWhiteIcon
 } from "../../constants/constants";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
+import { getInfo } from "../../utils/info";
 
 export const Header = () => {
   const location = useLocation();
@@ -22,6 +23,20 @@ export const Header = () => {
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
+  const navigate = useNavigate();
+  const [isPresale, setIsPresale] = useState<boolean>();
+  console.log(isPresale);
+
+  useEffect(() => {
+    getInfo().then((data) => {
+      if (data.is_presale) {
+        setIsPresale(true);
+        console.log(data);
+      } else {
+        setIsPresale(false);
+      }
+    });
+  }, []);
   console.log(user);
 
   const handleMainBuyMinersPopup = () => {
@@ -41,7 +56,7 @@ export const Header = () => {
               icon={hackIcon}
               val={user?.miners_count || 0}
               plusCode={
-                location.pathname !== "/" && (
+                !isPresale && (
                   <img
                     className="header__plus-icon"
                     src={plusIcon}
@@ -55,7 +70,7 @@ export const Header = () => {
               icon={diamondIcon}
               val={user?.minerals_balance || 0}
               plusCode={
-                location.pathname !== "/" && (
+                !isPresale && (
                   <Link to="/market">
                     <img
                       className="header__plus-icon"
@@ -70,12 +85,14 @@ export const Header = () => {
               icon={tonWhiteIcon}
               val={user?.ton_balance || 0}
               plusCode={
-                location.pathname !== "/" && (
-                  <img
-                    className="header__plus-icon"
-                    src={plusIcon}
-                    alt="plus icon"
-                  />
+                !isPresale && (
+                  <Link to={"/profile"}>
+                    <img
+                      className="header__plus-icon"
+                      src={plusIcon}
+                      alt="plus icon"
+                    />
+                  </Link>
                 )
               }
             />

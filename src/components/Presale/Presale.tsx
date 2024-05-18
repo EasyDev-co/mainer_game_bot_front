@@ -5,8 +5,7 @@ import {
   darkInfoIcon,
   darkDiamondIcon,
   darkAddRef,
-  logoNoBgZoomIcon,
-  tg
+  logoNoBgZoomIcon
 } from "../../constants/constants";
 import { PopupBuyMiner } from "../Popups/PopupBuyMiner/PopupBuyMiner";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
@@ -14,6 +13,7 @@ import { ProgressBarComponent } from "../ProgressBar/ProgressBar";
 import { checkUser } from "../../utils/getUser";
 import { getInfo } from "../../utils/info";
 import { TStatistics } from "../../types/statistics";
+import { Popup } from "../Popups/Popup/Popup";
 
 export const Presale = () => {
   //стейт для открытия и закратия попапа mint
@@ -21,6 +21,7 @@ export const Presale = () => {
   //стейт для открытия и закрытия попапа info
   const [isInfoState, setIsInfoState] = useState(false);
   const [statistics, setStatistics] = useState<TStatistics>();
+  const [isClaimPopup, setIsClaimPopup] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [miners, setMiners] = useState(0);
 
@@ -37,30 +38,23 @@ export const Presale = () => {
   useEffect(() => {
     checkUser().then((data) => setMiners(data.miners_count));
     getInfo().then((data) => setStatistics(data));
-    tg.showConfirm({
-      title: 'Подтверждение',
-      message: 'Вы уверены, что хотите удалить элемент?',
-      buttons: [
-        {
-          label: 'Отмена',
-          onClick: () => {
-            tg.showAlert('Отмена');
-          },
-        },
-        {
-          label: 'Удалить',
-          onClick: () => {
-            tg.showAlert('Удалить');
-          },
-        },
-      ],
-    });
+    setIsClaimPopup(true);
   }, []);
 
   if (!statistics) return null;
 
   return (
     <section className="presale">
+      {isClaimPopup &&
+        <Popup onClose={() => setIsClaimPopup(false)}>
+          <div style={{ paddingTop: '30px', alignContent: 'center' }}>
+            <h3 style={{ textAlign: 'center', marginTop: '20px' }}>Buy 4000 miners for 1.4 TON</h3>
+            <button
+              onClick={() => console.log('1')} className="popup-buy-miner__buy-button" type="button">
+              Buy
+            </button>
+          </div>
+        </Popup>}
       <div className="presale__container">
         <h1 className="presale__title">
           <span className="presale__title-span">Limited</span>

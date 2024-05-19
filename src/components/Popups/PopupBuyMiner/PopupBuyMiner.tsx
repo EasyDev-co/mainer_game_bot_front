@@ -4,7 +4,6 @@ import { hackIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL, final_address } from "../../../constants/links";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
-import { checkTransaction } from "../../../utils/checkTransaction";
 import { getInfo } from "../../../utils/info";
 
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
@@ -64,7 +63,6 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
 
       let result = await tonConnectUI.sendTransaction(transaction);
       if (result?.boc) {
-        checkTransaction(result.boc, inputValue);
         buy(result.boc)
           .then((res) => res.json())
           .then((data) => { tg.showAlert(data.message || data.error); window.location.reload(); console.log(data.message || data.error); })

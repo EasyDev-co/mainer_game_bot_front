@@ -65,7 +65,7 @@ export const Market = () => {
 
   console.log(params);
   console.log(orders);
-  const getCustomFilter = async (params: Params) => {
+  const getCustomFilter = async (params: Params, url?: string) => {
     const paramsRecord: Record<string, string> = {
       ordering: params.ordering,
       ton_min: params.ton_min,
@@ -73,7 +73,7 @@ export const Market = () => {
 
     const queryString = new URLSearchParams(paramsRecord).toString();
     console.log(queryString);
-    return await fetch(`${BASE_URL}/api/v1/market/deals/?${queryString}`, {
+    return await fetch(`${BASE_URL}/api/v1/market/deals/${url ? url : ""}?${queryString}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -133,9 +133,9 @@ export const Market = () => {
   };
 
   useEffect(() => {
-    const fetchData = async (params: Params) => {
+    const fetchData = async (params: Params, url?: string) => {
       try {
-        const res = await getCustomFilter(params);
+        const res = await getCustomFilter(params, url);
         const data = await res.json();
         setOrders(data);
       } catch (err) {
@@ -170,7 +170,7 @@ export const Market = () => {
         ...prevParams,
         ton_min: "",
       }));
-      getMyOrders();
+      getCustomFilter(params, "my_deals/");
     } else {
       /* setParams(prevParams => ({
           ...prevParams,
@@ -270,11 +270,10 @@ export const Market = () => {
         <div className="market__filters-container">
           <div className="market__filters-block market__filters-first-block">
             <button
-              className={`market__filters-block-item ${
-                selectedFilterItemList === "All"
-                  ? "market__filters-block-item-check"
-                  : ""
-              }`}
+              className={`market__filters-block-item ${selectedFilterItemList === "All"
+                ? "market__filters-block-item-check"
+                : ""
+                }`}
               type="button"
               onClick={() => {
                 setSelectedFilterItemList("All"); /* getOrders();  */
@@ -283,11 +282,10 @@ export const Market = () => {
               All
             </button>
             <button
-              className={`market__filters-block-item ${
-                selectedFilterItemList === "My"
-                  ? "market__filters-block-item-check"
-                  : ""
-              }`}
+              className={`market__filters-block-item ${selectedFilterItemList === "My"
+                ? "market__filters-block-item-check"
+                : ""
+                }`}
               type="button"
               onClick={() => {
                 setSelectedFilterItemList("My"); /* getMyOrders(); */
@@ -296,11 +294,10 @@ export const Market = () => {
               My
             </button>
             <button
-              className={`market__filters-block-item ${
-                selectedFilterItemList === ">5 TON"
-                  ? "market__filters-block-item-check"
-                  : ""
-              }`}
+              className={`market__filters-block-item ${selectedFilterItemList === ">5 TON"
+                ? "market__filters-block-item-check"
+                : ""
+                }`}
               type="button"
               onClick={() => {
                 setSelectedFilterItemList(">5 TON"); /* moreThenFive(); */

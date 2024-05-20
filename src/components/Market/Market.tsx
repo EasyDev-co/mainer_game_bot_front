@@ -119,8 +119,9 @@ export const Market = () => {
       .catch((err) => console.log(err));
   };
 
-  const getMyOrders = async () => {
-    await fetch(`${BASE_URL}/api/v1/market/deals/my_delas/`, {
+  const getMyOrders = async (params?: any) => {
+    const queryString = new URLSearchParams(params).toString();
+    await fetch(`${BASE_URL}/api/v1/market/deals/my_deals/${queryString}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -142,12 +143,22 @@ export const Market = () => {
         console.log(err);
       }
     };
-
-    if (selectedFilterItem === "Price") {
+    if (selectedFilterItem === "Price" && selectedFilterItemList === "My") {
+      const updatedParams = { ordering: "ton_count", ton_min: params.ton_min };
+      setParams(updatedParams);
+      fetchData(updatedParams, "my_deals/");
+    } else if (selectedFilterItem === "Total price" && selectedFilterItemList === "My") {
+      const updatedParams = {
+        ordering: "price_per_mineral",
+        ton_min: params.ton_min,
+      };
+      setParams(updatedParams);
+      fetchData(updatedParams, "my_deals/");
+    } else if (selectedFilterItem === "Price" && selectedFilterItemList !== "My") {
       const updatedParams = { ordering: "ton_count", ton_min: params.ton_min };
       setParams(updatedParams);
       fetchData(updatedParams);
-    } else {
+    } else if (selectedFilterItem === "Total price" && selectedFilterItemList !== "My") {
       const updatedParams = {
         ordering: "price_per_mineral",
         ton_min: params.ton_min,
@@ -170,7 +181,11 @@ export const Market = () => {
         ...prevParams,
         ton_min: "",
       }));
-      getCustomFilter(params, "my_deals/");
+      getMyOrders();
+      // getCustomFilter({
+      //   ordering: "",
+      //   ton_min: "",
+      // }, "my_deals/").then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
     } else {
       /* setParams(prevParams => ({
           ...prevParams,
@@ -192,11 +207,28 @@ export const Market = () => {
       }
     };
 
-    if (reverseSort) {
+    if (reverseSort && selectedFilterItemList === "My") {
       setParams((prevParams) => ({
         ...prevParams,
-        ordering: `-${prevParams.ordering}`,
+        ordering: `${prevParams.ordering.startsWith("-")
+          ? prevParams.ordering
+          : params.ordering}`,
       }));
+      getCustomFilter({
+        ...params,
+        ordering: `-${params.ordering}`,
+      }, "my_deals/").then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    } else if (!reverseSort && selectedFilterItemList === "My") {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ordering: prevParams.ordering.startsWith("-")
+          ? prevParams.ordering.substring(1)
+          : prevParams.ordering,
+      }));
+      getCustomFilter({
+        ...params,
+        ordering: `${params.ordering}`,
+      }, "my_deals/").then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
     } else {
       setParams((prevParams) => ({
         ...prevParams,
@@ -204,9 +236,10 @@ export const Market = () => {
           ? prevParams.ordering.substring(1)
           : prevParams.ordering,
       }));
+      getCustomFilter(params).then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
     }
 
-    fetchData();
+    // fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reverseSort]);
 

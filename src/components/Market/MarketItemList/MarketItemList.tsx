@@ -14,17 +14,23 @@ export const MarketItemList = ({
   items,
   handleCardSelect,
 }: {
-  items: TMarket | undefined;
+  items: TMarket | undefined | any;
   handleCardSelect: (card: Item) => void;
 }) => {
   /* console.log(items); */
   return (
     <ul className="market-items__lot-list">
-      {items?.results ? items?.results?.map((item) => (
+      {items?.results ? items?.results?.map((item: any) => (
         <li key={item.id} className="market-items__lot-item">
           <MarketItem item={item} handleCardSelect={handleCardSelect} />
         </li>
-      )) : <h1>Orders not found</h1>}
+      )) : items ? items.map((item: any) => (
+        <li key={item.id} className="market-items__lot-item">
+          <MarketItem item={item} handleCardSelect={handleCardSelect} />
+        </li>
+      )) : (
+        <h1>Orders not found</h1>
+      )}
     </ul>
   );
 };

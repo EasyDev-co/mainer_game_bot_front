@@ -10,6 +10,7 @@ interface History {
 }
 
 export const UserHistoryItemList = ({ history, referrals }: { history: History[]; referrals?: TReferrals | undefined; }) => {
+  console.log(history);
   return (
     <ul className="user-history-item-list__list">
       {history.map((item, index) => (
@@ -19,6 +20,7 @@ export const UserHistoryItemList = ({ history, referrals }: { history: History[]
             dateDay={item.created_at?.split(',')[0] || ''}
             dateTime={item.created_at?.split(',')[1] || ''}
             value={item.amount}
+            valueTon={(item.amount * 0.0014).toFixed(2)}
             icon={diamondIcon}
           />
         </li>

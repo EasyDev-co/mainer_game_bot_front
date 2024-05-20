@@ -9,6 +9,7 @@ import { getInfo } from "../../../utils/info";
 export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
   const [inputValue, setInputValue] = useState(0);
   const [miners, setMiners] = useState(0);
+  const [minersPerPack, setMinersPerPack] = useState(0);
   const address = useTonAddress();
   const [tonConnectUI] = useTonConnectUI();
   const [pricePerPack, setPricePack] = useState(0);
@@ -79,6 +80,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
 
   useEffect(() => {
     getInfo().then((data) => {
+      setMinersPerPack(data.miners_per_pack);
       setPricePack(data.miner_price);
     }).catch((err) => console.log(err));
   });
@@ -88,7 +90,7 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
       <form className="popup-buy-miner__form-block">
         <h2 className="popup-buy-miner__title">Buy Miner</h2>
         <p className="popup-buy-miner__subtitle">
-          1 miner package = 4000 miners
+          1 miner package = {minersPerPack} miners
         </p>
         <div className="popup-buy-miner__input-container">
           <img

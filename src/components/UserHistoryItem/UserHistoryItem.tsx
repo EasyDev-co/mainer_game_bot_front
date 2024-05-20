@@ -13,7 +13,7 @@ export const UserHistoryItem = ({
   dateDay?: string;
   dateTime?: string;
   value?: string | number;
-  valueTon?: string;
+  valueTon?: string | number;
 }) => {
   return (
     <>

@@ -1,10 +1,12 @@
 import "./Main.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { infoIcon, userPlusIcon, cartIcon } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { PopupClaim } from "../Popups/PopupClaim/PopupClaim";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
+import { TUser } from "../../types/user";
+import { checkUser } from "../../utils/getUser";
 
 export const Main = () => {
   //стейт для открытия и закрытия попапа info
@@ -13,6 +15,7 @@ export const Main = () => {
   const [isClaimPopup, setIsClaimPopup] = useState(false);
   //стейт для открытия и закрытия попапа buy miners
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
+  const [user, setUser] = useState<TUser>();
 
   //функция открытия и закрытия попапа info
   const handleStateInfo = () => {
@@ -26,6 +29,10 @@ export const Main = () => {
   const handleMainBuyMinersPopup = () => {
     setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
   };
+
+  useEffect(() => {
+    checkUser().then((data) => setUser(data)).catch(err => console.log(err));
+  }, []);
 
   return (
     <main className="main">
@@ -71,7 +78,7 @@ export const Main = () => {
       {isInfoState && <ModalHowPlay onClose={handleStateInfo} />}
       {isClaimPopup && <PopupClaim onClose={handleClaimPopup} />}
       {isMainBuyMinersPopup && (
-        <PopupMainBuyMiners onClose={handleMainBuyMinersPopup} />
+        <PopupMainBuyMiners onClose={handleMainBuyMinersPopup} user={user} />
       )}
     </main>
   );

@@ -9,12 +9,14 @@ import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 import { BASE_URL } from "../../constants/links";
 import { TReferrals } from "../../types/referrals";
+import { getInfo } from "../../utils/info";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
   const [linkWallet, setLinkWallet] = useState(false);
   const [user, setUser] = useState<TUser>();
+  const [isPresale, setIsPresale] = useState<boolean>();
   const [referrals, setReferrals] = useState<TReferrals>();
 
   const getReferrals = async () => {
@@ -48,6 +50,7 @@ export const Referrals = () => {
   useEffect(() => {
     checkUser().then(data => setUser(data));
     getReferrals().then(data => setReferrals(data));
+    getInfo().then(data => setIsPresale(data.is_presale));
   }, []);
 
   if (!referrals) return null;
@@ -105,12 +108,15 @@ export const Referrals = () => {
             <div className="referrals__copy-text-block">
               {copied && <p className="referrals__copy-text">Copied!</p>}
             </div>
-            <p className="referrals__copy-descr-text">
-              Only on presale period: <span style={{ color: "red" }}>Get 100% miners from each referral!</span>
-            </p>
-            <p className="referrals__copy-descr-text">
-              After presale get 5% for each miners exchange
-            </p>
+            {isPresale ?
+              <p className="referrals__copy-descr-text">
+                Only on presale period: <span style={{ color: "red" }}>Get 100% miners from each referral!</span>
+              </p>
+              :
+              <p className="referrals__copy-descr-text">
+                Get 5% for each miners exchange
+              </p>
+            }
           </div>
         </div>
         <div className="referrals__history-container">

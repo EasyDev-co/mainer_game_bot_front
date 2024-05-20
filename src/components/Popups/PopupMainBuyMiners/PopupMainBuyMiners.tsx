@@ -3,11 +3,13 @@ import "./PopupMainBuyMiners.css";
 import { diamondIcon, hackIcon, backIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
+import { TUser } from "../../../types/user";
 
-export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
+export const PopupMainBuyMiners = ({ onClose, user }: { onClose: () => void; user?: TUser; }) => {
   const [miners, setMiners] = useState(20);
   const [crystals, setCrystals] = useState(20);
   const [sliderPercentage, setSliderPercentage] = useState((miners / 100) * 100);
+  const [userBalance] = useState<number | string | undefined>(user?.minerals_balance);
 
   const buyMiner = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +33,8 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
     console.log(value);
     setMiners(value);
     setCrystals(value);
-    setSliderPercentage((value / 100) * 100);
+    setSliderPercentage((value / Number(userBalance)) * 100);
+    // setSliderPercentage((value / 100) * 100);
   };
 
   return (
@@ -49,7 +52,7 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
             </div>
             <div className="popup-main-buy-miners__val-block">
               <p className="popup-main-buy-miners__val-text">{crystals}</p>
-              <p className="popup-main-buy-miners__val-text-max">Max: 100</p>
+              {/* <p className="popup-main-buy-miners__val-text-max">Max: {userBalance}</p> */}
             </div>
           </div>
           <img className="popup-main-buy-miners__arrow-icon" src={backIcon} alt="arrow icon" />
@@ -72,9 +75,8 @@ export const PopupMainBuyMiners = ({ onClose }: { onClose: () => void; }) => {
               className="popup-main-buy-miners__slider"
               type="range"
               min="0"
-              max="100"
+              max={userBalance}
               step="1"
-              value={sliderPercentage}
               onChange={handleChange}
             />
             <p className="popup-main-buy-miners__val-text popup-main-buy-miners__clider-percent">{sliderPercentage.toFixed(0)}%</p>

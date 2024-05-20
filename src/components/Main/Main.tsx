@@ -1,13 +1,12 @@
 import "./Main.css";
 import { useEffect, useState } from "react";
-import { infoIcon, userPlusIcon, cartIcon, id } from "../../constants/constants";
+import { infoIcon, userPlusIcon, cartIcon } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { PopupClaim } from "../Popups/PopupClaim/PopupClaim";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
-import { BASE_URL } from "../../constants/links";
 
 export const Main = () => {
   //стейт для открытия и закрытия попапа info

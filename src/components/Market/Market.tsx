@@ -197,15 +197,6 @@ export const Market = () => {
   }, [selectedFilterItemList]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getCustomFilter(params);
-        const data = await res.json();
-        setOrders(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
 
     if (reverseSort && selectedFilterItemList === "My") {
       setParams((prevParams) => ({

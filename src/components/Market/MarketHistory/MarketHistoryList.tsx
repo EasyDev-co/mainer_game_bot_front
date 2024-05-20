@@ -4,14 +4,15 @@ import { MarketHistoryItem } from "./MarketHistoryItem";
 import { TMarketDeal } from "../../../types/market";
 import { TReferrals } from "../../../types/referrals";
 
-export const MarketHistoryList = ({ history, referrals }: { history: TMarketDeal[] | undefined; referrals?: TReferrals | undefined; }) => {
+export const MarketHistoryList = ({ history, referrals }: { history: TMarketDeal[] | undefined | any; referrals?: TReferrals | undefined; }) => {
+  console.log(history);
   if (!history) return null;
   return (
     <ul className="user-history-item-list__list">
-      {history.map((item, index) => (
+      {history.map((item: any, index: number) => (
         <li key={index} className="user-history-item-list__history-block">
           <MarketHistoryItem
-            user={item.buyer}
+            user={item.buyer?.username}
             dateDay={item.created.split('T')[0]}
             dateTime={item.created.split('T')[1].split('.')[0]}
             value={item.minerals_count}

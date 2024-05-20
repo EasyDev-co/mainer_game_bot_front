@@ -1,5 +1,4 @@
 import "./MarketHistory.css";
-import { historyTwo } from "../../../constants/data";
 import { BackArrowLink } from "../../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../../TitlePage/TitlePage";
 import { BASE_URL } from "../../../constants/links";
@@ -8,7 +7,7 @@ import { useEffect, useState } from "react";
 import { MarketHistoryList } from "./MarketHistoryList";
 
 export const MarketHistory = () => {
-  const [history, setHistory] = useState();
+  const [history, setHistory] = useState<undefined | any>();
 
   const getHistory = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/history/`, {
@@ -27,13 +26,15 @@ export const MarketHistory = () => {
     getHistory();
   }, []);
 
+  if (!history) return null;
+
   return (
     <section className="market-history">
       <div className="market-history__container">
         <BackArrowLink link="/market" />
         <TitlePage title="History" />
         <div className="market-history__block">
-          {historyTwo.length > 0 ? (
+          {history?.length ? (
             <MarketHistoryList history={history} />
           ) : (
             <p className="market-history__background-text">
@@ -42,6 +43,6 @@ export const MarketHistory = () => {
           )}
         </div>
       </div>
-    </section>
+    </section >
   );
 };

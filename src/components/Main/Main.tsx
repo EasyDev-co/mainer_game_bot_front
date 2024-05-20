@@ -1,12 +1,13 @@
 import "./Main.css";
 import { useEffect, useState } from "react";
-import { infoIcon, userPlusIcon, cartIcon } from "../../constants/constants";
+import { infoIcon, userPlusIcon, cartIcon, id } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { ModalHowPlay } from "../ModalHowPlay/ModalHowPlay";
 import { PopupClaim } from "../Popups/PopupClaim/PopupClaim";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
+import { BASE_URL } from "../../constants/links";
 
 export const Main = () => {
   //стейт для открытия и закрытия попапа info
@@ -31,11 +32,16 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    checkUser().then((data) => setUser(data)).catch(err => console.log(err));
+    checkUser().then((data) => {
+      setUser(data);
+    }).catch(err => console.log(err));
   }, []);
 
   return (
     <main className="main">
+      <div className="main__per_hour">
+        <h3>{user?.mining_output_per_hour} minerals / hour</h3>
+      </div>
       <div className="main__container">
         <div className="main__buttons-block">
           <button

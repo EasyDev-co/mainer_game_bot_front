@@ -8,6 +8,24 @@
   min-height: 100vh;
 }
 
+.main__per_hour {
+  max-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-45%, -60%);
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main__per_hour h3 {
+  /* font-family: "InknutAntiqua"; */
+  font-weight: 800;
+}
+
 .main__container {
   max-width: 390px;
   width: 100%;

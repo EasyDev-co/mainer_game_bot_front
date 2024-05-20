@@ -6,6 +6,7 @@ export type TUser = {
   username: string,
   ton_balance: string,
   miners_count: number,
+  mining_output_per_hour: number,
   minerals_balance: string,
   referrer_id: number,
   referrer_url: string;

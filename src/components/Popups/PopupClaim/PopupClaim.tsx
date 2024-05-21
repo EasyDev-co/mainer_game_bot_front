@@ -8,7 +8,6 @@ import { checkUser } from "../../../utils/getUser";
 
 export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
   const [unClaimedMinerals, setUnClaimedMinerals] = useState(0);
-  const [user, setUser] = useState<TUser>();
   const claimMinerals = async () => {
     await fetch(`${BASE_URL}/api/v1/users/claim_minerals/`, {
       method: "POST",
@@ -35,9 +34,6 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
         .catch((err) => tg.showAlert(err.message));
     };
     getCountMinerals();
-    checkUser().then((data) => {
-      setUser(data);
-    }).catch(err => console.log(err));
   }, []);
   return (
     <Popup onClose={onClose}>

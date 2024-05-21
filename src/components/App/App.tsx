@@ -18,7 +18,7 @@ export const Body = () => {
   useEffect(() => {
     getInfo().then((data) => {
       if (data.is_presale) {
-        setIsPresale(false);
+        setIsPresale(true);
         console.log(data);
       } else {
         setIsPresale(false);

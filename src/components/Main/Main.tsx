@@ -39,7 +39,7 @@ export const Main = () => {
   return (
     <main className="main">
       <div className="main__per_hour">
-        <h3>{user?.mining_output_per_hour} minerals / hour</h3>
+        <h3>{user?.mining_output_per_hour} 💎/ h</h3>
       </div>
       <div className="main__container">
         <div className="main__buttons-block">

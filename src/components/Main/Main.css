@@ -20,7 +20,7 @@
   position: absolute;
   top: 10%;
   left: 50%;
-  transform: translate(-80%, -60%);
+  transform: translate(-80%, -35%);
   flex-direction: column;
   justify-content: flex-end;
 }

@@ -15,7 +15,7 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => tg.showAlert(data.message) && console.log(data))
+      .then((data) => tg.showAlert(data.message) && window.location.reload())
       .catch((err) => tg.showAlert(err.message | err.error));
   };
 

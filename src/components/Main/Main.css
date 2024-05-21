@@ -10,13 +10,16 @@
 
 .main__per_hour {
   max-width: 390px;
-  width: 100%;
+  padding: 12px;
+  width: 20%;
+  background: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
+  border-radius: 0px 20px 20px 0px;
   display: flex;
   position: absolute;
   top: 10%;
   left: 50%;
-  transform: translate(-45%, -60%);
+  transform: translate(-65%, -60%);
   flex-direction: column;
   justify-content: flex-end;
 }

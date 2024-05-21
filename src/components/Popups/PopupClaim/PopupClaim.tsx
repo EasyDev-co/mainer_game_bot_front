@@ -3,9 +3,12 @@ import { diamondIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
 import { useEffect, useState } from "react";
+import { TUser } from "../../../types/user";
+import { checkUser } from "../../../utils/getUser";
 
 export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
   const [unClaimedMinerals, setUnClaimedMinerals] = useState(0);
+  const [user, setUser] = useState<TUser>();
   const claimMinerals = async () => {
     await fetch(`${BASE_URL}/api/v1/users/claim_minerals/`, {
       method: "POST",
@@ -32,7 +35,9 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
         .catch((err) => tg.showAlert(err.message));
     };
     getCountMinerals();
-
+    checkUser().then((data) => {
+      setUser(data);
+    }).catch(err => console.log(err));
   }, []);
   return (
     <Popup onClose={onClose}>
@@ -56,6 +61,8 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
             Commission for receiving crystals:{" "}
             <span className="claim__text-span">0.01 TON</span>
           </p>
+          <br />
+          <h5><span className="claim__descr">Your output: </span>{user?.mining_output_per_hour.toFixed(0)} 💎/ h</h5>
         </div>
         <button className="claim__button" type="button" onClick={claimMinerals}>
           Get

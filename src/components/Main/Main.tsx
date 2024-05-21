@@ -7,6 +7,7 @@ import { PopupClaim } from "../Popups/PopupClaim/PopupClaim";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
+import { getInfo } from "../../utils/info";
 
 export const Main = () => {
   //стейт для открытия и закрытия попапа info
@@ -34,6 +35,9 @@ export const Main = () => {
     checkUser().then((data) => {
       setUser(data);
     }).catch(err => console.log(err));
+    getInfo().then((data) => {
+      console.log(data);
+    });
   }, []);
 
   return (

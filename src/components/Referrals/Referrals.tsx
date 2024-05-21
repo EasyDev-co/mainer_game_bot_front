@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Referrals.css";
-import { copyIcon, id, userIcon, walletIcon } from "../../constants/constants";
+import { copyIcon, diamondIcon, id, userIcon, walletIcon } from "../../constants/constants";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
 import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
@@ -14,9 +14,7 @@ import { getInfo } from "../../utils/info";
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
-  const [linkWallet, setLinkWallet] = useState(false);
   const [user, setUser] = useState<TUser>();
-  const [isPresale, setIsPresale] = useState<boolean>();
   const [referrals, setReferrals] = useState<TReferrals>();
 
   const getReferrals = async () => {
@@ -50,7 +48,6 @@ export const Referrals = () => {
   useEffect(() => {
     checkUser().then(data => setUser(data));
     getReferrals().then(data => setReferrals(data));
-    getInfo().then(data => setIsPresale(data.is_presale));
   }, []);
 
   if (!referrals) return null;
@@ -75,55 +72,66 @@ export const Referrals = () => {
           </ul>
           <div className="referrals__second-info-block">
             <p className="referrals__copy-text">Copy your referral link</p>
-            {linkWallet ? (
-              <div className="referrals__copy-input-block">
-                <input
-                  className="referrals__ref-link-input"
-                  type="text"
-                  value={user?.referrer_url || "Type /start to bot for display referral link"}
-                  ref={inputRef}
-                  readOnly
-                />
-                <button
-                  className="referrals__copy-button"
-                  type="button"
-                  onClick={copyToClipboard}
-                >
-                  <img
-                    className="referrals__copy-button-icon"
-                    src={copyIcon}
-                    alt="copy icon"
-                  />
-                </button>
-              </div>
-            ) : (
+            <div className="referrals__copy-input-block">
+              <input
+                className="referrals__ref-link-input"
+                type="text"
+                value={user?.referrer_url || "Type /start to bot for display referral link"}
+                ref={inputRef}
+                readOnly
+              />
               <button
-                onClick={() => setLinkWallet(true)}
-                className="referrals__link-wallet-button"
+                className="referrals__copy-button"
                 type="button"
+                onClick={copyToClipboard}
               >
-                Copy Link
+                <img
+                  className="referrals__copy-button-icon"
+                  src={copyIcon}
+                  alt="copy icon"
+                />
               </button>
-            )}
+            </div>
             <div className="referrals__copy-text-block">
               {copied && <p className="referrals__copy-text">Copied!</p>}
             </div>
-            {isPresale ?
-              <p className="referrals__copy-descr-text">
-                Only on presale period: <span style={{ color: "red" }}>Get 100% miners from each referral!</span>
-              </p>
-              :
-              <p className="referrals__copy-descr-text">
-                Get 5% for each miners exchange
-              </p>
-            }
+            <p className="referrals__copy-descr-text">
+              Only on presale period: <span style={{ color: "red" }}>Get 100% miners from each referral!</span>
+            </p>
+            <p className="referrals__copy-descr-text">
+              After presale period: Get 5% for each miners exchange
+            </p>
           </div>
         </div>
         <div className="referrals__history-container">
           <h2 className="referrals__history-title">Referral history</h2>
           <div className="referrals__history-block">
             {referrals?.bonuses?.length > 0 ? (
-              <UserHistoryItemList history={referrals?.bonuses ?? []} referrals={referrals} />
+              // <UserHistoryItemList history={referrals?.bonuses ?? []} referrals={referrals} />
+              <ul className="user-history-item-list__list">
+                {referrals?.bonuses.map((item, index) => (
+                  <li key={index} className="user-history-item-list__history-block">
+                    <>
+                      <div className="user-history-item__icon-block">
+                        <img className="user-history-item__icon" src={diamondIcon} alt="wallet icon" />
+                      </div>
+                      <div className="user-history-item__item-text-blocks">
+                        <div className="user-history-item__item-text-block">
+                          <p className="user-history-item__text">
+                            From: <span className="user-history-item__text-span">{item.referrer_name}</span>
+                          </p>
+                          <p className="user-history-item__text-val">{item.amount} miners</p>
+                        </div>
+                        <div className="user-history-item__item-text-block">
+                          <p className="user-history-item__text">
+                            {item.created_at?.split(',')[0] || ''}, {item.created_at?.split(',')[1] || ''}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  </li>
+                ))}
+              </ul>
             ) : (
               <p className="referrals__history-info-text">
                 No transaction history
@@ -132,6 +140,6 @@ export const Referrals = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 };

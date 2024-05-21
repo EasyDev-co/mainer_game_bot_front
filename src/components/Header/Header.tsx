@@ -76,7 +76,7 @@ export const Header = () => {
             />
             <HeaderItem
               icon={diamondIcon}
-              val={user?.minerals_balance || 0}
+              val={Number(user?.minerals_balance).toFixed(1) || 0}
               plusCode={
                 !isPresale && (
                   <Link to="/market">

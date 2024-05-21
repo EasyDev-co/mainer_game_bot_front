@@ -17,7 +17,7 @@ export const MarketSellInputBlock = ({
   setTon?: React.Dispatch<React.SetStateAction<number>>;
   setCrystal?: React.Dispatch<React.SetStateAction<number>>;
   valInput: string;
-  secondText: string;
+  secondText?: string | undefined;
 }) => {
 
   return (

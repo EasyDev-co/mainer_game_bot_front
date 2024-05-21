@@ -7,14 +7,17 @@ import { useEffect, useState } from "react";
 import { TUser } from "../../../types/user";
 import { checkUser } from "../../../utils/getUser";
 import { BASE_URL } from "../../../constants/links";
+import { getInfo } from "../../../utils/info";
 
 export const MarketSell = () => {
   const [user, setUser] = useState<TUser>();
   const [crystal, setCrystal] = useState(0);
   const [ton, setTon] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
+    getInfo().then(data => setMinPrice(data.min_amount_minerals_for_sale));
   }, []);
 
   useEffect(() => {
@@ -49,14 +52,13 @@ export const MarketSell = () => {
             firstTextVal={user?.minerals_balance}
             setCrystal={setCrystal}
             valInput="0"
-            secondText="Minimum sale amount: 100 crystals"
+            secondText={`Minimum sale amount: ${Number(minPrice).toFixed(0)} crystals`}
           />
           <MarketSellInputBlock
             icon={tonIcon}
             title="TON"
             valInput="0"
             setTon={setTon}
-            secondText="Commission 5% per sale"
           />
           <p className="market-sell__text market-sell__min-text">
             Current minimum price: 1 crystal = 0.001 TON

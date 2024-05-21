@@ -7,7 +7,7 @@ import {
   walletDarkIcon,
   tonWhiteIcon
 } from "../../constants/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PopupMainBuyMiners } from "../Popups/PopupMainBuyMiners/PopupMainBuyMiners";
 import { HeaderItem } from "./HeaderItem/HeaderItem";
 import { TUser } from "../../types/user";
@@ -22,6 +22,7 @@ export const Header = () => {
   const [isMainBuyMinersPopup, setIsMainBuyMinersPopup] = useState(false);
   const [user, setUser] = useState<TUser>();
   const [isPresale, setIsPresale] = useState<boolean>();
+  const navigate = useNavigate();
   console.log(isPresale);
 
   useEffect(() => {
@@ -35,6 +36,16 @@ export const Header = () => {
     });
   }, []);
   console.log(user);
+
+  const checkPresaleButton = () => {
+    if (isPresale && address) {
+      tonConnectUI.disconnect();
+    } else if (isPresale && !address) {
+      tonConnectUI.openModal();
+    } else if (!isPresale) {
+      navigate('/profile');
+    }
+  };
 
   const handleMainBuyMinersPopup = () => {
     setIsMainBuyMinersPopup(!isMainBuyMinersPopup);
@@ -95,7 +106,7 @@ export const Header = () => {
             />
           </ul>
           <button className="header__currencies-item-replenish" style={{ cursor: "pointer" }}
-            onClick={() => address ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
+            onClick={checkPresaleButton}>
             <img
               className="header__wallet-icon"
               src={walletDarkIcon}

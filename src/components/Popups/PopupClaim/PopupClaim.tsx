@@ -13,7 +13,10 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
         "Content-Type": "application/json",
         "User-ID": id,
       },
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => tg.showAlert(data.message) && console.log(data))
+      .catch((err) => tg.showAlert(err.message | err.error));
   };
 
   useEffect(() => {

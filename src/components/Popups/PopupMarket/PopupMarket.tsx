@@ -33,7 +33,7 @@ export const PopupMarket = ({
         "User-ID": id
       }
     }).then((res) => res.json())
-      .then((data) => tg.showAlert(data) && console.log(data))
+      .then((data) => tg.showAlert(data.message) && console.log(data))
       .catch((err) => tg.showAlert(err?.message));
   };
 

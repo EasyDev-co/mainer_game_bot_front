@@ -3,8 +3,6 @@ import { diamondIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
 import { useEffect, useState } from "react";
-import { TUser } from "../../../types/user";
-import { checkUser } from "../../../utils/getUser";
 
 export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
   const [unClaimedMinerals, setUnClaimedMinerals] = useState(0);

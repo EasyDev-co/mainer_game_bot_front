@@ -34,10 +34,6 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
 
   const handleWithDraw = async (e: any) => {
-    if (e.target.value === "" || e.target.value <= 0) {
-      tg.showAlert("Please enter a valid amount");
-      setInputValuePopup(0);
-    }
     console.log(inputValuePopup);
     e.preventDefault();
     await fetch(`${BASE_URL}/api/v1/deposit/create_withdrawal/`, {
@@ -109,10 +105,6 @@ export const Profile = () => {
   const handleSubmit = async (e: any) => {
     console.log(+inputValuePopup.toString().split(".")[1] > 2);
     console.log(inputValuePopup.toString().split(".")[1].length > 2);
-    if (e.target.value === "" || e.target.value <= 0) {
-      tg.showAlert("Please enter a valid amount");
-      setInputValuePopup(0);
-    }
 
     try {
       console.log("TON amount", inputValuePopup);

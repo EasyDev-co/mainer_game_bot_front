@@ -102,7 +102,7 @@ export const Referrals = () => {
                 className="referrals__link-wallet-button"
                 type="button"
               >
-                Link Wallet
+                Copy Link
               </button>
             )}
             <div className="referrals__copy-text-block">

@@ -3,13 +3,11 @@ import "./Referrals.css";
 import { copyIcon, diamondIcon, id, userIcon, walletIcon } from "../../constants/constants";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
 import { TitlePage } from "../TitlePage/TitlePage";
-import { UserHistoryItemList } from "../UserHistoryItemList/UserHistoryItemList";
 import { ReferralsInfoBlockListItem } from "./ReferralsInfoBlockListItem/ReferralsInfoBlockListItem";
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 import { BASE_URL } from "../../constants/links";
 import { TReferrals } from "../../types/referrals";
-import { getInfo } from "../../utils/info";
 
 export const Referrals = () => {
   const inputRef = useRef<HTMLInputElement>(null);

@@ -16,11 +16,16 @@ export const MarketSell = () => {
   const [ton, setTon] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const navigate = useNavigate();
+  const [tonPerCrystal, setTonPerCrystal] = useState(0);
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
     getInfo().then(data => setMinPrice(data.min_amount_minerals_for_sale));
   }, []);
+
+  useEffect(() => {
+    setTonPerCrystal(+(ton / crystal).toFixed(2) || 0);
+  }, [crystal, ton]);
 
   useEffect(() => {
     console.log(crystal, ton);
@@ -39,7 +44,7 @@ export const MarketSell = () => {
         ton_count: ton,
       }),
     }).then(res => res.json())
-      .then(data => data ? tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }) : tg.showAlert(data.error))
+      .then(data => data.status === 201 ? tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }) : tg.showAlert(data.minerals_count || data.ton_count))
       .catch(err => tg.showAlert(err?.message));
   };
 
@@ -70,7 +75,7 @@ export const MarketSell = () => {
           <div className="market-sell__total-price-block">
             <p className="market-sell__text">
               The price of your TON/crystal:{" "}
-              <span className="market-sell__text-span">0 TON/crystal</span>
+              <span className="market-sell__text-span">{tonPerCrystal} TON/crystal</span>
             </p>
           </div>
           <button className="market-sell__button" onClick={(e) => sellValue(e)}>

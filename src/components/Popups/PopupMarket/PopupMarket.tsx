@@ -36,7 +36,7 @@ export const PopupMarket = ({
         "User-ID": id
       }
     }).then((res) => res.json())
-      .then((data) => tg.showAlert(data.message) && window.location.reload())
+      .then((data) => { tg.showAlert(data.message); window.location.reload(); })
       .catch((err) => tg.showAlert(err?.message));
   };
 
@@ -59,8 +59,6 @@ export const PopupMarket = ({
             <PopupMarketItem
               titleIcon={userIcon}
               title="Seller"
-              walletText="You have crystals:"
-              walletVal={crystal}
               itemValue={selectedCardItem ? selectedCardItemSeller.first_name : ""}
             />
             <PopupMarketItem

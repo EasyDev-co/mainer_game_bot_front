@@ -12,7 +12,7 @@ export const HeaderItem = ({
   plusCode?: any;
 }) => {
   return (
-    <li className="header__currencies-item header__currencies-list-item">
+    <li className={`header__currencies-item header__currencies-list-item ${output ? 'header__currencies-item-output' : ''}`}>
       <img
         className="header__currencies-item-icon"
         src={icon}

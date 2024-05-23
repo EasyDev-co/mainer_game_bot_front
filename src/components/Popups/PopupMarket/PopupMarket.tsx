@@ -84,7 +84,7 @@ export const PopupMarket = ({
             <PopupMarketItem
               titleIcon={tonIcon}
               title="Total"
-              itemValue={total}
+              itemValue={total.toFixed(2)}
             />
           </div>
           <button className="popup-market__buy-button" type="button" onClick={buyMarketItem}>

@@ -40,7 +40,7 @@ export const MarketSell = () => {
       }),
     }).then(res => res.json())
       .then(data => data ? tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }) : tg.showAlert(data.error))
-      .catch(err => tg.showAlert(err.message));
+      .catch(err => tg.showAlert(err?.message));
   };
 
   return (

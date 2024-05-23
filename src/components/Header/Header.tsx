@@ -105,7 +105,14 @@ export const Header = () => {
               }
             />
           </ul>
-          <button className="header__currencies-item-replenish" style={{ cursor: "pointer" }}
+          {!isPresale && (
+            <HeaderItem
+              icon={diamondIcon}
+              val={user?.mining_output_per_hour + " / H"}
+              output={true}
+            />
+          )}
+          <button className={address ? "header__currencies-item-replenish-disconnect" : "header__currencies-item-replenish"} style={{ cursor: "pointer" }}
             onClick={checkPresaleButton}>
             <img
               className="header__wallet-icon"

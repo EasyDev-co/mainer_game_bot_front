@@ -212,14 +212,18 @@ export const Market = () => {
     } else if (!reverseSort && selectedFilterItemList === "My") {
       setParams((prevParams) => ({
         ...prevParams,
-        ordering: prevParams.ordering.startsWith("-")
-          ? prevParams.ordering.substring(1)
-          : prevParams.ordering,
+        ordering: prevParams.ordering.substring(1),
       }));
       getCustomFilter({
         ...params,
         ordering: `${params.ordering}`,
       }, "my_deals/").then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    } else if (reverseSort && selectedFilterItemList !== "My") {
+      setParams((prevParams) => ({
+        ...prevParams,
+        ordering: "-" + prevParams.ordering,
+      }));
+      getCustomFilter(params).then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
     } else {
       setParams((prevParams) => ({
         ...prevParams,

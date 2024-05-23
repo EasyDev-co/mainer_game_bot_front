@@ -27,3 +27,7 @@
   width: 100%;
   overflow-wrap: break-word;
 }
+
+.header__currencies-item-val-output {
+  max-width: unset !important;
+}

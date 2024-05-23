@@ -21,14 +21,14 @@ export const Body = () => {
         setIsPresale(true);
         console.log(data);
       } else {
-        setIsPresale(false);
+        setIsPresale(true);
       }
     });
   }, []);
 
-  if (isPresale === undefined) {
-    return null;
-  }
+  // if (isPresale === undefined) {
+  //   return null;
+  // }
 
   if (isPresale) {
     return <Presale />;

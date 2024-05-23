@@ -24,7 +24,7 @@ export const PopupMarket = ({
 }) => {
   // const commission = ((selectedCardItemPrice || 0) * 0.01) / 100;
   const [commision, setCommision] = useState(0);
-  const total = (selectedCardItemPrice || 0) - commision; console.log(selectedCardItem);
+  const total = (selectedCardItemPrice || 0) + commision; console.log(selectedCardItem);
   const buyMarketItem = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/${selectedCardItem.id}/`, {
       method: "PATCH",
@@ -33,7 +33,7 @@ export const PopupMarket = ({
         "User-ID": id
       }
     }).then((res) => res.json())
-      .then((data) => tg.showAlert(data.message) && console.log(data))
+      .then((data) => tg.showAlert(data.message) && window.location.reload())
       .catch((err) => tg.showAlert(err?.message));
   };
 

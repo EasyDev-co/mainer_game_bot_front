@@ -21,7 +21,7 @@ export const Body = () => {
         setIsPresale(true);
         console.log(data);
       } else {
-        setIsPresale(true);
+        setIsPresale(false);
       }
     });
   }, []);

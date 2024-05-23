@@ -24,7 +24,10 @@ export const PopupMarket = ({
 }) => {
   // const commission = ((selectedCardItemPrice || 0) * 0.01) / 100;
   const [commision, setCommision] = useState(0);
-  const total = (selectedCardItemPrice || 0) + commision; console.log(selectedCardItem);
+  const total = (selectedCardItemPrice - commision) + commision * 2; console.log(selectedCardItem);
+  console.log(Number(selectedCardItemPrice));
+  console.log(total);
+  console.log(typeof total);
   const buyMarketItem = async () => {
     await fetch(`${BASE_URL}/api/v1/market/deals/${selectedCardItem.id}/`, {
       method: "PATCH",
@@ -39,6 +42,7 @@ export const PopupMarket = ({
 
   useEffect(() => {
     getInfo().then((data) => {
+      console.log(data);
       setCommision(data.p2p_commission);
     }).catch((err) => console.log(err));
   }, []);

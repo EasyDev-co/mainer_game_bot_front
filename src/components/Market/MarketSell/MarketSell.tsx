@@ -8,12 +8,14 @@ import { TUser } from "../../../types/user";
 import { checkUser } from "../../../utils/getUser";
 import { BASE_URL } from "../../../constants/links";
 import { getInfo } from "../../../utils/info";
+import { useNavigate } from "react-router-dom";
 
 export const MarketSell = () => {
   const [user, setUser] = useState<TUser>();
   const [crystal, setCrystal] = useState(0);
   const [ton, setTon] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkUser().then(data => setUser(data));
@@ -37,7 +39,7 @@ export const MarketSell = () => {
         ton_count: ton,
       }),
     }).then(res => res.json())
-      .then(data => data ? tg.showAlert(`Successflly created\nУспешно создано`) : tg.showAlert(data.error))
+      .then(data => data ? tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }) : tg.showAlert(data.error))
       .catch(err => tg.showAlert(err.message));
   };
 

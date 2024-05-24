@@ -7,5 +7,11 @@ export type TStatistics = {
   is_presale: boolean,
   presale_miners_count: number,
   purchased_miners_packs: number,
-  miners_per_pack: number;
+  miners_per_pack: number,
+  total_miners: number,
+  total_minerals: number,
+  placed_minerals: number,
+  market_minimum_price: string,
+  market_minimum_price_gt_5: string,
+  market_daily_volume: string;
 };

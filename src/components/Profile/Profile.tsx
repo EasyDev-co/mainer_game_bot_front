@@ -7,7 +7,8 @@ import {
   quitIcon,
   tonWhiteIcon,
   tg,
-  id
+  id,
+  walletDarkIcon
 } from "../../constants/constants";
 import { PopupTon } from "../Popups/PopupTon/PopupTon";
 import { BackArrowLink } from "../BackArrowLink/BackArrowLink";
@@ -48,7 +49,7 @@ export const Profile = () => {
       }),
     }).then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        tg.showAlert(data?.message);
       }).catch((err) => tg.showAlert(err?.message));
   };
   //функция открытия и закрытия попапа ton deposit
@@ -154,14 +155,25 @@ export const Profile = () => {
         <TitlePage title="Profile" />
         <div className="profile__wallet-block">
           <p className="profile__wallet-text">{userFriendlyAddress ? userFriendlyAddress : "Connect your wallet"}</p>
-          <button className="profile__wallet-exit-button" type="button"
-            onClick={() => userFriendlyAddress ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
-            <img
-              className="profile__wallet-exit-icon"
-              src={quitIcon}
-              alt="quit icon"
-            />
-          </button>
+          {!userFriendlyAddress ? (
+            <button className={"header__currencies-item-replenish"} style={{ cursor: "pointer" }}
+              onClick={() => tonConnectUI.openModal()}>
+              <img
+                className="header__wallet-icon"
+                src={walletDarkIcon}
+                alt="wallet icon"
+              />
+            </button>
+          ) : (
+            <button className="profile__wallet-exit-button" type="button"
+              onClick={() => userFriendlyAddress ? tonConnectUI.disconnect() : tonConnectUI.openModal()}>
+              <img
+                className="profile__wallet-exit-icon"
+                src={quitIcon}
+                alt="quit icon"
+              />
+            </button>
+          )}
         </div>
         <div className="profile__info-block">
           <ul className="profile__currencies-list">

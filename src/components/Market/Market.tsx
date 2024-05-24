@@ -16,6 +16,8 @@ import { MarketTextInfoListItem } from "./MarketTextInfoListItem/MarketTextInfoL
 import { TUser } from "../../types/user";
 import { checkUser } from "../../utils/getUser";
 import { BASE_URL } from "../../constants/links";
+import { getInfo } from "../../utils/info";
+import { TStatistics } from "../../types/statistics";
 
 interface Item {
   minerals_count: number;
@@ -37,6 +39,7 @@ export const Market = () => {
   const [selectedCardItem, setselectedCardItem] = useState<Item | null>(null);
   const [selectedFilterItemList, setSelectedFilterItemList] = useState("All");
   const [user, setUser] = useState<TUser>();
+  const [info, setInfo] = useState<TStatistics>();
   const [orders, setOrders] = useState();
   /*   const [myOrders, setMyOrders] = useState();
   const [bigOrders, setBigOrders] = useState(); */
@@ -243,6 +246,7 @@ export const Market = () => {
     getOrders();
     // moreThenFive();
     checkUser().then((user) => setUser(user));
+    getInfo().then((info) => setInfo(info));
   }, []);
 
   return (
@@ -281,18 +285,18 @@ export const Market = () => {
           <ul className="market__first-info-list">
             <MarketTextInfoListItem
               title="Total crystals"
-              val={user?.minerals_balance}
+              val={info?.total_minerals}
             />
             <MarketTextInfoListItem title="Placed crystals" val="0" />
             <MarketTextInfoListItem
               title="Total miners"
-              val={user?.miners_count}
+              val={info?.total_miners}
             />
           </ul>
           <ul className="market__second-info-list">
-            <MarketTextInfoListItem title="Minimum price" val="0 TON" />
-            <MarketTextInfoListItem title=">5 TON Minimum price" val="0 TON" />
-            <MarketTextInfoListItem title="Daily volume" val="0 TON" />
+            <MarketTextInfoListItem title="Minimum price" val={info?.market_minimum_price} />
+            <MarketTextInfoListItem title=">5 TON Minimum price" val={info?.market_minimum_price_gt_5} />
+            <MarketTextInfoListItem title="Daily volume" val={info?.market_daily_volume} />
           </ul>
         </div>
         <div className="market__filters-container">

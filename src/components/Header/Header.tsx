@@ -112,7 +112,7 @@ export const Header = () => {
               output={true}
             />
           )}
-          <button className={address ? "header__currencies-item-replenish-disconnect" : "header__currencies-item-replenish"} style={{ cursor: "pointer" }}
+          <button className={address && isPresale ? "header__currencies-item-replenish-disconnect" : "header__currencies-item-replenish"} style={{ cursor: "pointer" }}
             onClick={checkPresaleButton}>
             <img
               className="header__wallet-icon"

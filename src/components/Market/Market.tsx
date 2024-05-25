@@ -287,7 +287,7 @@ export const Market = () => {
               title="Total crystals"
               val={info?.total_minerals}
             />
-            <MarketTextInfoListItem title="Placed crystals" val="0" />
+            <MarketTextInfoListItem title="Placed crystals" val={info?.placed_minerals} />
             <MarketTextInfoListItem
               title="Total miners"
               val={info?.total_miners}

@@ -35,11 +35,6 @@ export const Profile = () => {
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
 
   const handleWithDraw = async (e: any) => {
-    console.log(inputValuePopup);
-    if (!userFriendlyAddress) {
-      tonConnectUI.openModal();
-      return;
-    }
     e.preventDefault();
     await fetch(`${BASE_URL}/api/v1/deposit/create_withdrawal/`, {
       method: "POST",
@@ -91,6 +86,10 @@ export const Profile = () => {
 
   //функция открытия и закрытия попапа ton Withdrawal
   const handleTonWithdrawalPopupState = () => {
+    if (!userFriendlyAddress) {
+      tonConnectUI.openModal();
+      return;
+    }
     setIsTonWithdrawalPopupState(!isTonWithdrawalPopupState);
   };
 

@@ -44,7 +44,7 @@ export const MarketSell = () => {
         ton_count: ton,
       }),
     }).then(res => res.json())
-      .then(data => data.status === 201 ? tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }) : tg.showAlert(data.minerals_count || data.ton_count))
+      .then(data => data.status === 201 && tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }))
       .catch(err => tg.showAlert(err?.message));
   };
 

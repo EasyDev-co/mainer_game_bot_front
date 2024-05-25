@@ -36,6 +36,10 @@ export const Profile = () => {
 
   const handleWithDraw = async (e: any) => {
     console.log(inputValuePopup);
+    if (!userFriendlyAddress) {
+      tonConnectUI.openModal();
+      return;
+    }
     e.preventDefault();
     await fetch(`${BASE_URL}/api/v1/deposit/create_withdrawal/`, {
       method: "POST",

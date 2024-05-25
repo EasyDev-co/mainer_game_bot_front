@@ -43,8 +43,16 @@ export const MarketSell = () => {
         minerals_count: crystal,
         ton_count: ton,
       }),
-    }).then(res => res.json())
-      .then(data => data.status === 201 && tg.showAlert(`Successflly created\nУспешно создано`) && navigate("/market", { replace: true }))
+    }).then(res => {
+      if (res.status === 201) {
+        tg.showAlert(`Successflly created\nУспешно создано`);
+        navigate("/market");
+        return res.json();
+      } else {
+        tg.showAlert(`Something went wrong\nЧто-то пошло не так ${res.status}`);
+      }
+    })
+      .then(data => console.log(data.status))
       .catch(err => tg.showAlert(err?.message));
   };
 

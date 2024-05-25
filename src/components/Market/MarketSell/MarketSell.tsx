@@ -24,7 +24,7 @@ export const MarketSell = () => {
   }, []);
 
   useEffect(() => {
-    setTonPerCrystal(+(ton / crystal).toFixed(2) || 0);
+    setTonPerCrystal(+(ton / crystal).toFixed(5) || 0);
   }, [crystal, ton]);
 
   useEffect(() => {

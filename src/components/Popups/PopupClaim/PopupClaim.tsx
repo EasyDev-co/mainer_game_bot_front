@@ -3,9 +3,11 @@ import { diamondIcon, id, tg } from "../../../constants/constants";
 import { Popup } from "../Popup/Popup";
 import { BASE_URL } from "../../../constants/links";
 import { useEffect, useState } from "react";
+import { getInfo } from "../../../utils/info";
 
 export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
   const [unClaimedMinerals, setUnClaimedMinerals] = useState(0);
+  const [claimCommission, setClaimCommission] = useState(0);
   const claimMinerals = async () => {
     await fetch(`${BASE_URL}/api/v1/users/claim_minerals/`, {
       method: "POST",
@@ -32,6 +34,9 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
         .catch((err) => tg.showAlert(err.message));
     };
     getCountMinerals();
+    getInfo().then((data) => {
+      setClaimCommission(data.claim_comission);
+    });
   }, []);
   return (
     <Popup onClose={onClose}>
@@ -53,7 +58,7 @@ export const PopupClaim = ({ onClose }: { onClose: () => void; }) => {
           </div>
           <p className="claim__descr">
             Commission for receiving crystals:{" "}
-            <span className="claim__text-span">0.01 TON</span>
+            <span className="claim__text-span">{claimCommission} TON</span>
           </p>
         </div>
         <button className="claim__button" type="button" onClick={claimMinerals}>

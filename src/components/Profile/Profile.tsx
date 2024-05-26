@@ -20,6 +20,7 @@ import { TUser } from "../../types/user";
 import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
 import { BASE_URL, final_address } from "../../constants/links";
 import { checkTransaction } from "../../utils/checkTransaction";
+import { getInfo } from "../../utils/info";
 
 
 export const Profile = () => {
@@ -33,6 +34,7 @@ export const Profile = () => {
     useState(false);
   // стейт с инфой которую ввели в инпут в попапе
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
+  const [withDrawCommission, setWithDrawCommission] = useState<number | string>();
 
   const handleWithDraw = async (e: any) => {
     e.preventDefault();
@@ -51,6 +53,12 @@ export const Profile = () => {
         tg.showAlert(data?.message);
       }).catch((err) => tg.showAlert(err?.message));
   };
+
+  useEffect(() => {
+    getInfo().then((data) => {
+      setWithDrawCommission(data.min_withdraw_amount);
+    });
+  });
   //функция открытия и закрытия попапа ton deposit
   const handleTonDepositPopupState = async () => {
     if (!userFriendlyAddress) {
@@ -211,7 +219,7 @@ export const Profile = () => {
           text={
             <>
               Minimum withdrawal from: {""}
-              <span className="popup-ton__button-text-span">0.1 TON</span>
+              <span className="popup-ton__button-text-span">{withDrawCommission || "0.1"} TON</span>
             </>
           }
           firstTon={tonIcon}

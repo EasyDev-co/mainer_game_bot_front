@@ -1,4 +1,6 @@
 export type TStatistics = {
+  min_withdraw_amount: string | number;
+  claim_commission: string,
   miner_price: string,
   miner_price_for_minerals: number,
   min_amount_minerals_for_sale: string,

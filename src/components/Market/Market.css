@@ -171,3 +171,30 @@
   width: 25px;
   height: 25px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pagination__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background-color: #635a48;
+  border-radius: 5px;
+}
+
+.pagination__button:hover {
+  background-color: #896928;
+}
+
+.active {
+  background-color: #896928;
+  border-radius: 5px;
+}

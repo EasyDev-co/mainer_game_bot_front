@@ -40,9 +40,16 @@ export const Market = () => {
   const [selectedFilterItemList, setSelectedFilterItemList] = useState("All");
   const [user, setUser] = useState<TUser>();
   const [info, setInfo] = useState<TStatistics>();
-  const [orders, setOrders] = useState();
-  /*   const [myOrders, setMyOrders] = useState();
-  const [bigOrders, setBigOrders] = useState(); */
+  const [orders, setOrders] = useState<{
+    count: number | undefined;
+    next: string | null;
+    previous: string | null;
+    results: any[];
+  }>();
+
+  const [totalPages, setTotalPages] = useState([1]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activeButton, setActiveButton] = useState(1);
 
   const handleItemClick = (item: any) => {
     setSelectedFilterItem(item);
@@ -94,7 +101,9 @@ export const Market = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data));
+      .then((data) => {
+        setOrders(data);
+      });
   };
 
   const moreThenFive = async () => {
@@ -249,6 +258,45 @@ export const Market = () => {
     getInfo().then((info) => setInfo(info));
   }, []);
 
+
+  useEffect(() => {
+    let total = [];
+    // @ts-ignore
+    for (let i = 0; i <= orders?.count / 10; i++) {
+      total.push(i + 1);
+      console.log(1);
+    }
+    setTotalPages(total);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orders]);
+
+  useEffect(() => {
+    const paginationFetch = async (url: string) => {
+      await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "User-ID": id,
+        }
+      }).then((res) => res.json()).then((data) => setOrders(data)).catch((err) => console.log(err));
+    };
+
+    if (currentPage < activeButton) {
+      console.log("Назад");
+      const url = orders?.previous;
+      if (!url) return;
+      paginationFetch(url);
+      setActiveButton(currentPage);
+    } else if (currentPage > activeButton) {
+      const url = orders?.next;
+      if (!url) return;
+      paginationFetch(url);
+      console.log("Вперед");
+      setActiveButton(currentPage);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
   return (
     <section className="market">
       <div className="market__container">
@@ -384,6 +432,20 @@ export const Market = () => {
         {selectedFilterItemList && (
           <MarketItemList items={orders} handleCardSelect={handleCardSelect} />
         )}
+        <div className="pagination">
+          {totalPages && totalPages.map((page, index) => (
+            <button
+              className={`pagination__button ${page === currentPage ? "active" : ""}`}
+              type="button"
+              onClick={() => {
+                setCurrentPage(page);
+              }}
+              key={page}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </div>
       {isMarketPopupState && selectedCardItem && (
         <PopupMarket

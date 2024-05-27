@@ -135,8 +135,8 @@ export const Profile = () => {
         ]
       };
       let result = await tonConnectUI.sendTransaction(transaction);
-      if (result?.boc) {
-        // tg.showAlert("Transaction sent successfully");
+      if (result.boc) {
+        // tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);
         checkTransaction(result.boc, inputValuePopup)
           .then((data) => {
             tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);

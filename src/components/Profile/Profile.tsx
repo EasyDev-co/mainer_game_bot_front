@@ -140,7 +140,7 @@ export const Profile = () => {
         checkTransaction(result.boc, inputValuePopup)
           .then((data) => {
             tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);
-            // window.location.reload();
+            window.location.reload();
           }).catch((err) => {
             console.log(err);
           });

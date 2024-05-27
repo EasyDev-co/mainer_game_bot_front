@@ -34,6 +34,7 @@ export const Profile = () => {
     useState(false);
   // стейт с инфой которую ввели в инпут в попапе
   const [inputValuePopup, setInputValuePopup] = useState<number>(0);
+  const [depositCommission, setDepositCommission] = useState<number | string>();
   const [withDrawCommission, setWithDrawCommission] = useState<number | string>();
 
   const handleWithDraw = async (e: any) => {
@@ -56,7 +57,9 @@ export const Profile = () => {
 
   useEffect(() => {
     getInfo().then((data) => {
+      console.log(data);
       setWithDrawCommission(data.min_withdraw_amount);
+      setDepositCommission(data.min_deposit_amount);
     });
   });
   //функция открытия и закрытия попапа ton deposit
@@ -219,7 +222,7 @@ export const Profile = () => {
           text={
             <>
               Minimum withdrawal from: {""}
-              <span className="popup-ton__button-text-span">{withDrawCommission || "0.1"} TON</span>
+              <span className="popup-ton__button-text-span">{depositCommission} TON</span>
             </>
           }
           firstTon={tonIcon}
@@ -237,7 +240,7 @@ export const Profile = () => {
           text={
             <>
               Minimum withdrawal from:{" "}
-              <span className="popup-ton__button-text-span">0.1 TON</span>
+              <span className="popup-ton__button-text-span">{withDrawCommission} TON</span>
               <br />
               Fee <span className="popup-ton__button-text-span">5%</span> from
               the withdrawal amount

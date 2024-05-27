@@ -130,7 +130,7 @@ export const Header = () => {
         </div>
       </header>
       {isMainBuyMinersPopup && (
-        <PopupMainBuyMiners onClose={handleMainBuyMinersPopup} />
+        <PopupMainBuyMiners onClose={handleMainBuyMinersPopup} user={user} />
       )}
     </>
   );

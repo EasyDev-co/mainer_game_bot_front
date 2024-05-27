@@ -139,7 +139,8 @@ export const Profile = () => {
         // tg.showAlert("Transaction sent successfully");
         checkTransaction(result.boc, inputValuePopup)
           .then((data) => {
-            console.log(data);
+            tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);
+            window.location.reload();
           }).catch((err) => {
             console.log(err);
           });
@@ -221,7 +222,7 @@ export const Profile = () => {
           buttonText="Deposit"
           text={
             <>
-              Minimum withdrawal from: {""}
+              Minimum deposit from: {""}
               <span className="popup-ton__button-text-span">{depositCommission} TON</span>
             </>
           }

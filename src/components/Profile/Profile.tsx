@@ -118,9 +118,7 @@ export const Profile = () => {
 
 
   const handleSubmit = async (e: any) => {
-    console.log(+inputValuePopup.toString().split(".")[1] > 2);
-    console.log(inputValuePopup.toString().split(".")[1].length > 2);
-
+    e.preventDefault();
     try {
       console.log("TON amount", inputValuePopup);
       console.log("Nanoton amount", (parseFloat(inputValuePopup.toString()) * 10 ** 9).toString());
@@ -135,14 +133,15 @@ export const Profile = () => {
         ]
       };
       let result = await tonConnectUI.sendTransaction(transaction);
+
+      console.log(inputValuePopup);
       if (result.boc) {
         // tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);
         checkTransaction(result.boc, inputValuePopup)
-          .then((data) => {
+          .then(data => {
+            console.log(data);
             tg.showAlert(`Transaction sent successfully.\nТранзакция успешно отправлена.`);
             window.location.reload();
-          }).catch((err) => {
-            console.log(err);
           });
         console.log(result);
       }

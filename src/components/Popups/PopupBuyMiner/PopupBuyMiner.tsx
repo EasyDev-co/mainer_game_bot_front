@@ -20,6 +20,13 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
       setMiners(0);
       return;
     }
+    if (e.target.value.split(/[.,]/)[1]?.length >= 1) {
+      tg.showAlert("Please enter a valid amount");
+      e.target.value = e.target.value.slice(0, e.target.value.length - 1);
+      setInputValue(0);
+      setMiners(0);
+      return;
+    }
     const value = parseFloat(e.target.value) * pricePerPack;
     setInputValue(value);
     setMiners(+e.target.value);
@@ -102,6 +109,8 @@ export const PopupBuyMiner = ({ onClose }: { onClose: () => void; }) => {
             className="popup-buy-miner__input"
             type="number"
             placeholder="0"
+            value={miners}
+            step={1}
             onChange={handleInputChange}
           />
         </div>

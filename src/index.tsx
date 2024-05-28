@@ -14,7 +14,7 @@ root.render(
     <BrowserRouter>
       <TonConnectUIProvider
         actionsConfiguration={{
-          twaReturnUrl: "https://t.me/sherifdev_bot",
+          twaReturnUrl: "https://t.me/minersgate_bot",
         }}
         manifestUrl="https://mainer-game-bot.netlify.app/manifest_add.json"
       >

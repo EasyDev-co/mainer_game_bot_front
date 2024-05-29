@@ -1,0 +1,23 @@
+.loader {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 390px;
+  animation: blinking 1.5s linear infinite;
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}

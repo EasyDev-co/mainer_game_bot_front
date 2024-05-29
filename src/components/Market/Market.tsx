@@ -66,6 +66,20 @@ export const Market = () => {
     setselectedCardItem(card);
     handleMarketPopupState();
   };
+
+  const deleteItem = async (card: any) => {
+    setselectedCardItem(card);
+    console.log(card.id);
+    await fetch(`${BASE_URL}/api/v1/market/deals/${card.id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "User-ID": id,
+      },
+    });
+  };
+
+
   /*   let params = {
     ordering: "",
     ton_min: ""
@@ -430,7 +444,7 @@ export const Market = () => {
           </div>
         </div>
         {selectedFilterItemList && (
-          <MarketItemList items={orders} handleCardSelect={handleCardSelect} />
+          <MarketItemList items={orders} my={selectedFilterItemList === "My"} handleCardSelect={selectedFilterItemList === "My" ? deleteItem : handleCardSelect} />
         )}
         <div className="pagination">
           {totalPages && totalPages.map((page, index) => (

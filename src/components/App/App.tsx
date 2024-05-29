@@ -11,6 +11,10 @@ import { Market } from "../Market/Market";
 import { useEffect, useState } from "react";
 import { getInfo } from "../../utils/info";
 
+export const Loader = () => {
+  return <h1 className="loader">Loading...</h1>;
+};
+
 export const Body = () => {
   const [isPresale, setIsPresale] = useState<boolean>();
   console.log(isPresale);
@@ -29,6 +33,10 @@ export const Body = () => {
   // if (isPresale === undefined) {
   //   return null;
   // }
+
+  if (!isPresale) {
+    return <Loader />;
+  }
 
   if (isPresale) {
     return <Presale />;

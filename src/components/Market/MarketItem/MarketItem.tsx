@@ -5,9 +5,11 @@ import { TMarketDeal } from "../../../types/market";
 export const MarketItem = ({
   item,
   handleCardSelect,
+  my
 }: {
   item: TMarketDeal;
   handleCardSelect: (card: any) => void;
+  my?: boolean | undefined;
 }) => {
   /* console.log(item); */
   return (
@@ -55,7 +57,7 @@ export const MarketItem = ({
         className="market-items__lot-button"
         type="button"
       >
-        Buy
+        {my ? "Sell" : "Buy"}
       </button>
     </>
   );

@@ -76,7 +76,7 @@ export const Market = () => {
         "Content-Type": "application/json",
         "User-ID": id,
       },
-    });
+    }).then(window.location.reload())
   };
 
 

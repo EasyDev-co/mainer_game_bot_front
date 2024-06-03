@@ -57,7 +57,7 @@ export const MarketItem = ({
         className="market-items__lot-button"
         type="button"
       >
-        {my ? "Sell" : "Buy"}
+        {my ? "Cancel" : "Buy"}
       </button>
     </>
   );

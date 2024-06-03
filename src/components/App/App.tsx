@@ -30,13 +30,9 @@ export const Body = () => {
     });
   }, []);
 
-  // if (isPresale === undefined) {
-  //   return null;
-  // }
-
-  if (!isPresale) {
-    return <Loader />;
-  }
+  if (isPresale === undefined) {
+      return <Loader/>
+     }
 
   if (isPresale) {
     return <Presale />;

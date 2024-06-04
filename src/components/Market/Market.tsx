@@ -286,6 +286,10 @@ export const Market = () => {
   }, [orders]);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedFilterItemList, selectedFilterItem]);
+
+  useEffect(() => {
     const paginationFetch = async (url: string) => {
       await fetch(url, {
         method: "GET",

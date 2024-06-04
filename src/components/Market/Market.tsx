@@ -76,7 +76,8 @@ export const Market = () => {
         "Content-Type": "application/json",
         "User-ID": id,
       },
-    }).then(window.location.reload())
+    });
+    await window.location.reload();
   };
 
 
@@ -121,10 +122,10 @@ export const Market = () => {
   };
 
   const moreThenFive = async () => {
-    setParams((prevParams) => ({
-      ...prevParams,
-      ton_min: "5",
-    }));
+    setParams({
+      ordering: "",
+      ton_min: ""
+    });
 
     const paramsRecord: Record<string, string> = {
       ordering: params.ordering,

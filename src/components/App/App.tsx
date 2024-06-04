@@ -31,8 +31,8 @@ export const Body = () => {
   }, []);
 
   if (isPresale === undefined) {
-      return <Loader/>
-     }
+    return <Loader />;
+  }
 
   if (isPresale) {
     return <Presale />;
